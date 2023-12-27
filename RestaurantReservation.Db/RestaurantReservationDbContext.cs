@@ -18,16 +18,11 @@ namespace RestaurantReservation.Db
         {
             optionsBuilder.UseSqlServer("Server=TASBEH-TAKRORE;Database=RestaurantReservationCore;Trusted_Connection=True;TrustServerCertificate=True;",
                 x => x.UseDateOnlyTimeOnly());
+            optionsBuilder.EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Restaurant>()
-              .OwnsOne(r => r.OpeningHours, oh =>
-              {
-                  oh.Property(wh => wh.StartTime).HasColumnName("StartTime");
-                  oh.Property(wh => wh.EndTime).HasColumnName("EndTime");
-              });
             modelBuilder.Entity<Reservation>()
                 .HasOne(r => r.Table)
                 .WithMany(t => t.Reservations)
@@ -43,6 +38,15 @@ namespace RestaurantReservation.Db
                  .WithMany(o => o.OrderItems)
                  .HasForeignKey(oi => oi.OrderId)
                  .OnDelete(DeleteBehavior.Restrict);
+
+            DbSeeder.SeedCustomersTable(modelBuilder);
+            DbSeeder.SeedEmployeeTable(modelBuilder);
+            DbSeeder.SeedMenuItemsTable(modelBuilder);
+            DbSeeder.SeedOrdersTable(modelBuilder);
+            DbSeeder.SeedOrderItemsTable(modelBuilder);
+            DbSeeder.SeedReservationsTable(modelBuilder);
+            DbSeeder.SeedRestaurantsTable(modelBuilder);
+            DbSeeder.SeedTablesTable(modelBuilder);
         }
     }
 }

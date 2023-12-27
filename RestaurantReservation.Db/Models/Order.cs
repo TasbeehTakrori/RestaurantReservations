@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EntityFrameworkCore.Projectables;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantReservation.Db.Models
 {
@@ -9,9 +10,6 @@ namespace RestaurantReservation.Db.Models
 
         [Required]
         public DateTime OrderDate { get; init; }
-
-        [Required, Range(1, int.MaxValue)]
-        public int TotalAmount { get; set; } = 1;
 
         [Required]
         public int ReservationId { get; set; }
@@ -24,5 +22,10 @@ namespace RestaurantReservation.Db.Models
         public Employee Employee { get; set; }
 
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
+        [Projectable]
+        public decimal TotalAmount => OrderItems.Sum(oi => oi.MenuItem.Price * oi.Quantity);
+
+
     }
 }

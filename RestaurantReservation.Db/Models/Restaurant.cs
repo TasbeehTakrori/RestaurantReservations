@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EntityFrameworkCore.Projectables;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestaurantReservation.Db.Models
@@ -18,7 +19,13 @@ namespace RestaurantReservation.Db.Models
         public string PhoneNumber { get; set; }
 
         [Required]
-        public WorkingHours OpeningHours { get; set; }
+        public TimeOnly StartTime { get; set; }
+
+        [Required]
+        public TimeOnly EndTime { get; set; }
+
+        [Projectable]
+        public string OpeningHours => $"{StartTime} - {EndTime}";
 
         public ICollection<Table> Tables { get; set; } = new List<Table>();
 
