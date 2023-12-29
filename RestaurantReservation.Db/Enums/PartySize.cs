@@ -1,7 +1,7 @@
 ﻿
 namespace RestaurantReservation.Db.Enums
 {
-    internal enum PartySize
+    public enum PartySize
     {
         small = 1,
         mediam = 2,

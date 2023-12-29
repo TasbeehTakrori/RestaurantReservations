@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using RestaurantReservation.Db.Models;
 
 namespace RestaurantReservation.Db
 {
-    internal class RestaurantReservationDbContext : DbContext
+    public class RestaurantReservationDbContext : DbContext
     {
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Employee> Employees { get; set; }
@@ -17,7 +18,9 @@ namespace RestaurantReservation.Db
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=TASBEH-TAKRORE;Database=RestaurantReservationCore;Trusted_Connection=True;TrustServerCertificate=True;",
-                x => x.UseDateOnlyTimeOnly());
+                x => x.UseDateOnlyTimeOnly()).LogTo(Console.WriteLine,
+                    new[] { DbLoggerCategory.Database.Command.Name },
+                    LogLevel.Information);
             optionsBuilder.EnableSensitiveDataLogging();
         }
 
@@ -38,6 +41,10 @@ namespace RestaurantReservation.Db
                  .WithMany(o => o.OrderItems)
                  .HasForeignKey(oi => oi.OrderId)
                  .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Customer>()
+                .HasIndex(c => c.Email)
+                .IsUnique();
+                
 
             DbSeeder.SeedCustomersTable(modelBuilder);
             DbSeeder.SeedEmployeeTable(modelBuilder);

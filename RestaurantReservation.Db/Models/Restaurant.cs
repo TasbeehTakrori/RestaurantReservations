@@ -1,27 +1,22 @@
 ﻿using EntityFrameworkCore.Projectables;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestaurantReservation.Db.Models
 {
-    internal class Restaurant
+    public class Restaurant
     {
-        [Key]
         public int RestaurantId { get; init; }
 
-        [Required, MaxLength(255)]
+        [MaxLength(255)]
         public string Name { get; set; }
 
-        [Required]
         public string Address { get; set; }
 
-        [Required, Phone]
+        [Phone]
         public string PhoneNumber { get; set; }
 
-        [Required]
         public TimeOnly StartTime { get; set; }
 
-        [Required]
         public TimeOnly EndTime { get; set; }
 
         [Projectable]

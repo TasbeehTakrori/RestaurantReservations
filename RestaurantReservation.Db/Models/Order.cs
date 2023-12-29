@@ -3,20 +3,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantReservation.Db.Models
 {
-    internal class Order
+    public class Order
     {
-        [Key]
         public int OrderId { get; set; }
 
-        [Required]
         public DateTime OrderDate { get; init; }
 
-        [Required]
         public int ReservationId { get; set; }
 
         public Reservation Reservation { get; set; }
 
-        [Required]
         public int EmployeeId { get; set; }
 
         public Employee Employee { get; set; }

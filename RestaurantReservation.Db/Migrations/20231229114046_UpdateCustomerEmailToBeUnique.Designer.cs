@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantReservation.Db;
 
@@ -11,9 +12,10 @@ using RestaurantReservation.Db;
 namespace RestaurantReservation.Db.Migrations
 {
     [DbContext(typeof(RestaurantReservationDbContext))]
-    partial class RestaurantReservationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231229114046_UpdateCustomerEmailToBeUnique")]
+    partial class UpdateCustomerEmailToBeUnique
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,82 +61,82 @@ namespace RestaurantReservation.Db.Migrations
                         new
                         {
                             CustomerId = 1,
-                            Email = "Shayne.Strosin28@hotmail.com",
-                            FirstName = "Hayley",
-                            LastName = "Lesch",
-                            PhoneNumber = "436-641-9269"
+                            Email = "Dalton99@hotmail.com",
+                            FirstName = "Russell",
+                            LastName = "Wehner",
+                            PhoneNumber = "1-316-948-8692"
                         },
                         new
                         {
                             CustomerId = 2,
-                            Email = "Jazmyne.Rutherford50@gmail.com",
-                            FirstName = "Johnny",
-                            LastName = "Stamm",
-                            PhoneNumber = "(868) 410-0597"
+                            Email = "Allan_Nikolaus74@yahoo.com",
+                            FirstName = "Furman",
+                            LastName = "Schneider",
+                            PhoneNumber = "(282) 228-7701 x28624"
                         },
                         new
                         {
                             CustomerId = 3,
-                            Email = "Jakob69@hotmail.com",
-                            FirstName = "Rosalind",
-                            LastName = "Borer",
-                            PhoneNumber = "1-718-305-2883"
+                            Email = "Katlynn_Strosin47@hotmail.com",
+                            FirstName = "Briana",
+                            LastName = "Bruen",
+                            PhoneNumber = "686.904.7558"
                         },
                         new
                         {
                             CustomerId = 4,
-                            Email = "Chesley48@yahoo.com",
-                            FirstName = "Sean",
-                            LastName = "Hansen",
-                            PhoneNumber = "(858) 349-8620 x4226"
+                            Email = "Felipe28@yahoo.com",
+                            FirstName = "Linnea",
+                            LastName = "Reynolds",
+                            PhoneNumber = "464.365.6416"
                         },
                         new
                         {
                             CustomerId = 5,
-                            Email = "Francesco_Adams@gmail.com",
-                            FirstName = "Ernest",
-                            LastName = "Kiehn",
-                            PhoneNumber = "1-485-875-0619"
+                            Email = "Merlin.Bergnaum99@yahoo.com",
+                            FirstName = "Berniece",
+                            LastName = "Considine",
+                            PhoneNumber = "(705) 810-0208"
                         },
                         new
                         {
                             CustomerId = 6,
-                            Email = "Ova69@yahoo.com",
-                            FirstName = "Ebony",
-                            LastName = "Vandervort",
-                            PhoneNumber = "1-423-392-3786"
+                            Email = "Kaci76@gmail.com",
+                            FirstName = "Nicolas",
+                            LastName = "Rutherford",
+                            PhoneNumber = "(478) 831-1386"
                         },
                         new
                         {
                             CustomerId = 7,
-                            Email = "Ned9@yahoo.com",
-                            FirstName = "Hilton",
-                            LastName = "Krajcik",
-                            PhoneNumber = "1-390-714-7359"
+                            Email = "Astrid.Feeney37@yahoo.com",
+                            FirstName = "Marie",
+                            LastName = "Becker",
+                            PhoneNumber = "(265) 878-3667"
                         },
                         new
                         {
                             CustomerId = 8,
-                            Email = "Alessia_Kilback@yahoo.com",
-                            FirstName = "Margie",
-                            LastName = "Gerlach",
-                            PhoneNumber = "303-380-3728"
+                            Email = "Raquel.Kshlerin5@yahoo.com",
+                            FirstName = "Effie",
+                            LastName = "Bartell",
+                            PhoneNumber = "1-227-238-4018 x3791"
                         },
                         new
                         {
                             CustomerId = 9,
-                            Email = "Maggie.Heidenreich36@yahoo.com",
-                            FirstName = "Annabell",
-                            LastName = "Conroy",
-                            PhoneNumber = "(555) 802-7140"
+                            Email = "Josue96@yahoo.com",
+                            FirstName = "Lonie",
+                            LastName = "Grimes",
+                            PhoneNumber = "1-904-294-0698"
                         },
                         new
                         {
                             CustomerId = 10,
-                            Email = "Floy90@yahoo.com",
-                            FirstName = "Sadye",
-                            LastName = "Olson",
-                            PhoneNumber = "1-878-803-3763"
+                            Email = "Helen89@hotmail.com",
+                            FirstName = "Graham",
+                            LastName = "Mayert",
+                            PhoneNumber = "(644) 437-3815"
                         });
                 });
 
@@ -173,58 +175,58 @@ namespace RestaurantReservation.Db.Migrations
                         new
                         {
                             EmployeeId = 1,
-                            FirstName = "Lula",
-                            LastName = "Kuhn",
-                            Position = "Lead Program Supervisor",
+                            FirstName = "Randy",
+                            LastName = "Ondricka",
+                            Position = "Lead Implementation Associate",
                             RestaurantId = 1
                         },
                         new
                         {
                             EmployeeId = 2,
-                            FirstName = "Antonia",
-                            LastName = "O'Keefe",
-                            Position = "Product Functionality Supervisor",
+                            FirstName = "Mercedes",
+                            LastName = "Wintheiser",
+                            Position = "Legacy Infrastructure Strategist",
                             RestaurantId = 1
                         },
                         new
                         {
                             EmployeeId = 3,
-                            FirstName = "Caleb",
-                            LastName = "Bailey",
-                            Position = "District Integration Supervisor",
-                            RestaurantId = 4
+                            FirstName = "Nathan",
+                            LastName = "Dickens",
+                            Position = "International Research Liaison",
+                            RestaurantId = 5
                         },
                         new
                         {
                             EmployeeId = 4,
-                            FirstName = "Victoria",
-                            LastName = "Abshire",
-                            Position = "Direct Web Consultant",
-                            RestaurantId = 5
+                            FirstName = "Francis",
+                            LastName = "Moore",
+                            Position = "Global Tactics Designer",
+                            RestaurantId = 3
                         },
                         new
                         {
                             EmployeeId = 5,
-                            FirstName = "Marvin",
-                            LastName = "Fahey",
-                            Position = "Dynamic Interactions Associate",
-                            RestaurantId = 2
+                            FirstName = "Shawna",
+                            LastName = "Hayes",
+                            Position = "Chief Intranet Architect",
+                            RestaurantId = 1
                         },
                         new
                         {
                             EmployeeId = 6,
-                            FirstName = "Billie",
-                            LastName = "Hamill",
-                            Position = "Internal Factors Officer",
-                            RestaurantId = 2
+                            FirstName = "Norman",
+                            LastName = "Kris",
+                            Position = "Principal Communications Designer",
+                            RestaurantId = 1
                         },
                         new
                         {
                             EmployeeId = 7,
-                            FirstName = "Ruby",
-                            LastName = "Roberts",
-                            Position = "Lead Brand Strategist",
-                            RestaurantId = 5
+                            FirstName = "Whitney",
+                            LastName = "Johnston",
+                            Position = "Regional Operations Representative",
+                            RestaurantId = 1
                         });
                 });
 
@@ -260,82 +262,82 @@ namespace RestaurantReservation.Db.Migrations
                         new
                         {
                             MenuItemId = 1,
-                            Description = "Voluptatibus inventore dolorem.",
-                            Name = "Ergonomic Plastic Towels",
-                            Price = 23.03m,
-                            RestaurantId = 3
-                        },
-                        new
-                        {
-                            MenuItemId = 2,
-                            Description = "Pariatur assumenda quis sunt quo.",
-                            Name = "Sleek Granite Table",
-                            Price = 78.48m,
-                            RestaurantId = 4
-                        },
-                        new
-                        {
-                            MenuItemId = 3,
-                            Description = "Voluptatibus blanditiis impedit et.",
-                            Name = "Rustic Plastic Chicken",
-                            Price = 78.14m,
-                            RestaurantId = 4
-                        },
-                        new
-                        {
-                            MenuItemId = 4,
-                            Description = "Aut minus nesciunt esse.",
-                            Name = "Refined Frozen Cheese",
-                            Price = 96.74m,
-                            RestaurantId = 2
-                        },
-                        new
-                        {
-                            MenuItemId = 5,
-                            Description = "Error vel voluptatibus perspiciatis ut.",
-                            Name = "Licensed Concrete Mouse",
-                            Price = 52.40m,
-                            RestaurantId = 1
-                        },
-                        new
-                        {
-                            MenuItemId = 6,
-                            Description = "Qui at aliquam magni sapiente reiciendis animi asperiores.",
-                            Name = "Handmade Plastic Mouse",
-                            Price = 21.10m,
-                            RestaurantId = 1
-                        },
-                        new
-                        {
-                            MenuItemId = 7,
-                            Description = "Et enim impedit ab eum aperiam.",
-                            Name = "Refined Plastic Sausages",
-                            Price = 70.10m,
+                            Description = "Saepe atque delectus voluptas et.",
+                            Name = "Incredible Frozen Table",
+                            Price = 86.78m,
                             RestaurantId = 5
                         },
                         new
                         {
-                            MenuItemId = 8,
-                            Description = "Earum sit debitis itaque veniam a.",
-                            Name = "Tasty Soft Salad",
-                            Price = 90.16m,
+                            MenuItemId = 2,
+                            Description = "Dolores explicabo voluptatem.",
+                            Name = "Refined Metal Shirt",
+                            Price = 74.27m,
+                            RestaurantId = 5
+                        },
+                        new
+                        {
+                            MenuItemId = 3,
+                            Description = "Necessitatibus qui voluptatem quasi consequatur corporis.",
+                            Name = "Awesome Plastic Keyboard",
+                            Price = 71.51m,
                             RestaurantId = 3
                         },
                         new
                         {
+                            MenuItemId = 4,
+                            Description = "Dolore incidunt atque consectetur odit reprehenderit.",
+                            Name = "Generic Rubber Fish",
+                            Price = 78.11m,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            MenuItemId = 5,
+                            Description = "Sapiente molestiae sint recusandae sed in delectus maiores.",
+                            Name = "Sleek Metal Bike",
+                            Price = 57.48m,
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            MenuItemId = 6,
+                            Description = "Et eum expedita voluptatem et odio voluptatibus nulla ipsum laborum.",
+                            Name = "Licensed Granite Bike",
+                            Price = 51.93m,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            MenuItemId = 7,
+                            Description = "Laboriosam quod itaque aliquid.",
+                            Name = "Tasty Metal Fish",
+                            Price = 88.83m,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            MenuItemId = 8,
+                            Description = "Alias quo voluptatem aut dolores fuga beatae praesentium dolor nihil.",
+                            Name = "Awesome Concrete Salad",
+                            Price = 35.62m,
+                            RestaurantId = 2
+                        },
+                        new
+                        {
                             MenuItemId = 9,
-                            Description = "Numquam voluptas ex quaerat aut.",
-                            Name = "Practical Steel Tuna",
-                            Price = 22.06m,
+                            Description = "Asperiores eum vitae.",
+                            Name = "Licensed Frozen Cheese",
+                            Price = 27.45m,
                             RestaurantId = 2
                         },
                         new
                         {
                             MenuItemId = 10,
-                            Description = "Aut culpa quam consectetur numquam ut soluta nemo.",
-                            Name = "Small Wooden Chicken",
-                            Price = 82.96m,
-                            RestaurantId = 4
+                            Description = "Molestias dolorem voluptatum rerum et.",
+                            Name = "Small Concrete Shirt",
+                            Price = 10.08m,
+                            RestaurantId = 5
                         });
                 });
 
@@ -363,72 +365,72 @@ namespace RestaurantReservation.Db.Migrations
                         new
                         {
                             OrderId = 1,
-                            EmployeeId = 3,
-                            OrderDate = new DateTime(2023, 12, 29, 4, 27, 3, 655, DateTimeKind.Local).AddTicks(3923),
-                            ReservationId = 3
+                            EmployeeId = 4,
+                            OrderDate = new DateTime(2023, 12, 28, 23, 1, 53, 72, DateTimeKind.Local).AddTicks(7688),
+                            ReservationId = 9
                         },
                         new
                         {
                             OrderId = 2,
-                            EmployeeId = 1,
-                            OrderDate = new DateTime(2023, 12, 29, 7, 53, 31, 155, DateTimeKind.Local).AddTicks(3768),
-                            ReservationId = 7
+                            EmployeeId = 4,
+                            OrderDate = new DateTime(2023, 12, 29, 5, 30, 34, 653, DateTimeKind.Local).AddTicks(4989),
+                            ReservationId = 8
                         },
                         new
                         {
                             OrderId = 3,
-                            EmployeeId = 7,
-                            OrderDate = new DateTime(2023, 12, 29, 10, 28, 5, 816, DateTimeKind.Local).AddTicks(3857),
-                            ReservationId = 7
+                            EmployeeId = 6,
+                            OrderDate = new DateTime(2023, 12, 29, 1, 24, 33, 36, DateTimeKind.Local).AddTicks(2974),
+                            ReservationId = 9
                         },
                         new
                         {
                             OrderId = 4,
-                            EmployeeId = 1,
-                            OrderDate = new DateTime(2023, 12, 29, 8, 38, 2, 811, DateTimeKind.Local).AddTicks(9325),
-                            ReservationId = 8
+                            EmployeeId = 7,
+                            OrderDate = new DateTime(2023, 12, 29, 5, 14, 44, 325, DateTimeKind.Local).AddTicks(9098),
+                            ReservationId = 6
                         },
                         new
                         {
                             OrderId = 5,
-                            EmployeeId = 7,
-                            OrderDate = new DateTime(2023, 12, 29, 11, 26, 33, 751, DateTimeKind.Local).AddTicks(7448),
-                            ReservationId = 8
+                            EmployeeId = 4,
+                            OrderDate = new DateTime(2023, 12, 28, 15, 47, 33, 841, DateTimeKind.Local).AddTicks(724),
+                            ReservationId = 4
                         },
                         new
                         {
                             OrderId = 6,
-                            EmployeeId = 4,
-                            OrderDate = new DateTime(2023, 12, 29, 10, 25, 50, 697, DateTimeKind.Local).AddTicks(522),
-                            ReservationId = 8
+                            EmployeeId = 6,
+                            OrderDate = new DateTime(2023, 12, 28, 16, 45, 54, 583, DateTimeKind.Local).AddTicks(2861),
+                            ReservationId = 5
                         },
                         new
                         {
                             OrderId = 7,
                             EmployeeId = 4,
-                            OrderDate = new DateTime(2023, 12, 28, 20, 31, 30, 137, DateTimeKind.Local).AddTicks(1956),
-                            ReservationId = 3
+                            OrderDate = new DateTime(2023, 12, 28, 17, 26, 4, 930, DateTimeKind.Local).AddTicks(4434),
+                            ReservationId = 7
                         },
                         new
                         {
                             OrderId = 8,
-                            EmployeeId = 5,
-                            OrderDate = new DateTime(2023, 12, 29, 7, 10, 16, 12, DateTimeKind.Local).AddTicks(8559),
-                            ReservationId = 5
+                            EmployeeId = 2,
+                            OrderDate = new DateTime(2023, 12, 29, 7, 59, 34, 633, DateTimeKind.Local).AddTicks(5603),
+                            ReservationId = 8
                         },
                         new
                         {
                             OrderId = 9,
-                            EmployeeId = 5,
-                            OrderDate = new DateTime(2023, 12, 29, 14, 9, 26, 253, DateTimeKind.Local).AddTicks(2337),
-                            ReservationId = 1
+                            EmployeeId = 4,
+                            OrderDate = new DateTime(2023, 12, 29, 3, 39, 16, 698, DateTimeKind.Local).AddTicks(6180),
+                            ReservationId = 3
                         },
                         new
                         {
                             OrderId = 10,
-                            EmployeeId = 3,
-                            OrderDate = new DateTime(2023, 12, 28, 20, 17, 47, 488, DateTimeKind.Local).AddTicks(5367),
-                            ReservationId = 4
+                            EmployeeId = 1,
+                            OrderDate = new DateTime(2023, 12, 29, 5, 25, 32, 718, DateTimeKind.Local).AddTicks(1195),
+                            ReservationId = 6
                         });
                 });
 
@@ -461,140 +463,140 @@ namespace RestaurantReservation.Db.Migrations
                         new
                         {
                             OrderItemId = 1,
-                            MenuItemId = 3,
-                            OrderId = 1,
-                            Quantity = 1
+                            MenuItemId = 7,
+                            OrderId = 3,
+                            Quantity = 2
                         },
                         new
                         {
                             OrderItemId = 2,
                             MenuItemId = 4,
-                            OrderId = 1,
-                            Quantity = 3
+                            OrderId = 10,
+                            Quantity = 2
                         },
                         new
                         {
                             OrderItemId = 3,
-                            MenuItemId = 1,
-                            OrderId = 2,
-                            Quantity = 1
+                            MenuItemId = 3,
+                            OrderId = 9,
+                            Quantity = 4
                         },
                         new
                         {
                             OrderItemId = 4,
                             MenuItemId = 1,
                             OrderId = 8,
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            OrderItemId = 5,
-                            MenuItemId = 7,
-                            OrderId = 9,
-                            Quantity = 5
-                        },
-                        new
-                        {
-                            OrderItemId = 6,
-                            MenuItemId = 10,
-                            OrderId = 9,
-                            Quantity = 5
-                        },
-                        new
-                        {
-                            OrderItemId = 7,
-                            MenuItemId = 4,
-                            OrderId = 3,
-                            Quantity = 1
-                        },
-                        new
-                        {
-                            OrderItemId = 8,
-                            MenuItemId = 1,
-                            OrderId = 6,
-                            Quantity = 1
-                        },
-                        new
-                        {
-                            OrderItemId = 9,
-                            MenuItemId = 8,
-                            OrderId = 2,
                             Quantity = 4
                         },
                         new
                         {
-                            OrderItemId = 10,
-                            MenuItemId = 3,
-                            OrderId = 7,
-                            Quantity = 5
-                        },
-                        new
-                        {
-                            OrderItemId = 11,
-                            MenuItemId = 3,
-                            OrderId = 2,
+                            OrderItemId = 5,
+                            MenuItemId = 8,
+                            OrderId = 9,
                             Quantity = 1
                         },
                         new
                         {
-                            OrderItemId = 12,
-                            MenuItemId = 8,
+                            OrderItemId = 6,
+                            MenuItemId = 9,
                             OrderId = 9,
+                            Quantity = 1
+                        },
+                        new
+                        {
+                            OrderItemId = 7,
+                            MenuItemId = 7,
+                            OrderId = 4,
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            OrderItemId = 8,
+                            MenuItemId = 9,
+                            OrderId = 9,
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            OrderItemId = 9,
+                            MenuItemId = 7,
+                            OrderId = 8,
                             Quantity = 2
                         },
                         new
                         {
+                            OrderItemId = 10,
+                            MenuItemId = 8,
+                            OrderId = 4,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            OrderItemId = 11,
+                            MenuItemId = 8,
+                            OrderId = 4,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            OrderItemId = 12,
+                            MenuItemId = 6,
+                            OrderId = 1,
+                            Quantity = 4
+                        },
+                        new
+                        {
                             OrderItemId = 13,
-                            MenuItemId = 1,
-                            OrderId = 6,
+                            MenuItemId = 7,
+                            OrderId = 8,
                             Quantity = 2
                         },
                         new
                         {
                             OrderItemId = 14,
-                            MenuItemId = 8,
-                            OrderId = 3,
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            OrderItemId = 15,
-                            MenuItemId = 7,
-                            OrderId = 10,
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            OrderItemId = 16,
-                            MenuItemId = 7,
+                            MenuItemId = 9,
                             OrderId = 1,
                             Quantity = 2
                         },
                         new
                         {
+                            OrderItemId = 15,
+                            MenuItemId = 6,
+                            OrderId = 8,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            OrderItemId = 16,
+                            MenuItemId = 4,
+                            OrderId = 4,
+                            Quantity = 5
+                        },
+                        new
+                        {
                             OrderItemId = 17,
-                            MenuItemId = 7,
-                            OrderId = 2,
+                            MenuItemId = 9,
+                            OrderId = 6,
                             Quantity = 1
                         },
                         new
                         {
                             OrderItemId = 18,
-                            MenuItemId = 1,
-                            OrderId = 5,
-                            Quantity = 2
+                            MenuItemId = 7,
+                            OrderId = 4,
+                            Quantity = 3
                         },
                         new
                         {
                             OrderItemId = 19,
                             MenuItemId = 4,
-                            OrderId = 5,
+                            OrderId = 6,
                             Quantity = 2
                         },
                         new
                         {
                             OrderItemId = 20,
-                            MenuItemId = 6,
+                            MenuItemId = 9,
                             OrderId = 2,
                             Quantity = 2
                         });
@@ -637,92 +639,92 @@ namespace RestaurantReservation.Db.Migrations
                         new
                         {
                             ReservationId = 1,
-                            CustomerId = 3,
-                            PartySize = 3,
-                            ReservationDate = new DateTime(2024, 10, 29, 4, 40, 58, 983, DateTimeKind.Local).AddTicks(518),
-                            RestaurantId = 1,
-                            TableId = 9
+                            CustomerId = 8,
+                            PartySize = 2,
+                            ReservationDate = new DateTime(2024, 10, 14, 8, 6, 8, 216, DateTimeKind.Local).AddTicks(4940),
+                            RestaurantId = 2,
+                            TableId = 1
                         },
                         new
                         {
                             ReservationId = 2,
-                            CustomerId = 5,
-                            PartySize = 3,
-                            ReservationDate = new DateTime(2024, 8, 9, 16, 29, 34, 600, DateTimeKind.Local).AddTicks(1966),
-                            RestaurantId = 3,
-                            TableId = 9
+                            CustomerId = 4,
+                            PartySize = 1,
+                            ReservationDate = new DateTime(2024, 3, 20, 22, 20, 58, 597, DateTimeKind.Local).AddTicks(1765),
+                            RestaurantId = 5,
+                            TableId = 5
                         },
                         new
                         {
                             ReservationId = 3,
-                            CustomerId = 8,
-                            PartySize = 3,
-                            ReservationDate = new DateTime(2024, 12, 12, 16, 56, 20, 300, DateTimeKind.Local).AddTicks(5806),
-                            RestaurantId = 2,
-                            TableId = 8
+                            CustomerId = 5,
+                            PartySize = 2,
+                            ReservationDate = new DateTime(2024, 7, 3, 4, 37, 30, 966, DateTimeKind.Local).AddTicks(841),
+                            RestaurantId = 5,
+                            TableId = 7
                         },
                         new
                         {
                             ReservationId = 4,
-                            CustomerId = 1,
-                            PartySize = 3,
-                            ReservationDate = new DateTime(2024, 1, 23, 13, 33, 12, 704, DateTimeKind.Local).AddTicks(7579),
-                            RestaurantId = 3,
-                            TableId = 9
+                            CustomerId = 3,
+                            PartySize = 1,
+                            ReservationDate = new DateTime(2024, 12, 20, 17, 33, 51, 773, DateTimeKind.Local).AddTicks(7059),
+                            RestaurantId = 5,
+                            TableId = 5
                         },
                         new
                         {
                             ReservationId = 5,
-                            CustomerId = 2,
-                            PartySize = 2,
-                            ReservationDate = new DateTime(2024, 12, 9, 7, 5, 17, 977, DateTimeKind.Local).AddTicks(3132),
-                            RestaurantId = 3,
+                            CustomerId = 9,
+                            PartySize = 1,
+                            ReservationDate = new DateTime(2024, 1, 16, 17, 41, 5, 61, DateTimeKind.Local).AddTicks(9292),
+                            RestaurantId = 1,
                             TableId = 1
                         },
                         new
                         {
                             ReservationId = 6,
-                            CustomerId = 2,
-                            PartySize = 2,
-                            ReservationDate = new DateTime(2024, 3, 22, 12, 20, 47, 803, DateTimeKind.Local).AddTicks(7056),
-                            RestaurantId = 1,
+                            CustomerId = 4,
+                            PartySize = 1,
+                            ReservationDate = new DateTime(2024, 6, 5, 19, 42, 59, 490, DateTimeKind.Local).AddTicks(3556),
+                            RestaurantId = 2,
                             TableId = 6
                         },
                         new
                         {
                             ReservationId = 7,
-                            CustomerId = 6,
+                            CustomerId = 2,
                             PartySize = 1,
-                            ReservationDate = new DateTime(2024, 12, 19, 9, 50, 10, 691, DateTimeKind.Local).AddTicks(3621),
-                            RestaurantId = 4,
-                            TableId = 5
+                            ReservationDate = new DateTime(2024, 11, 24, 5, 49, 9, 435, DateTimeKind.Local).AddTicks(8012),
+                            RestaurantId = 2,
+                            TableId = 1
                         },
                         new
                         {
                             ReservationId = 8,
-                            CustomerId = 9,
-                            PartySize = 1,
-                            ReservationDate = new DateTime(2024, 3, 5, 23, 27, 7, 427, DateTimeKind.Local).AddTicks(4173),
-                            RestaurantId = 4,
-                            TableId = 5
+                            CustomerId = 4,
+                            PartySize = 2,
+                            ReservationDate = new DateTime(2024, 6, 10, 14, 19, 21, 97, DateTimeKind.Local).AddTicks(833),
+                            RestaurantId = 3,
+                            TableId = 7
                         },
                         new
                         {
                             ReservationId = 9,
-                            CustomerId = 7,
-                            PartySize = 2,
-                            ReservationDate = new DateTime(2024, 10, 18, 7, 58, 16, 467, DateTimeKind.Local).AddTicks(8429),
-                            RestaurantId = 5,
-                            TableId = 4
+                            CustomerId = 5,
+                            PartySize = 3,
+                            ReservationDate = new DateTime(2024, 11, 19, 22, 42, 3, 174, DateTimeKind.Local).AddTicks(3164),
+                            RestaurantId = 2,
+                            TableId = 8
                         },
                         new
                         {
                             ReservationId = 10,
                             CustomerId = 1,
-                            PartySize = 1,
-                            ReservationDate = new DateTime(2024, 2, 22, 7, 53, 43, 785, DateTimeKind.Local).AddTicks(1664),
+                            PartySize = 2,
+                            ReservationDate = new DateTime(2024, 8, 24, 4, 22, 48, 243, DateTimeKind.Local).AddTicks(8043),
                             RestaurantId = 4,
-                            TableId = 3
+                            TableId = 8
                         });
                 });
 
@@ -761,47 +763,47 @@ namespace RestaurantReservation.Db.Migrations
                         new
                         {
                             RestaurantId = 1,
-                            Address = "2486 Gorczany Points, Lake Roman, Tokelau",
-                            EndTime = new TimeOnly(21, 0, 0),
-                            Name = "Bogisich LLC",
-                            PhoneNumber = "1-917-574-0532 x521",
-                            StartTime = new TimeOnly(8, 0, 0)
+                            Address = "86999 Waters Road, Schoenfort, Tunisia",
+                            EndTime = new TimeOnly(18, 0, 0),
+                            Name = "Schroeder Inc",
+                            PhoneNumber = "440.718.3975 x17355",
+                            StartTime = new TimeOnly(7, 0, 0)
                         },
                         new
                         {
                             RestaurantId = 2,
-                            Address = "98622 Tyshawn Ports, Mosciskiton, New Caledonia",
-                            EndTime = new TimeOnly(19, 0, 0),
-                            Name = "Blick - Boyle",
-                            PhoneNumber = "265-605-4458 x075",
-                            StartTime = new TimeOnly(8, 0, 0)
+                            Address = "0353 Scotty Divide, East Dejonview, Tajikistan",
+                            EndTime = new TimeOnly(22, 0, 0),
+                            Name = "Feest Inc",
+                            PhoneNumber = "(834) 509-2851",
+                            StartTime = new TimeOnly(9, 0, 0)
                         },
                         new
                         {
                             RestaurantId = 3,
-                            Address = "1592 O'Kon Coves, Bellaberg, Turks and Caicos Islands",
-                            EndTime = new TimeOnly(19, 0, 0),
-                            Name = "Hayes - Tillman",
-                            PhoneNumber = "330-265-0100 x2142",
+                            Address = "25606 Runte Divide, Lake Clyde, Ghana",
+                            EndTime = new TimeOnly(22, 0, 0),
+                            Name = "Dibbert LLC",
+                            PhoneNumber = "634-270-4788",
                             StartTime = new TimeOnly(7, 0, 0)
                         },
                         new
                         {
                             RestaurantId = 4,
-                            Address = "396 Cronin Trafficway, Gaylefort, French Guiana",
-                            EndTime = new TimeOnly(22, 0, 0),
-                            Name = "Spinka LLC",
-                            PhoneNumber = "1-532-558-6759 x67152",
-                            StartTime = new TimeOnly(8, 0, 0)
+                            Address = "47516 Rhoda Mall, North Letitia, Guinea-Bissau",
+                            EndTime = new TimeOnly(18, 0, 0),
+                            Name = "Kerluke Inc",
+                            PhoneNumber = "1-346-220-8025 x7451",
+                            StartTime = new TimeOnly(10, 0, 0)
                         },
                         new
                         {
                             RestaurantId = 5,
-                            Address = "2913 Torp Manor, West Traceyshire, Botswana",
-                            EndTime = new TimeOnly(19, 0, 0),
-                            Name = "Collier - Kulas",
-                            PhoneNumber = "497-313-6985 x00671",
-                            StartTime = new TimeOnly(9, 0, 0)
+                            Address = "842 Stefanie Courts, Wintheiserstad, San Marino",
+                            EndTime = new TimeOnly(18, 0, 0),
+                            Name = "Gerhold and Sons",
+                            PhoneNumber = "(752) 533-5199 x52895",
+                            StartTime = new TimeOnly(6, 0, 0)
                         });
                 });
 
@@ -829,121 +831,121 @@ namespace RestaurantReservation.Db.Migrations
                         new
                         {
                             TableId = 1,
-                            Capacity = 4,
-                            RestaurantId = 3
+                            Capacity = 7,
+                            RestaurantId = 4
                         },
                         new
                         {
                             TableId = 2,
                             Capacity = 7,
-                            RestaurantId = 5
+                            RestaurantId = 3
                         },
                         new
                         {
                             TableId = 3,
-                            Capacity = 5,
-                            RestaurantId = 5
+                            Capacity = 3,
+                            RestaurantId = 3
                         },
                         new
                         {
                             TableId = 4,
-                            Capacity = 2,
+                            Capacity = 4,
                             RestaurantId = 1
                         },
                         new
                         {
                             TableId = 5,
-                            Capacity = 5,
-                            RestaurantId = 5
+                            Capacity = 8,
+                            RestaurantId = 3
                         },
                         new
                         {
                             TableId = 6,
-                            Capacity = 6,
+                            Capacity = 7,
                             RestaurantId = 1
                         },
                         new
                         {
                             TableId = 7,
-                            Capacity = 3,
-                            RestaurantId = 2
+                            Capacity = 6,
+                            RestaurantId = 4
                         },
                         new
                         {
                             TableId = 8,
                             Capacity = 2,
-                            RestaurantId = 3
-                        },
-                        new
-                        {
-                            TableId = 9,
-                            Capacity = 3,
                             RestaurantId = 5
                         },
                         new
                         {
-                            TableId = 10,
-                            Capacity = 3,
+                            TableId = 9,
+                            Capacity = 6,
                             RestaurantId = 1
                         },
                         new
                         {
-                            TableId = 11,
+                            TableId = 10,
                             Capacity = 5,
                             RestaurantId = 5
                         },
                         new
                         {
+                            TableId = 11,
+                            Capacity = 6,
+                            RestaurantId = 1
+                        },
+                        new
+                        {
                             TableId = 12,
-                            Capacity = 7,
-                            RestaurantId = 3
+                            Capacity = 8,
+                            RestaurantId = 4
                         },
                         new
                         {
                             TableId = 13,
-                            Capacity = 3,
-                            RestaurantId = 3
+                            Capacity = 6,
+                            RestaurantId = 1
                         },
                         new
                         {
                             TableId = 14,
                             Capacity = 6,
-                            RestaurantId = 4
+                            RestaurantId = 1
                         },
                         new
                         {
                             TableId = 15,
-                            Capacity = 5,
-                            RestaurantId = 5
+                            Capacity = 8,
+                            RestaurantId = 2
                         },
                         new
                         {
                             TableId = 16,
+                            Capacity = 2,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            TableId = 17,
                             Capacity = 5,
                             RestaurantId = 1
                         },
                         new
                         {
-                            TableId = 17,
-                            Capacity = 2,
-                            RestaurantId = 4
-                        },
-                        new
-                        {
                             TableId = 18,
-                            Capacity = 3,
-                            RestaurantId = 3
+                            Capacity = 2,
+                            RestaurantId = 2
                         },
                         new
                         {
                             TableId = 19,
-                            Capacity = 6,
-                            RestaurantId = 4
+                            Capacity = 2,
+                            RestaurantId = 1
                         },
                         new
                         {
                             TableId = 20,
-                            Capacity = 2,
+                            Capacity = 5,
                             RestaurantId = 2
                         });
                 });
