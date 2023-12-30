@@ -46,14 +46,14 @@ namespace RestaurantReservation.Db
                 .IsUnique();
                 
 
-            DbSeeder.SeedCustomersTable(modelBuilder);
+      /*      DbSeeder.SeedCustomersTable(modelBuilder);
             DbSeeder.SeedEmployeeTable(modelBuilder);
             DbSeeder.SeedMenuItemsTable(modelBuilder);
             DbSeeder.SeedOrdersTable(modelBuilder);
             DbSeeder.SeedOrderItemsTable(modelBuilder);
             DbSeeder.SeedReservationsTable(modelBuilder);
             DbSeeder.SeedRestaurantsTable(modelBuilder);
-            DbSeeder.SeedTablesTable(modelBuilder);
+            DbSeeder.SeedTablesTable(modelBuilder);*/
         }
     }
 }

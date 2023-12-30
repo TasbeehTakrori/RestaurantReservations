@@ -2,14 +2,29 @@
 using FluentResults;
 using RestaurantReservation.Db.DTOs;
 using RestaurantReservation.Db.Entities;
+using RestaurantReservation.Db.Enums;
 using RestaurantReservation.Db.Repositories.IRepositories;
 
 namespace RestaurantReservation.Db.Services
 {
-    internal class CustomerService : EntityService<Customer, CustomerDTO, ICustomerRepository>
+    public class CustomerService : EntityService<Customer, CustomerDTO, ICustomerRepository>
     {
         public CustomerService(ICustomerRepository entityRepository, IMapper mapper) : base(entityRepository, mapper)
         {
+        }
+
+        public async Task<(IEnumerable<CustomerDTO>?, Result)> FindCustomersByPartySize(PartySize partySize)
+        {
+            try
+            {
+                var customers = await _entityRepository.FindCustomersByPartySize(partySize);
+                var dtos = MapEntityToDto(customers);
+                return (dtos, Result.Ok());
+            }
+            catch (Exception ex)
+            {
+                return (null, Result.Fail(ex.Message));
+            }
         }
     }
 }

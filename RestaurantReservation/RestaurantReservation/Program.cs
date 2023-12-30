@@ -7,14 +7,15 @@ using RestaurantReservation.Db.Mapper;
 using AutoMapper;
 using RestaurantReservation.Db.Repositories.IRepositories;
 using FluentResults;
+using RestaurantReservation.Db.Enums;
 
 RestaurantReservationDbContext _Context = new RestaurantReservationDbContext();
 var config = new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfile()));
 IMapper mapper = new Mapper(config);
 
 
-var customerRepository = new EntityRepository<Customer>(_Context);
-var customerService = new EntityService<Customer, CustomerDTO, IEntityRepository<Customer>>(customerRepository, mapper);
+var customerRepository = new CustomerRepository(_Context);
+var customerService = new CustomerService(customerRepository, mapper);
 
 var employeeRepository = new EmployeeRepository(_Context);
 var employeeService = new EmployeeService(employeeRepository, mapper);
@@ -29,7 +30,9 @@ var orderService = new OrderService(orderRepository, mapper);
 //await GetReservationsByCustomerAsync(reservationService, 4);
 //await ListOrdersAndMenuItems(orderService, 9);
 //await ListOrderedMenuItems(orderService, 9);
-await CalculateAverageOrderAmount(orderService, 4);
+//await CalculateAverageOrderAmount(orderService, 4);
+await FindCustomersByPartySize(customerService, PartySize.mediam);
+
 
 
 async Task CalculateAverageOrderAmount(OrderService orderService, int employeeId)
@@ -55,6 +58,24 @@ async Task ListOrderedMenuItems(OrderService service, int reservationId)
         foreach (var menuItem in orderedMenuItems)
         {
             Console.WriteLine(menuItem);
+        }
+        Console.WriteLine("------------------------------");
+    }
+    else
+    {
+        result.Errors.ForEach(e => Console.WriteLine($"Failed: {e.Message}"));
+    }
+}
+
+async Task FindCustomersByPartySize(CustomerService service, PartySize partySize)
+{
+    (var customers, var result) = await service.FindCustomersByPartySize(partySize);
+    if (result.IsSuccess)
+    {
+        Console.WriteLine("------------------------------");
+        foreach (var customer in customers)
+        {
+            Console.WriteLine(customer);
         }
         Console.WriteLine("------------------------------");
     }

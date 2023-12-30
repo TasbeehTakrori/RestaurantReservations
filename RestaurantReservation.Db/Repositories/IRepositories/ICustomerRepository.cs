@@ -1,10 +1,10 @@
-﻿using FluentResults;
-using RestaurantReservation.Db.DTOs;
-using RestaurantReservation.Db.Entities;
+﻿using RestaurantReservation.Db.Entities;
+using RestaurantReservation.Db.Enums;
 
 namespace RestaurantReservation.Db.Repositories.IRepositories
 {
-    internal interface ICustomerRepository : IEntityRepository<Customer>
+    public interface ICustomerRepository : IEntityRepository<Customer>
     {
+        Task<List<Customer>> FindCustomersByPartySize(PartySize partySize);
     }
 }

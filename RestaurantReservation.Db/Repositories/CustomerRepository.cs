@@ -1,12 +1,23 @@
-﻿using RestaurantReservation.Db.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using RestaurantReservation.Db.Entities;
+using RestaurantReservation.Db.Enums;
 using RestaurantReservation.Db.Repositories.IRepositories;
 
 namespace RestaurantReservation.Db.Repositories
 {
-    internal class CustomerRepository : EntityRepository<Customer>, ICustomerRepository
+    public class CustomerRepository : EntityRepository<Customer>, ICustomerRepository
     {
         public CustomerRepository(RestaurantReservationDbContext dbContext) : base(dbContext)
         {
+        }
+
+        public async Task<List<Customer>> FindCustomersByPartySize(PartySize partySize)
+        {
+            var partySizeInt = (int)partySize;
+
+            return await _dbContext.Customers
+                .FromSqlInterpolated($"sp_FindCustomersByPartySize {partySizeInt}")
+                .ToListAsync();
         }
     }
 }
