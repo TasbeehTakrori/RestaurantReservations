@@ -5,19 +5,65 @@ using RestaurantReservation.Db.Repositories;
 using RestaurantReservation.Db.Services;
 using RestaurantReservation.Db.Mapper;
 using AutoMapper;
+using RestaurantReservation.Db.Repositories.IRepositories;
 
 RestaurantReservationDbContext _Context = new RestaurantReservationDbContext();
 var config = new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfile()));
 IMapper mapper = new Mapper(config);
-/*var repository = new EntityRepository<Customer>(_Context);
-var service = new EntityService<Customer, CustomerDTO, IEntityRepository<Customer>>(repository, mapper);
-*/
-/*var result = await customerService.CreateAsync(customerDTO);*/
 
-var repository = new EmployeeRepository(_Context);
 
-EmployeeService service = new EmployeeService(repository, mapper);
+var customerRepository = new EntityRepository<Customer>(_Context);
+var customerService = new EntityService<Customer, CustomerDTO, IEntityRepository<Customer>>(customerRepository, mapper);
 
+var employeeRepository = new EmployeeRepository(_Context);
+var employeeService = new EmployeeService(employeeRepository, mapper);
+
+var reservationRepository = new ReservationRepository(_Context);
+var reservationService = new ReservationService(reservationRepository, mapper);
+
+
+//await ListManagersAsync(employeeService);
+await GetReservationsByCustomerAsync(reservationService, 20);
+
+
+
+async Task GetReservationsByCustomerAsync(ReservationService service, int customerId)
+{
+    (var data, var result) = await service.GetReservationsByCustomerAsync(customerId);
+    if (result.IsSuccess)
+    {
+        Console.WriteLine("------------------------------");
+        foreach (var item in data)
+        {
+            Console.WriteLine(item);
+        }
+        Console.WriteLine("------------------------------");
+    }
+    else
+    {
+        result.Errors.ForEach(e => Console.WriteLine($"Failed: {e.Message}"));
+    }
+}
+
+async Task ListManagersAsync(EmployeeService service)
+{
+    (var data, var result) = await service.ListManagersAsync();
+    if (result.IsSuccess)
+    {
+        Console.WriteLine("------------------------------");
+        foreach (var item in data)
+        {
+            Console.WriteLine(item);
+        }
+        Console.WriteLine("------------------------------");
+    }
+    else
+    {
+        result.Errors.ForEach(e => Console.WriteLine($"Failed: {e.Message}"));
+    }
+}
+
+/*
 
 (var data, var result) = await service.ListManagersAsync();
 if (result.IsSuccess)
@@ -40,4 +86,7 @@ var customerDTO = new CustomerDTO
     LastName = "Takrori",
     Email = "tabeh.takrore2@gmail.com",
     PhoneNumber = "0599998888"
-};
+};*/
+
+/*var result = await customerService.CreateAsync(customerDTO);
+*/

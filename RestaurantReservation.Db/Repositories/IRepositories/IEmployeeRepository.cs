@@ -1,6 +1,6 @@
 ﻿using RestaurantReservation.Db.Entities;
 
-namespace RestaurantReservation.Db.Repositories
+namespace RestaurantReservation.Db.Repositories.IRepositories
 {
     public interface IEmployeeRepository : IEntityRepository<Employee>
     {

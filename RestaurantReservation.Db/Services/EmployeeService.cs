@@ -2,7 +2,7 @@
 using FluentResults;
 using RestaurantReservation.Db.DTOs;
 using RestaurantReservation.Db.Entities;
-using RestaurantReservation.Db.Repositories;
+using RestaurantReservation.Db.Repositories.IRepositories;
 
 namespace RestaurantReservation.Db.Services
 {
@@ -25,7 +25,5 @@ namespace RestaurantReservation.Db.Services
                 return (null, Result.Fail(ex.Message));
             }
         }
-
-
     }
 }

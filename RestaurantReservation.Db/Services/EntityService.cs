@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using FluentResults;
-using RestaurantReservation.Db.Repositories;
+using RestaurantReservation.Db.Repositories.IRepositories;
 
 namespace RestaurantReservation.Db.Services
 {
