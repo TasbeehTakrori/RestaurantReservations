@@ -10,10 +10,21 @@ namespace RestaurantReservation.Db.Repositories
         public OrderRepository(RestaurantReservationDbContext dbContext) : base(dbContext)
         {
         }
+
+        public async Task<IEnumerable<MenuItem>?> ListOrderedMenuItems(int reservationId)
+        {
+            return await _dbContext.Orders.AsNoTracking()
+                 .Where(o => o.ReservationId == reservationId)
+                 .SelectMany(o => o.OrderItems.Select(oi => oi.MenuItem))
+                 .AsSplitQuery()
+                 .Distinct()
+                 .ToListAsync();
+        }
+
         public async Task<IEnumerable<Order>?> ListOrdersAndMenuItems(int reservationId)
         {
             return await _dbContext.Orders.AsNoTracking()
-                .Where(order => order.ReservationId == reservationId)
+                .Where(o => o.ReservationId == reservationId)
                 .Include(o => o.OrderItems)
                 .ThenInclude(oi => oi.MenuItem)
                 .AsSplitQuery()

@@ -99,6 +99,11 @@ namespace RestaurantReservation.Db.Services
             return _mapper.Map<IEnumerable<TEntity>, IEnumerable<TDto>>(entities);
         }
 
+        public IEnumerable<TTDto> MapEntityToDto<TTEntity, TTDto>(IEnumerable<TTEntity> entities)
+        {
+            return _mapper.Map<IEnumerable<TTEntity>, IEnumerable<TTDto>>(entities);
+        }
+
         public IEnumerable<TEntity> MapDtoToEntity(IEnumerable<TDto> dtos)
         {
             return _mapper.Map<IEnumerable<TDto>, IEnumerable<TEntity>>(dtos);

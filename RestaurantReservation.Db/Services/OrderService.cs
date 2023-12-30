@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentResults;
+using Microsoft.EntityFrameworkCore;
 using RestaurantReservation.Db.DTOs;
 using RestaurantReservation.Db.Entities;
 using RestaurantReservation.Db.Repositories.IRepositories;
@@ -11,6 +12,7 @@ namespace RestaurantReservation.Db.Services
         public OrderService(IOrderRepository entityRepository, IMapper mapper) : base(entityRepository, mapper)
         {
         }
+
         public async Task<(IEnumerable<OrderWithMenuItemDTO>?, Result)> ListOrdersAndMenuItems(int reservationId)
         {
             try
@@ -24,6 +26,21 @@ namespace RestaurantReservation.Db.Services
                 return (null, Result.Fail(ex.Message));
             }
         }
+
+        public async Task<(IEnumerable<MenuItemDTO>?, Result)> ListOrderedMenuItems(int reservationId)
+        {
+            try
+            {
+                var orderedMenuItems = await _entityRepository.ListOrderedMenuItems(reservationId);
+                var dtos = MapEntityToDto<MenuItem,MenuItemDTO>(orderedMenuItems);
+                return (dtos, Result.Ok());
+            }
+            catch (Exception ex)
+            {
+                return (null, Result.Fail(ex.Message));
+            }
+        }
+
         private IEnumerable<OrderWithMenuItemDTO> MapOrderToOrderWithMenuEntityDto(IEnumerable<Order> orderWithOrderItems)
         {
             var orderWithMenuItemDTO = new List<OrderWithMenuItemDTO>();

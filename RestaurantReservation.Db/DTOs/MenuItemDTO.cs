@@ -1,6 +1,6 @@
 ﻿namespace RestaurantReservation.Db.DTOs
 {
-    internal class MenuItemDTO
+    public class MenuItemDTO
     {
         public int MenuItemId { get; init; }
         public string Name { get; set; }

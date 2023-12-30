@@ -26,7 +26,28 @@ var orderService = new OrderService(orderRepository, mapper);
 
 //await ListManagersAsync(employeeService);
 //await GetReservationsByCustomerAsync(reservationService, 4);
-await ListOrdersAndMenuItems(orderService, 3);
+//await ListOrdersAndMenuItems(orderService, 9);
+await ListOrdersAndMenuItems(orderService, 9);
+
+
+
+async Task ListOrderedMenuItems(OrderService service, int reservationId)
+{
+    (var orderedMenuItems, var result) = await service.ListOrderedMenuItems(reservationId);
+    if (result.IsSuccess)
+    {
+        Console.WriteLine("------------------------------");
+        foreach (var menuItem in orderedMenuItems)
+        {
+            Console.WriteLine(menuItem);
+        }
+        Console.WriteLine("------------------------------");
+    }
+    else
+    {
+        result.Errors.ForEach(e => Console.WriteLine($"Failed: {e.Message}"));
+    }
+}
 
 async Task ListOrdersAndMenuItems(OrderService service, int reservationId)
 {
