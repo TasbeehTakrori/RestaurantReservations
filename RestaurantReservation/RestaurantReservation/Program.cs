@@ -1,31 +1,30 @@
 ﻿using RestaurantReservation.Db;
-using RestaurantReservation.Db.Models;
+using RestaurantReservation.Db.DTOs;
+using RestaurantReservation.Db.Entities;
+using RestaurantReservation.Db.Repositories;
+using RestaurantReservation.Db.Services;
+using RestaurantReservation.Db.Mapper;
+using AutoMapper;
 
 RestaurantReservationDbContext _Context = new RestaurantReservationDbContext();
-Customer customer = new Customer { 
+var customerDTO = new CustomerDTO
+{
     FirstName = "Tasbeeh",
     LastName = "Takrori",
-    Email = "tabeh.takrore@gmail.com",
+    Email = "tabeh.takrore2@gmail.com",
     PhoneNumber = "0599998888"
 };
 Console.WriteLine("Hello");
-
-await createCustomer(customer);
-
-Console.ReadKey();
-
-async Task createCustomer(Customer customer)
+var config = new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfile()));
+IMapper mapper = new Mapper(config);
+IEntityRepository<Customer> customerRepository = new EntityRepository<Customer>(_Context);
+var customerService = new EntityService<Customer, CustomerDTO>(customerRepository, mapper);
+var result = await customerService.CreateAsync(customerDTO);
+if (result.IsSuccess)
 {
-    _Context.Add(customer);
-    await _Context.SaveChangesAsync();
+    Console.WriteLine("Success!!");
 }
-async Task DeleteCustomer(Customer customer)
+else
 {
-    _Context.Remove(customer);
-    await _Context.SaveChangesAsync();
-}
-async Task UpdateCustomer(Customer customer)
-{
-    _Context.Update(customer);
-    await _Context.SaveChangesAsync();
+    result.Errors.ForEach(e => Console.WriteLine($"Failed: {e.Message}"));
 }

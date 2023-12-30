@@ -1,11 +1,11 @@
 ﻿using EntityFrameworkCore.Projectables;
 using System.ComponentModel.DataAnnotations;
 
-namespace RestaurantReservation.Db.Models
+namespace RestaurantReservation.Db.Entities
 {
-    public class Employee
+    public class Customer
     {
-        public int EmployeeId { get; set; }
+        public int CustomerId { get; init; }
 
         [MaxLength(255)]
         public string FirstName { get; set; }
@@ -13,13 +13,11 @@ namespace RestaurantReservation.Db.Models
         [MaxLength(255)]
         public string LastName { get; set; }
 
-        public string Position { get; set; }
+        public string Email { get; set; }
 
-        public int RestaurantId { get; set; }
+        public string PhoneNumber { get; set; }
 
-        public Restaurant Restaurant { get; set; }
-
-        public ICollection<Order> Orders { get; set; } = new List<Order>();
+        public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
 
         [Projectable]
         public string FullName => FirstName + " " + LastName;

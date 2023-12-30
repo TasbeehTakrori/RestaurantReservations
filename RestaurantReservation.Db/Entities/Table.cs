@@ -1,4 +1,4 @@
-﻿namespace RestaurantReservation.Db.Models
+﻿namespace RestaurantReservation.Db.Entities
 {
     public class Table
     {
