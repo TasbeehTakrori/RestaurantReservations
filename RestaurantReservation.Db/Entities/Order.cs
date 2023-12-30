@@ -16,7 +16,7 @@ namespace RestaurantReservation.Db.Entities
 
         public Employee Employee { get; set; }
 
-        public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+        public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
         [Projectable]
         public decimal TotalAmount => OrderItems.Sum(oi => oi.MenuItem.Price * oi.Quantity);

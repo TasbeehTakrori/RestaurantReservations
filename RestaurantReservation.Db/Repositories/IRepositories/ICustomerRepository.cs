@@ -1,4 +1,6 @@
-﻿using RestaurantReservation.Db.Entities;
+﻿using FluentResults;
+using RestaurantReservation.Db.DTOs;
+using RestaurantReservation.Db.Entities;
 
 namespace RestaurantReservation.Db.Repositories.IRepositories
 {

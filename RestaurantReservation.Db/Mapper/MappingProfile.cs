@@ -24,6 +24,8 @@ namespace RestaurantReservation.Db.Mapper
             CreateMap<RestaurantDTO, Restaurant>();
             CreateMap<Table, TableDTO>();
             CreateMap<TableDTO, Table>();
+            CreateMap<OrderWithMenuItemDTO, Order>();
+            CreateMap<Order, OrderWithMenuItemDTO>();
         }
     }
 }

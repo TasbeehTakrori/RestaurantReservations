@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using RestaurantReservation.Db.Entities;
+﻿using RestaurantReservation.Db.Entities;
 using RestaurantReservation.Db.Repositories.IRepositories;
 
 namespace RestaurantReservation.Db.Repositories
@@ -9,6 +8,5 @@ namespace RestaurantReservation.Db.Repositories
         public CustomerRepository(RestaurantReservationDbContext dbContext) : base(dbContext)
         {
         }
-
     }
 }

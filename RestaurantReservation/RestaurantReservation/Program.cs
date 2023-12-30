@@ -21,11 +21,30 @@ var employeeService = new EmployeeService(employeeRepository, mapper);
 var reservationRepository = new ReservationRepository(_Context);
 var reservationService = new ReservationService(reservationRepository, mapper);
 
+var orderRepository = new OrderRepository(_Context);
+var orderService = new OrderService(orderRepository, mapper);
 
 //await ListManagersAsync(employeeService);
-await GetReservationsByCustomerAsync(reservationService, 20);
+//await GetReservationsByCustomerAsync(reservationService, 4);
+await ListOrdersAndMenuItems(orderService, 3);
 
-
+async Task ListOrdersAndMenuItems(OrderService service, int reservationId)
+{
+    (var ordersWithMenuItemsDTOs, var result) = await service.ListOrdersAndMenuItems(reservationId);
+    if (result.IsSuccess)
+    {
+        Console.WriteLine("------------------------------");
+        foreach (var orderWithMenuItemsDTO in ordersWithMenuItemsDTOs)
+        {
+            Console.WriteLine(orderWithMenuItemsDTO);
+        }
+        Console.WriteLine("------------------------------");
+    }
+    else
+    {
+        result.Errors.ForEach(e => Console.WriteLine($"Failed: {e.Message}"));
+    }
+}
 
 async Task GetReservationsByCustomerAsync(ReservationService service, int customerId)
 {

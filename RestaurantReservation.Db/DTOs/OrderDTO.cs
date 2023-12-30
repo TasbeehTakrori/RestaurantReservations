@@ -1,4 +1,6 @@
-﻿namespace RestaurantReservation.Db.DTOs
+﻿using RestaurantReservation.Db.Entities;
+
+namespace RestaurantReservation.Db.DTOs
 {
     public class OrderDTO
     {
@@ -7,6 +9,7 @@
         public int ReservationId { get; set; }
         public int EmployeeId { get; set; }
         public decimal TotalAmount { get; set; }
+        public List<OrderItem> OrderItems { get; set; }
 
         public override string ToString()
         {
