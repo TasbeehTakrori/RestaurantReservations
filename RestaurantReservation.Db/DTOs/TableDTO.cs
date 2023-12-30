@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RestaurantReservation.Db.DTOs
+﻿namespace RestaurantReservation.Db.DTOs
 {
-    internal class TableDTO
+    public class TableDTO
     {
+        public int TableId { get; set; }
+        public int Capacity { get; set; }
+        public int RestaurantId { get; set; }
+
+        public override string ToString()
+        {
+            return $"TableId: {TableId}, Capacity: {Capacity}, RestaurantId: {RestaurantId}";
+        }
     }
 }

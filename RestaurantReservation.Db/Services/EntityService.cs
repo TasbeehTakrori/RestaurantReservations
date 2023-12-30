@@ -4,13 +4,12 @@ using RestaurantReservation.Db.Repositories;
 
 namespace RestaurantReservation.Db.Services
 {
-    public class EntityService<TEntity, TDto> : IEntityService<TDto> where TEntity : class where TDto : class
+    public class EntityService<TEntity, TDto, TIEntityRepository> : IEntityService<TDto> where TEntity : class where TDto : class where TIEntityRepository : IEntityRepository<TEntity>
     {
-        private readonly IEntityRepository<TEntity> _entityRepository;
-        private readonly IMapper _mapper;
+        protected readonly TIEntityRepository _entityRepository;
+        protected readonly IMapper _mapper;
 
-
-        public EntityService(IEntityRepository<TEntity> entityRepository, IMapper mapper)
+        public EntityService(TIEntityRepository entityRepository, IMapper mapper)
         {
             _entityRepository = entityRepository;
             _mapper = mapper;
@@ -85,22 +84,22 @@ namespace RestaurantReservation.Db.Services
             }
         }
 
-        private TEntity MapDtoToEntity(TDto dto)
+        public TEntity MapDtoToEntity(TDto dto)
         {
             return _mapper.Map<TDto, TEntity>(dto);
         }
 
-        private TDto MapEntityToDto(TEntity entity)
+        public TDto MapEntityToDto(TEntity entity)
         {
             return _mapper.Map<TEntity, TDto>(entity);
         }
 
-        private IEnumerable<TDto> MapEntityToDto(IEnumerable<TEntity> entities)
+        public IEnumerable<TDto> MapEntityToDto(IEnumerable<TEntity> entities)
         {
             return _mapper.Map<IEnumerable<TEntity>, IEnumerable<TDto>>(entities);
         }
 
-        private IEnumerable<TEntity> MapDtoToEntity(IEnumerable<TDto> dtos)
+        public IEnumerable<TEntity> MapDtoToEntity(IEnumerable<TDto> dtos)
         {
             return _mapper.Map<IEnumerable<TDto>, IEnumerable<TEntity>>(dtos);
         }

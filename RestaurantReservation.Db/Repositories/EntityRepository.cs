@@ -4,7 +4,7 @@ namespace RestaurantReservation.Db.Repositories
 {
     public class EntityRepository<TEntity> : IEntityRepository<TEntity> where TEntity : class
     {
-        private readonly RestaurantReservationDbContext _dbContext;
+        protected readonly RestaurantReservationDbContext _dbContext;
 
         public EntityRepository(RestaurantReservationDbContext dbContext)
         {
@@ -25,6 +25,7 @@ namespace RestaurantReservation.Db.Repositories
 
         public async Task DeleteAsync(int entityId)
         {
+
             var entity = await _dbContext.Set<TEntity>().FindAsync(entityId);
             if (entity != null)
             {

@@ -1,5 +1,4 @@
 ﻿using EntityFrameworkCore.Projectables;
-using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantReservation.Db.Entities
 {
@@ -21,7 +20,5 @@ namespace RestaurantReservation.Db.Entities
 
         [Projectable]
         public decimal TotalAmount => OrderItems.Sum(oi => oi.MenuItem.Price * oi.Quantity);
-
-
     }
 }

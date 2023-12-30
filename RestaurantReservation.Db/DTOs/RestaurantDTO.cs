@@ -9,5 +9,10 @@
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }
         public string OpeningHours { get; set; }
+
+        public override string ToString()
+        {
+            return $"RestaurantId: {RestaurantId}, Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, StartTime: {StartTime}, EndTime: {EndTime}, OpeningHours: {OpeningHours}";
+        }
     }
 }
