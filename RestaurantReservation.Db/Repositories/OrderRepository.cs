@@ -11,6 +11,19 @@ namespace RestaurantReservation.Db.Repositories
         {
         }
 
+        public async Task<decimal> CalculateAverageOrderAmount(int employeeId)
+        {
+            var OrderAmountList = await _dbContext.Orders.AsNoTracking()
+                       .Where(o => o.EmployeeId == employeeId)
+                       .Include(o => o.OrderItems)
+                       .ThenInclude(oi=> oi.MenuItem)
+                       .AsSplitQuery()
+                       .ToListAsync();
+
+            return OrderAmountList.Count() > 0 ?
+                 OrderAmountList.Select(o => o.TotalAmount).Average() : 0;
+        }
+
         public async Task<IEnumerable<MenuItem>?> ListOrderedMenuItems(int reservationId)
         {
             return await _dbContext.Orders.AsNoTracking()

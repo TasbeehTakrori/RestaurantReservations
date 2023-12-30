@@ -13,6 +13,19 @@ namespace RestaurantReservation.Db.Services
         {
         }
 
+        public async Task<(decimal, Result)> CalculateAverageOrderAmount(int employeeId)
+        {
+            try
+            {
+                var avgOrderAmount = await _entityRepository.CalculateAverageOrderAmount(employeeId);
+                return (avgOrderAmount, Result.Ok());
+            }
+            catch (Exception ex)
+            {
+                return (0, Result.Fail(ex.Message));
+            }
+        }
+
         public async Task<(IEnumerable<OrderWithMenuItemDTO>?, Result)> ListOrdersAndMenuItems(int reservationId)
         {
             try

@@ -4,7 +4,6 @@ namespace RestaurantReservation.Db.Entities
 {
     public class Reservation
     {
-
         public int ReservationId { get; init; }
 
         public DateTime ReservationDate { get; set; }

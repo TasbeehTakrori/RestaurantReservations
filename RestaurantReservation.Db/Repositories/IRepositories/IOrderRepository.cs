@@ -6,5 +6,6 @@ namespace RestaurantReservation.Db.Repositories.IRepositories
     {
         Task<IEnumerable<Order>?> ListOrdersAndMenuItems(int reservationId);
         Task<IEnumerable<MenuItem>?> ListOrderedMenuItems(int reservationId);
+        Task<decimal> CalculateAverageOrderAmount(int employeeId);
     }
 }

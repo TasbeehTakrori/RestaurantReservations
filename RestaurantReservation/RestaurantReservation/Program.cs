@@ -6,6 +6,7 @@ using RestaurantReservation.Db.Services;
 using RestaurantReservation.Db.Mapper;
 using AutoMapper;
 using RestaurantReservation.Db.Repositories.IRepositories;
+using FluentResults;
 
 RestaurantReservationDbContext _Context = new RestaurantReservationDbContext();
 var config = new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfile()));
@@ -27,10 +28,24 @@ var orderService = new OrderService(orderRepository, mapper);
 //await ListManagersAsync(employeeService);
 //await GetReservationsByCustomerAsync(reservationService, 4);
 //await ListOrdersAndMenuItems(orderService, 9);
-await ListOrdersAndMenuItems(orderService, 9);
+//await ListOrderedMenuItems(orderService, 9);
+await CalculateAverageOrderAmount(orderService, 4);
 
 
+async Task CalculateAverageOrderAmount(OrderService orderService, int employeeId)
+{
+    (decimal avgOrderAmount, Result result) = await orderService.CalculateAverageOrderAmount(employeeId);
 
+    if (result.IsSuccess)
+    {
+        Console.WriteLine("------------------------------");
+        Console.WriteLine($"Average Order Amount: {avgOrderAmount}");
+    }
+    else
+    {
+        result.Errors.ForEach(e => Console.WriteLine($"Failed: {e.Message}"));
+    }
+}
 async Task ListOrderedMenuItems(OrderService service, int reservationId)
 {
     (var orderedMenuItems, var result) = await service.ListOrderedMenuItems(reservationId);
