@@ -11,7 +11,7 @@ namespace RestaurantReservation.Db.Migrations
         {
             migrationBuilder.Sql(
                 @"
-                CREATE VIEW EmployeesWithRestaurantDetailsView AS
+                CREATE OR ALTER VIEW EmployeesWithRestaurantDetailsView AS
                 SELECT
                     Employees.EmployeeId,
                     Employees.FirstName,

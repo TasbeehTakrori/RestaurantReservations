@@ -23,6 +23,9 @@ var reservationService = new ReservationService(reservationRepository, mapper);
 var orderRepository = new OrderRepository(_Context);
 var orderService = new OrderService(orderRepository, mapper);
 
+var restaurantRepository = new RestaurantRepository(_Context);
+var restaurantService = new RestaurantService(restaurantRepository, mapper);
+
 //await ListManagersAsync(employeeService);
 //await GetReservationsByCustomerAsync(reservationService, 4);
 //await ListOrdersAndMenuItemsAsync(orderService, 9);
@@ -30,8 +33,8 @@ var orderService = new OrderService(orderRepository, mapper);
 //await CalculateAverageOrderAmountAsync(orderService, 4);
 //await FindCustomersByPartySizeAsync(customerService, PartySize.mediam);
 //await ListReservationsDetailsViewAsync(reservationService);
-await ListEmployeesWithRestaurantDetailsViewAsync(employeeService);
-
+//await ListEmployeesWithRestaurantDetailsViewAsync(employeeService);
+await CalculateTotalRevenueAsync(restaurantService, 5);
 
 async Task CalculateAverageOrderAmount(OrderService orderService, int employeeId)
 {
@@ -41,6 +44,21 @@ async Task CalculateAverageOrderAmount(OrderService orderService, int employeeId
     {
         Console.WriteLine("------------------------------");
         Console.WriteLine($"Average Order Amount: {avgOrderAmount}");
+    }
+    else
+    {
+        result.Errors.ForEach(e => Console.WriteLine($"Failed: {e.Message}"));
+    }
+}
+
+async Task CalculateTotalRevenueAsync(RestaurantService restaurantService, int restaurantId)
+{
+    (decimal? totalRevenue, Result result) = await restaurantService.CalculateTotalRevenueAsync(restaurantId);
+
+    if (result.IsSuccess)
+    {
+        Console.WriteLine("------------------------------");
+        Console.WriteLine($"Total Revenue: {totalRevenue}");
     }
     else
     {

@@ -10,7 +10,7 @@ namespace RestaurantReservation.Db.Migrations
         {
             migrationBuilder.Sql(
                 @"
-                CREATE VIEW ReservationsDetailsView AS
+                CREATE OR ALTER VIEW ReservationsDetailsView AS
                 SELECT
                     Reservations.ReservationId,
                     Reservations.ReservationDate,

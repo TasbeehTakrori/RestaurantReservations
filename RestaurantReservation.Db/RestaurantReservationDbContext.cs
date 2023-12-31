@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using RestaurantReservation.Db.DTOs.RestaurantReservation.Db.Entities;
 using RestaurantReservation.Db.Entities;
 using RestaurantReservation.Db.Entities.RestaurantReservation.Db.Entities;
+using System.Reflection;
 
 namespace RestaurantReservation.Db
 {
@@ -30,13 +31,25 @@ namespace RestaurantReservation.Db
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+/*
+            modelBuilder.HasDbFunction(typeof(RestaurantReservationDbContext)
+    .GetMethod(nameof(CalculateTotalRevenue), new[] { typeof(int)})!,
+    builder =>
+    {
+        builder.HasParameter("restaurantId").HasStoreType("int");
+    });*/
+
+            modelBuilder.HasDbFunction(typeof(RestaurantReservationDbContext)
+                .GetMethod(nameof(CalculateTotalRevenue), new[] { typeof(int) }))
+                .HasName("CalculateTotalRevenue");
+
             modelBuilder.Entity<ReservationsDetailsView>()
                 .HasNoKey()
                 .ToView(nameof(ReservationsDetailsView));
 
-             modelBuilder.Entity<EmployeesWithRestaurantDetailsView>()
-                .HasNoKey()
-                .ToView(nameof(EmployeesWithRestaurantDetailsView));
+            modelBuilder.Entity<EmployeesWithRestaurantDetailsView>()
+               .HasNoKey()
+               .ToView(nameof(EmployeesWithRestaurantDetailsView));
 
             modelBuilder.Entity<Reservation>()
                 .HasOne(r => r.Table)
@@ -66,5 +79,7 @@ namespace RestaurantReservation.Db
             DbSeeder.SeedRestaurantsTable(modelBuilder);
             DbSeeder.SeedTablesTable(modelBuilder);
         }
+        public decimal CalculateTotalRevenue(int restaurantId)
+            => throw new NotSupportedException();
     }
 }
