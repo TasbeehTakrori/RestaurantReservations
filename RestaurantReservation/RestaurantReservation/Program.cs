@@ -1,13 +1,10 @@
-﻿using RestaurantReservation.Db;
-using RestaurantReservation.Db.DTOs;
-using RestaurantReservation.Db.Entities;
+﻿using AutoMapper;
+using FluentResults;
+using RestaurantReservation.Db;
+using RestaurantReservation.Db.Enums;
+using RestaurantReservation.Db.Mapper;
 using RestaurantReservation.Db.Repositories;
 using RestaurantReservation.Db.Services;
-using RestaurantReservation.Db.Mapper;
-using AutoMapper;
-using RestaurantReservation.Db.Repositories.IRepositories;
-using FluentResults;
-using RestaurantReservation.Db.Enums;
 
 RestaurantReservationDbContext _Context = new RestaurantReservationDbContext();
 var config = new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfile()));
@@ -28,16 +25,17 @@ var orderService = new OrderService(orderRepository, mapper);
 
 //await ListManagersAsync(employeeService);
 //await GetReservationsByCustomerAsync(reservationService, 4);
-//await ListOrdersAndMenuItems(orderService, 9);
-//await ListOrderedMenuItems(orderService, 9);
-//await CalculateAverageOrderAmount(orderService, 4);
-await FindCustomersByPartySize(customerService, PartySize.mediam);
-
+//await ListOrdersAndMenuItemsAsync(orderService, 9);
+//await ListOrderedMenuItemsAsync(orderService, 9);
+//await CalculateAverageOrderAmountAsync(orderService, 4);
+//await FindCustomersByPartySizeAsync(customerService, PartySize.mediam);
+//await ListReservationsDetailsViewAsync(reservationService);
+await ListEmployeesWithRestaurantDetailsViewAsync(employeeService);
 
 
 async Task CalculateAverageOrderAmount(OrderService orderService, int employeeId)
 {
-    (decimal avgOrderAmount, Result result) = await orderService.CalculateAverageOrderAmount(employeeId);
+    (decimal avgOrderAmount, Result result) = await orderService.CalculateAverageOrderAmountAsync(employeeId);
 
     if (result.IsSuccess)
     {
@@ -49,9 +47,46 @@ async Task CalculateAverageOrderAmount(OrderService orderService, int employeeId
         result.Errors.ForEach(e => Console.WriteLine($"Failed: {e.Message}"));
     }
 }
-async Task ListOrderedMenuItems(OrderService service, int reservationId)
+
+async Task ListReservationsDetailsViewAsync(ReservationService service)
 {
-    (var orderedMenuItems, var result) = await service.ListOrderedMenuItems(reservationId);
+    (var reservationsDetails, var result) = await service.ListReservationsDetailsViewAsync();
+    if (result.IsSuccess)
+    {
+        Console.WriteLine("------------------------------");
+        foreach (var reservationDetails in reservationsDetails)
+        {
+            Console.WriteLine(reservationDetails);
+        }
+        Console.WriteLine("------------------------------");
+    }
+    else
+    {
+        result.Errors.ForEach(e => Console.WriteLine($"Failed: {e.Message}"));
+    }
+}
+
+async Task ListEmployeesWithRestaurantDetailsViewAsync(EmployeeService service)
+{
+    (var EmployeesWithRestaurantDetails, var result) = await service.ListEmployeesWithRestaurantDetailsViewAsync();
+    if (result.IsSuccess)
+    {
+        Console.WriteLine("------------------------------");
+        foreach (var employee in EmployeesWithRestaurantDetails)
+        {
+            Console.WriteLine(employee);
+        }
+        Console.WriteLine("------------------------------");
+    }
+    else
+    {
+        result.Errors.ForEach(e => Console.WriteLine($"Failed: {e.Message}"));
+    }
+}
+
+async Task ListOrderedMenuItemsAsync(OrderService service, int reservationId)
+{
+    (var orderedMenuItems, var result) = await service.ListOrderedMenuItemsAsync(reservationId);
     if (result.IsSuccess)
     {
         Console.WriteLine("------------------------------");
@@ -67,9 +102,9 @@ async Task ListOrderedMenuItems(OrderService service, int reservationId)
     }
 }
 
-async Task FindCustomersByPartySize(CustomerService service, PartySize partySize)
+async Task FindCustomersByPartySizeAsync(CustomerService service, PartySize partySize)
 {
-    (var customers, var result) = await service.FindCustomersByPartySize(partySize);
+    (var customers, var result) = await service.FindCustomersByPartySizeAsync(partySize);
     if (result.IsSuccess)
     {
         Console.WriteLine("------------------------------");
@@ -85,9 +120,9 @@ async Task FindCustomersByPartySize(CustomerService service, PartySize partySize
     }
 }
 
-async Task ListOrdersAndMenuItems(OrderService service, int reservationId)
+async Task ListOrdersAndMenuItemsAsync(OrderService service, int reservationId)
 {
-    (var ordersWithMenuItemsDTOs, var result) = await service.ListOrdersAndMenuItems(reservationId);
+    (var ordersWithMenuItemsDTOs, var result) = await service.ListOrdersAndMenuItemsAsync(reservationId);
     if (result.IsSuccess)
     {
         Console.WriteLine("------------------------------");
@@ -138,31 +173,3 @@ async Task ListManagersAsync(EmployeeService service)
         result.Errors.ForEach(e => Console.WriteLine($"Failed: {e.Message}"));
     }
 }
-
-/*
-
-(var data, var result) = await service.ListManagersAsync();
-if (result.IsSuccess)
-{
-    Console.WriteLine("Success!!");
-    foreach (var item in data)
-    {
-        Console.WriteLine(item);
-    }
-}
-else
-{
-    result.Errors.ForEach(e => Console.WriteLine($"Failed: {e.Message}"));
-}
-
-
-var customerDTO = new CustomerDTO
-{
-    FirstName = "Tasbeeh",
-    LastName = "Takrori",
-    Email = "tabeh.takrore2@gmail.com",
-    PhoneNumber = "0599998888"
-};*/
-
-/*var result = await customerService.CreateAsync(customerDTO);
-*/

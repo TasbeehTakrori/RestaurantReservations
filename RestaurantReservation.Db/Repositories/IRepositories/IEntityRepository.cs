@@ -4,8 +4,8 @@
     {
         Task CreateAsync(TEntity entity);
         Task DeleteAsync(int entityId);
-        Task<IEnumerable<TEntity>> RetrieveAll();
-        Task<TEntity?> RetrieveById(int entityId);
+        Task<IEnumerable<TEntity>> RetrieveAllAsync();
+        Task<TEntity?> RetrieveByIdAsync(int entityId);
         Task UpdateAsync(TEntity entity);
     }
 }

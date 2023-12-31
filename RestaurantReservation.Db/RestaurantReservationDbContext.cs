@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using RestaurantReservation.Db.DTOs.RestaurantReservation.Db.Entities;
 using RestaurantReservation.Db.Entities;
+using RestaurantReservation.Db.Entities.RestaurantReservation.Db.Entities;
 
 namespace RestaurantReservation.Db
 {
@@ -14,6 +16,8 @@ namespace RestaurantReservation.Db
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Table> Tables { get; set; }
+        public DbSet<ReservationsDetailsView> ReservationsDetailsView { get; set; }
+        public DbSet<EmployeesWithRestaurantDetailsView> EmployeesWithRestaurantDetailsView { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -26,6 +30,14 @@ namespace RestaurantReservation.Db
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ReservationsDetailsView>()
+                .HasNoKey()
+                .ToView(nameof(ReservationsDetailsView));
+
+             modelBuilder.Entity<EmployeesWithRestaurantDetailsView>()
+                .HasNoKey()
+                .ToView(nameof(EmployeesWithRestaurantDetailsView));
+
             modelBuilder.Entity<Reservation>()
                 .HasOne(r => r.Table)
                 .WithMany(t => t.Reservations)
@@ -44,16 +56,15 @@ namespace RestaurantReservation.Db
             modelBuilder.Entity<Customer>()
                 .HasIndex(c => c.Email)
                 .IsUnique();
-                
 
-      /*      DbSeeder.SeedCustomersTable(modelBuilder);
+            DbSeeder.SeedCustomersTable(modelBuilder);
             DbSeeder.SeedEmployeeTable(modelBuilder);
             DbSeeder.SeedMenuItemsTable(modelBuilder);
             DbSeeder.SeedOrdersTable(modelBuilder);
             DbSeeder.SeedOrderItemsTable(modelBuilder);
             DbSeeder.SeedReservationsTable(modelBuilder);
             DbSeeder.SeedRestaurantsTable(modelBuilder);
-            DbSeeder.SeedTablesTable(modelBuilder);*/
+            DbSeeder.SeedTablesTable(modelBuilder);
         }
     }
 }

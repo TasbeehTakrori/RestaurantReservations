@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using FluentResults;
-using Microsoft.EntityFrameworkCore;
 using RestaurantReservation.Db.DTOs;
 using RestaurantReservation.Db.Entities;
 using RestaurantReservation.Db.Repositories.IRepositories;
@@ -13,11 +12,11 @@ namespace RestaurantReservation.Db.Services
         {
         }
 
-        public async Task<(decimal, Result)> CalculateAverageOrderAmount(int employeeId)
+        public async Task<(decimal, Result)> CalculateAverageOrderAmountAsync(int employeeId)
         {
             try
             {
-                var avgOrderAmount = await _entityRepository.CalculateAverageOrderAmount(employeeId);
+                var avgOrderAmount = await _entityRepository.CalculateAverageOrderAmountAsync(employeeId);
                 return (avgOrderAmount, Result.Ok());
             }
             catch (Exception ex)
@@ -26,11 +25,11 @@ namespace RestaurantReservation.Db.Services
             }
         }
 
-        public async Task<(IEnumerable<OrderWithMenuItemDTO>?, Result)> ListOrdersAndMenuItems(int reservationId)
+        public async Task<(IEnumerable<OrderWithMenuItemDTO>?, Result)> ListOrdersAndMenuItemsAsync(int reservationId)
         {
             try
             {
-                var ordersWithOrderItems = await _entityRepository.ListOrdersAndMenuItems(reservationId);
+                var ordersWithOrderItems = await _entityRepository.ListOrdersAndMenuItemsAsync(reservationId);
                 var dtos = MapOrderToOrderWithMenuEntityDto(ordersWithOrderItems);
                 return (dtos, Result.Ok());
             }
@@ -40,12 +39,12 @@ namespace RestaurantReservation.Db.Services
             }
         }
 
-        public async Task<(IEnumerable<MenuItemDTO>?, Result)> ListOrderedMenuItems(int reservationId)
+        public async Task<(IEnumerable<MenuItemDTO>?, Result)> ListOrderedMenuItemsAsync(int reservationId)
         {
             try
             {
-                var orderedMenuItems = await _entityRepository.ListOrderedMenuItems(reservationId);
-                var dtos = MapEntityToDto<MenuItem,MenuItemDTO>(orderedMenuItems);
+                var orderedMenuItems = await _entityRepository.ListOrderedMenuItemsAsync(reservationId);
+                var dtos = MapEntityToDto<MenuItem, MenuItemDTO>(orderedMenuItems);
                 return (dtos, Result.Ok());
             }
             catch (Exception ex)

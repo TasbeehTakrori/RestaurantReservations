@@ -11,7 +11,7 @@ namespace RestaurantReservation.Db.Repositories
         {
         }
 
-        public async Task<decimal> CalculateAverageOrderAmount(int employeeId)
+        public async Task<decimal> CalculateAverageOrderAmountAsync(int employeeId)
         {
             var OrderAmountList = await _dbContext.Orders.AsNoTracking()
                        .Where(o => o.EmployeeId == employeeId)
@@ -24,7 +24,7 @@ namespace RestaurantReservation.Db.Repositories
                  OrderAmountList.Select(o => o.TotalAmount).Average() : 0;
         }
 
-        public async Task<IEnumerable<MenuItem>?> ListOrderedMenuItems(int reservationId)
+        public async Task<IEnumerable<MenuItem>?> ListOrderedMenuItemsAsync(int reservationId)
         {
             return await _dbContext.Orders.AsNoTracking()
                  .Where(o => o.ReservationId == reservationId)
@@ -34,7 +34,7 @@ namespace RestaurantReservation.Db.Repositories
                  .ToListAsync();
         }
 
-        public async Task<IEnumerable<Order>?> ListOrdersAndMenuItems(int reservationId)
+        public async Task<IEnumerable<Order>?> ListOrdersAndMenuItemsAsync(int reservationId)
         {
             return await _dbContext.Orders.AsNoTracking()
                 .Where(o => o.ReservationId == reservationId)

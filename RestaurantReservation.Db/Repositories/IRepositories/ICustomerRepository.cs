@@ -5,6 +5,6 @@ namespace RestaurantReservation.Db.Repositories.IRepositories
 {
     public interface ICustomerRepository : IEntityRepository<Customer>
     {
-        Task<List<Customer>> FindCustomersByPartySize(PartySize partySize);
+        Task<List<Customer>> FindCustomersByPartySizeAsync(PartySize partySize);
     }
 }

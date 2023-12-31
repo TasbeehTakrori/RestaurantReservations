@@ -13,11 +13,11 @@ namespace RestaurantReservation.Db.Services
         {
         }
 
-        public async Task<(IEnumerable<CustomerDTO>?, Result)> FindCustomersByPartySize(PartySize partySize)
+        public async Task<(IEnumerable<CustomerDTO>?, Result)> FindCustomersByPartySizeAsync(PartySize partySize)
         {
             try
             {
-                var customers = await _entityRepository.FindCustomersByPartySize(partySize);
+                var customers = await _entityRepository.FindCustomersByPartySizeAsync(partySize);
                 var dtos = MapEntityToDto(customers);
                 return (dtos, Result.Ok());
             }

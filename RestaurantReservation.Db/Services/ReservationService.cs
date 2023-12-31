@@ -25,5 +25,18 @@ namespace RestaurantReservation.Db.Services
             }
         }
 
+        public async Task<(IEnumerable<ReservationsDetailsViewDTO>?, Result)> ListReservationsDetailsViewAsync()
+        {
+            try
+            {
+                var reservationsDetails = await _entityRepository.RetrieveReservationsDetailsViewAsync();
+                var dto = MapEntityToDto<ReservationsDetailsView, ReservationsDetailsViewDTO>(reservationsDetails);
+                return (dto, Result.Ok());
+            }
+            catch (Exception ex)
+            {
+                return (null, Result.Fail(ex.Message));
+            }
+        }
     }
 }

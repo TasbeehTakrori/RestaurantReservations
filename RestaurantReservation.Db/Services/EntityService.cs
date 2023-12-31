@@ -56,11 +56,11 @@ namespace RestaurantReservation.Db.Services
             }
         }
 
-        public async Task<(IEnumerable<TDto>?, Result)> RetrieveAll()
+        public async Task<(IEnumerable<TDto>?, Result)> RetrieveAllAsync()
         {
             try
             {
-                var entities = await _entityRepository.RetrieveAll();
+                var entities = await _entityRepository.RetrieveAllAsync();
                 var dtos = MapEntityToDto(entities);
                 return (dtos, Result.Ok());
             }
@@ -70,11 +70,11 @@ namespace RestaurantReservation.Db.Services
             }
         }
 
-        public async Task<(TDto?, Result)> RetrieveById(int entityId)
+        public async Task<(TDto?, Result)> RetrieveByIdAsync(int entityId)
         {
             try
             {
-                var entity = await _entityRepository.RetrieveById(entityId);
+                var entity = await _entityRepository.RetrieveByIdAsync(entityId);
                 var dto = MapEntityToDto(entity);
                 return (dto, Result.Ok());
             }

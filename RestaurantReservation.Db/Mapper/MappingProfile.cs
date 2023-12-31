@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using RestaurantReservation.Db.DTOs;
+using RestaurantReservation.Db.DTOs.RestaurantReservation.Db.Entities;
 using RestaurantReservation.Db.Entities;
+using RestaurantReservation.Db.Entities.RestaurantReservation.Db.Entities;
 
 namespace RestaurantReservation.Db.Mapper
 {
@@ -26,6 +28,10 @@ namespace RestaurantReservation.Db.Mapper
             CreateMap<TableDTO, Table>();
             CreateMap<OrderWithMenuItemDTO, Order>();
             CreateMap<Order, OrderWithMenuItemDTO>();
+            CreateMap<ReservationsDetailsView, ReservationsDetailsViewDTO>();
+            CreateMap<ReservationsDetailsViewDTO, ReservationsDetailsView>();
+            CreateMap<EmployeesWithRestaurantDetailsView, EmployeesWithRestaurantDetailsViewDTO>();
+            CreateMap<EmployeesWithRestaurantDetailsViewDTO, EmployeesWithRestaurantDetailsView>();
         }
     }
 }

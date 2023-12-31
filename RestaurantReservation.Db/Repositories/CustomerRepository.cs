@@ -11,7 +11,7 @@ namespace RestaurantReservation.Db.Repositories
         {
         }
 
-        public async Task<List<Customer>> FindCustomersByPartySize(PartySize partySize)
+        public async Task<List<Customer>> FindCustomersByPartySizeAsync(PartySize partySize)
         {
             var partySizeInt = (int)partySize;
 
