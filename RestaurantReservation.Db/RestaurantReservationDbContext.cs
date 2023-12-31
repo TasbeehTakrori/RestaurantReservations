@@ -1,14 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using RestaurantReservation.Db.DTOs.RestaurantReservation.Db.Entities;
+using Microsoft.Extensions.Options;
 using RestaurantReservation.Db.Entities;
 using RestaurantReservation.Db.Entities.RestaurantReservation.Db.Entities;
-using System.Reflection;
 
 namespace RestaurantReservation.Db
 {
     public class RestaurantReservationDbContext : DbContext
     {
+        private readonly DbContextOptions _dbContextOptions;
+
+        public RestaurantReservationDbContext(IOptions<DbContextOptions> dbContextOptions)
+        {
+            _dbContextOptions = dbContextOptions.Value;
+        }
+
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<MenuItem> MenuItems { get; set; }
@@ -22,7 +28,8 @@ namespace RestaurantReservation.Db
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=TASBEH-TAKRORE;Database=RestaurantReservationCore;Trusted_Connection=True;TrustServerCertificate=True;",
+            var connectionString = _dbContextOptions.ConnectionString;
+            optionsBuilder.UseSqlServer(connectionString,
                 x => x.UseDateOnlyTimeOnly()).LogTo(Console.WriteLine,
                     new[] { DbLoggerCategory.Database.Command.Name },
                     LogLevel.Information);
@@ -31,14 +38,6 @@ namespace RestaurantReservation.Db
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-/*
-            modelBuilder.HasDbFunction(typeof(RestaurantReservationDbContext)
-    .GetMethod(nameof(CalculateTotalRevenue), new[] { typeof(int)})!,
-    builder =>
-    {
-        builder.HasParameter("restaurantId").HasStoreType("int");
-    });*/
-
             modelBuilder.HasDbFunction(typeof(RestaurantReservationDbContext)
                 .GetMethod(nameof(CalculateTotalRevenue), new[] { typeof(int) }))
                 .HasName("CalculateTotalRevenue");

@@ -5,10 +5,11 @@ using RestaurantReservation.Db.DTOs.RestaurantReservation.Db.Entities;
 using RestaurantReservation.Db.Entities;
 using RestaurantReservation.Db.Entities.RestaurantReservation.Db.Entities;
 using RestaurantReservation.Db.Repositories.IRepositories;
+using RestaurantReservation.Db.Services.IServices;
 
 namespace RestaurantReservation.Db.Services
 {
-    public class EmployeeService : EntityService<Employee, EmployeeDTO, IEmployeeRepository>
+    public class EmployeeService : EntityService<Employee, EmployeeDTO, IEmployeeRepository>, IEmployeeService
     {
         public EmployeeService(IEmployeeRepository employeeRepository, IMapper mapper) : base(employeeRepository, mapper)
         {
@@ -27,7 +28,7 @@ namespace RestaurantReservation.Db.Services
                 return (null, Result.Fail(ex.Message));
             }
         }
-        
+
         public async Task<(IEnumerable<EmployeesWithRestaurantDetailsViewDTO>?, Result)> ListEmployeesWithRestaurantDetailsViewAsync()
         {
             try

@@ -1,29 +1,43 @@
 ﻿using AutoMapper;
 using FluentResults;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using RestaurantReservation.Db;
 using RestaurantReservation.Db.Enums;
 using RestaurantReservation.Db.Mapper;
 using RestaurantReservation.Db.Repositories;
 using RestaurantReservation.Db.Services;
 
-RestaurantReservationDbContext _Context = new RestaurantReservationDbContext();
+IConfiguration configuration = new ConfigurationBuilder()
+           .SetBasePath(AppContext.BaseDirectory)
+           .AddJsonFile("appsettings.json")
+           .Build();
+
+var serviceProvider = new ServiceCollection()
+    .Configure<DbContextOptions>(configuration.GetSection("DbContextOptions"))
+    .AddDbContext<RestaurantReservationDbContext>()
+    .BuildServiceProvider();
+
+var _dbContext = serviceProvider.GetRequiredService<RestaurantReservationDbContext>();
+
+
 var config = new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfile()));
 IMapper mapper = new Mapper(config);
 
 
-var customerRepository = new CustomerRepository(_Context);
+var customerRepository = new CustomerRepository(_dbContext);
 var customerService = new CustomerService(customerRepository, mapper);
 
-var employeeRepository = new EmployeeRepository(_Context);
+var employeeRepository = new EmployeeRepository(_dbContext);
 var employeeService = new EmployeeService(employeeRepository, mapper);
 
-var reservationRepository = new ReservationRepository(_Context);
+var reservationRepository = new ReservationRepository(_dbContext);
 var reservationService = new ReservationService(reservationRepository, mapper);
 
-var orderRepository = new OrderRepository(_Context);
+var orderRepository = new OrderRepository(_dbContext);
 var orderService = new OrderService(orderRepository, mapper);
 
-var restaurantRepository = new RestaurantRepository(_Context);
+var restaurantRepository = new RestaurantRepository(_dbContext);
 var restaurantService = new RestaurantService(restaurantRepository, mapper);
 
 //await ListManagersAsync(employeeService);

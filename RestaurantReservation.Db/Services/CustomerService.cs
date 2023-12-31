@@ -4,10 +4,11 @@ using RestaurantReservation.Db.DTOs;
 using RestaurantReservation.Db.Entities;
 using RestaurantReservation.Db.Enums;
 using RestaurantReservation.Db.Repositories.IRepositories;
+using RestaurantReservation.Db.Services.IServices;
 
 namespace RestaurantReservation.Db.Services
 {
-    public class CustomerService : EntityService<Customer, CustomerDTO, ICustomerRepository>
+    public class CustomerService : EntityService<Customer, CustomerDTO, ICustomerRepository>, ICustomerService
     {
         public CustomerService(ICustomerRepository entityRepository, IMapper mapper) : base(entityRepository, mapper)
         {
