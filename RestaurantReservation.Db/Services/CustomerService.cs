@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using FluentResults;
-using RestaurantReservation.Db.DTOs;
-using RestaurantReservation.Db.Entities;
-using RestaurantReservation.Db.Enums;
-using RestaurantReservation.Db.Repositories.IRepositories;
-using RestaurantReservation.Db.Services.IServices;
+using RestaurantReservation.Domain.DTOs;
+using RestaurantReservation.Domain.Entities;
+using RestaurantReservation.Domain.Enums;
+using RestaurantReservation.Domain.Repositories.IRepositories;
+using RestaurantReservation.Domain.Services.IServices;
 
-namespace RestaurantReservation.Db.Services
+namespace RestaurantReservation.Domain.Services
 {
     public class CustomerService : EntityService<Customer, CustomerDTO, ICustomerRepository>, ICustomerService
     {

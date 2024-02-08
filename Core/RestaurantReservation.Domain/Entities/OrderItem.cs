@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RestaurantReservation.Db.Entities
+namespace RestaurantReservation.Domain.Entities
 {
     public class OrderItem
     {

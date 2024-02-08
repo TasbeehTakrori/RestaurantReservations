@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace RestaurantReservation.Db.Migrations
+namespace RestaurantReservation.Domain.Migrations
 {
     public partial class UpdateCustomerEmailToBeUnique : Migration
     {

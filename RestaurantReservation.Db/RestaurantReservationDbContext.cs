@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using RestaurantReservation.Db.Entities;
-using RestaurantReservation.Db.Entities.RestaurantReservation.Db.Entities;
+using RestaurantReservation.Domain.Entities;
 
-namespace RestaurantReservation.Db
+namespace RestaurantReservation.Domain
 {
     public class RestaurantReservationDbContext : DbContext
     {
@@ -23,8 +22,8 @@ namespace RestaurantReservation.Db
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Table> Tables { get; set; }
-        public DbSet<ReservationsDetailsView> ReservationsDetailsView { get; set; }
-        public DbSet<EmployeesWithRestaurantDetailsView> EmployeesWithRestaurantDetailsView { get; set; }
+        public DbSet<ReservationsDetails> ReservationsDetailsView { get; set; }
+        public DbSet<EmployeesWithRestaurantDetails> EmployeesWithRestaurantDetailsView { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -42,11 +41,11 @@ namespace RestaurantReservation.Db
                 .GetMethod(nameof(CalculateTotalRevenue), new[] { typeof(int) }))
                 .HasName("CalculateTotalRevenue");
 
-            modelBuilder.Entity<ReservationsDetailsView>()
+            modelBuilder.Entity<ReservationsDetails>()
                 .HasNoKey()
                 .ToView(nameof(ReservationsDetailsView));
 
-            modelBuilder.Entity<EmployeesWithRestaurantDetailsView>()
+            modelBuilder.Entity<EmployeesWithRestaurantDetails>()
                .HasNoKey()
                .ToView(nameof(EmployeesWithRestaurantDetailsView));
 

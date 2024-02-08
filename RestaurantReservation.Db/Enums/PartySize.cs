@@ -1,5 +1,5 @@
 ﻿
-namespace RestaurantReservation.Db.Enums
+namespace RestaurantReservation.Domain.Enums
 {
     public enum PartySize
     {

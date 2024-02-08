@@ -1,6 +1,6 @@
-﻿namespace RestaurantReservation.Db.Entities
+﻿namespace RestaurantReservation.Domain.Entities
 {
-    public class ReservationsDetailsView
+    public class ReservationsDetails
     {
         public int ReservationId { get; set; }
         public DateTime ReservationDate { get; set; }

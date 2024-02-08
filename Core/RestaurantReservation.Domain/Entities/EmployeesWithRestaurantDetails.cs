@@ -1,8 +1,6 @@
-﻿namespace RestaurantReservation.Db.Entities
+﻿namespace RestaurantReservation.Domain.Entities
 {
-    namespace RestaurantReservation.Db.Entities
-    {
-        public class EmployeesWithRestaurantDetailsView
+        public class EmployeesWithRestaurantDetails
         {
             public int EmployeeId { get; set; }
             public string FirstName { get; set; }
@@ -12,5 +10,4 @@
             public string RestaurantAddress { get; set; }
             public string RestaurantPhoneNumber { get; set; }
         }
-    }
 }

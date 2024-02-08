@@ -1,6 +1,6 @@
-﻿using RestaurantReservation.Db.Entities;
+﻿using RestaurantReservation.Domain.Entities;
 
-namespace RestaurantReservation.Db.Repositories.IRepositories
+namespace RestaurantReservation.Domain.Repositories.IRepositories
 {
     internal interface IOrderItemRepository : IEntityRepository<OrderItem>
     {

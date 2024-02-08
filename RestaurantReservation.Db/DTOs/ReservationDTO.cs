@@ -1,6 +1,6 @@
-﻿using RestaurantReservation.Db.Enums;
+﻿using RestaurantReservation.Domain.Enums;
 
-namespace RestaurantReservation.Db.DTOs
+namespace RestaurantReservation.Domain.DTOs
 {
     public class ReservationDTO
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RestaurantReservation.Db.Entities;
-using RestaurantReservation.Db.Enums;
-using RestaurantReservation.Db.Repositories.IRepositories;
+using RestaurantReservation.Domain.Entities;
+using RestaurantReservation.Domain.Enums;
+using RestaurantReservation.Domain.Repositories.IRepositories;
 
-namespace RestaurantReservation.Db.Repositories
+namespace RestaurantReservation.Domain.Repositories
 {
     public class CustomerRepository : EntityRepository<Customer>, ICustomerRepository
     {

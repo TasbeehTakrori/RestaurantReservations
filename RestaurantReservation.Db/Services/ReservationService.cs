@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using FluentResults;
-using RestaurantReservation.Db.DTOs;
-using RestaurantReservation.Db.Entities;
-using RestaurantReservation.Db.Repositories.IRepositories;
-using RestaurantReservation.Db.Services.IServices;
+using RestaurantReservation.Domain.DTOs;
+using RestaurantReservation.Domain.Entities;
+using RestaurantReservation.Domain.Repositories.IRepositories;
+using RestaurantReservation.Domain.Services.IServices;
 
-namespace RestaurantReservation.Db.Services
+namespace RestaurantReservation.Domain.Services
 {
     public class ReservationService : EntityService<Reservation, ReservationDTO, IReservationRepository>, IReservationService
     {
@@ -31,7 +31,7 @@ namespace RestaurantReservation.Db.Services
             try
             {
                 var reservationsDetails = await _entityRepository.RetrieveReservationsDetailsViewAsync();
-                var dto = MapEntityToDto<ReservationsDetailsView, ReservationsDetailsViewDTO>(reservationsDetails);
+                var dto = MapEntityToDto<ReservationsDetails, ReservationsDetailsViewDTO>(reservationsDetails);
                 return (dto, Result.Ok());
             }
             catch (Exception ex)

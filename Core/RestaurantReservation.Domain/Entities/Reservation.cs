@@ -1,6 +1,4 @@
-﻿using RestaurantReservation.Db.Enums;
-
-namespace RestaurantReservation.Db.Entities
+﻿namespace RestaurantReservation.Domain.Entities
 {
     public class Reservation
     {
@@ -8,7 +6,7 @@ namespace RestaurantReservation.Db.Entities
 
         public DateTime ReservationDate { get; set; }
 
-        public PartySize PartySize { get; set; }
+        public int PartySize { get; set; }
 
         public int CustomerId { get; set; }
 

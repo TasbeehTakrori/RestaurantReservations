@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RestaurantReservation.Db.Repositories.IRepositories;
+using RestaurantReservation.Domain.Repositories.IRepositories;
 
-namespace RestaurantReservation.Db.Repositories
+namespace RestaurantReservation.Domain.Repositories
 {
     public class EntityRepository<TEntity> : IEntityRepository<TEntity> where TEntity : class
     {

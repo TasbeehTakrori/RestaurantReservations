@@ -1,9 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using RestaurantReservation.Db.Entities;
-using Bogus;
-using RestaurantReservation.Db.Enums;
+﻿using Bogus;
+using Microsoft.EntityFrameworkCore;
+using RestaurantReservation.Domain.Entities;
 
-namespace RestaurantReservation.Db
+namespace RestaurantReservation.Domain
 {
     internal static class DbSeeder
     {
@@ -93,7 +92,7 @@ namespace RestaurantReservation.Db
             var faker = new Faker<Reservation>()
                 .RuleFor(r => r.ReservationId, f => ReservationIdSequence++)
                 .RuleFor(r => r.ReservationDate, f => f.Date.Future())
-                .RuleFor(r => r.PartySize, f => f.PickRandom<PartySize>())
+                .RuleFor(r => r.PartySize, f => f.Random.Number(1, 20))
                 .RuleFor(r => r.CustomerId, f => f.Random.Number(1, 10))
                 .RuleFor(r => r.TableId, f => f.Random.Number(1, 10))
                 .RuleFor(r => r.RestaurantId, f => f.Random.Number(1, 5));

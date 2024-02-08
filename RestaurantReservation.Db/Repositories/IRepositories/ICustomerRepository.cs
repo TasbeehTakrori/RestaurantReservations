@@ -1,7 +1,7 @@
-﻿using RestaurantReservation.Db.Entities;
-using RestaurantReservation.Db.Enums;
+﻿using RestaurantReservation.Domain.Entities;
+using RestaurantReservation.Domain.Enums;
 
-namespace RestaurantReservation.Db.Repositories.IRepositories
+namespace RestaurantReservation.Domain.Repositories.IRepositories
 {
     public interface ICustomerRepository : IEntityRepository<Customer>
     {

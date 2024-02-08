@@ -1,10 +1,10 @@
-﻿using RestaurantReservation.Db.Entities;
+﻿using RestaurantReservation.Domain.Entities;
 
-namespace RestaurantReservation.Db.Repositories.IRepositories
+namespace RestaurantReservation.Domain.Repositories.IRepositories
 {
     public interface IReservationRepository : IEntityRepository<Reservation>
     {
         Task<IEnumerable<Reservation>?> GetReservationsByCustomerAsync(int customerId);
-        Task<IEnumerable<ReservationsDetailsView>> RetrieveReservationsDetailsViewAsync();
+        Task<IEnumerable<ReservationsDetails>> RetrieveReservationsDetailsViewAsync();
     }
 }

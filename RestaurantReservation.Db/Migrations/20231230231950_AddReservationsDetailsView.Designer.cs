@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RestaurantReservation.Db;
+using RestaurantReservation.Domain;
 
 #nullable disable
 
-namespace RestaurantReservation.Db.Migrations
+namespace RestaurantReservation.Domain.Migrations
 {
     [DbContext(typeof(RestaurantReservationDbContext))]
     [Migration("20231230231950_AddReservationsDetailsView")]

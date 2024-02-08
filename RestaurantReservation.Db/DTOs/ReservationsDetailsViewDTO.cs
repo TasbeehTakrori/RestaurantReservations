@@ -1,4 +1,4 @@
-﻿namespace RestaurantReservation.Db.DTOs
+﻿namespace RestaurantReservation.Domain.DTOs
 {
     public class ReservationsDetailsViewDTO
     {

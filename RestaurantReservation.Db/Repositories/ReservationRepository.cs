@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RestaurantReservation.Db.Entities;
-using RestaurantReservation.Db.Repositories.IRepositories;
+using RestaurantReservation.Domain.Entities;
+using RestaurantReservation.Domain.Repositories.IRepositories;
 
-namespace RestaurantReservation.Db.Repositories
+namespace RestaurantReservation.Domain.Repositories
 {
     public class ReservationRepository : EntityRepository<Reservation>, IReservationRepository
     {
@@ -16,7 +16,7 @@ namespace RestaurantReservation.Db.Repositories
                 .Where(c => c.CustomerId == CustomerId).ToListAsync();
         }
 
-        public async Task<IEnumerable<ReservationsDetailsView>> RetrieveReservationsDetailsViewAsync()
+        public async Task<IEnumerable<ReservationsDetails>> RetrieveReservationsDetailsViewAsync()
         {
             return await _dbContext.ReservationsDetailsView.ToListAsync();
         }

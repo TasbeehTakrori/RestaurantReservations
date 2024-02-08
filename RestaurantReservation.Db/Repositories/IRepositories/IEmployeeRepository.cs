@@ -1,11 +1,10 @@
-﻿using RestaurantReservation.Db.Entities;
-using RestaurantReservation.Db.Entities.RestaurantReservation.Db.Entities;
+﻿using RestaurantReservation.Domain.Entities;
 
-namespace RestaurantReservation.Db.Repositories.IRepositories
+namespace RestaurantReservation.Domain.Repositories.IRepositories
 {
     public interface IEmployeeRepository : IEntityRepository<Employee>
     {
         Task<IEnumerable<Employee>> ListManagersAsync();
-        Task<IEnumerable<EmployeesWithRestaurantDetailsView>> ListEmployeesWithRestaurantDetailsViewAsync();
+        Task<IEnumerable<EmployeesWithRestaurantDetails>> ListEmployeesWithRestaurantDetailsViewAsync();
     }
 }

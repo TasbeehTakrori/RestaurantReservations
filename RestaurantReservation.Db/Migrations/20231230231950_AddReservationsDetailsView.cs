@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace RestaurantReservation.Db.Migrations
+namespace RestaurantReservation.Domain.Migrations
 {
     public partial class AddReservationsDetailsView : Migration
     {

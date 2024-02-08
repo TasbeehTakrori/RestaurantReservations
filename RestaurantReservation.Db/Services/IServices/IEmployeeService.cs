@@ -1,12 +1,12 @@
 ﻿using FluentResults;
-using RestaurantReservation.Db.DTOs;
-using RestaurantReservation.Db.DTOs.RestaurantReservation.Db.Entities;
+using RestaurantReservation.Domain.DTOs;
+using RestaurantReservation.Domain.DTOs.RestaurantReservation.Db.Entities;
 
-namespace RestaurantReservation.Db.Services.IServices
+namespace RestaurantReservation.Domain.Services.IServices
 {
     public interface IEmployeeService
     {
-        Task<(IEnumerable<EmployeesWithRestaurantDetailsViewDTO>?, Result)> ListEmployeesWithRestaurantDetailsViewAsync();
+        Task<(IEnumerable<EmployeesWithRestaurantDetailsDTO>?, Result)> ListEmployeesWithRestaurantDetailsAsync();
         Task<(IEnumerable<EmployeeDTO>?, Result)> ListManagersAsync();
     }
 }

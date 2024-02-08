@@ -1,7 +1,7 @@
 ﻿using FluentResults;
-using RestaurantReservation.Db.DTOs;
+using RestaurantReservation.Domain.DTOs;
 
-namespace RestaurantReservation.Db.Services.IServices
+namespace RestaurantReservation.Domain.Services.IServices
 {
     public interface IOrderService
     {

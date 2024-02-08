@@ -1,8 +1,8 @@
-﻿namespace RestaurantReservation.Db.DTOs
+﻿namespace RestaurantReservation.Domain.DTOs
 {
     namespace RestaurantReservation.Db.Entities
     {
-        public class EmployeesWithRestaurantDetailsViewDTO
+        public class EmployeesWithRestaurantDetailsDTO
         {
             public int EmployeeId { get; set; }
             public string FirstName { get; set; }

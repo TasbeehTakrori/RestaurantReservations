@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
-using RestaurantReservation.Db.DTOs;
-using RestaurantReservation.Db.DTOs.RestaurantReservation.Db.Entities;
-using RestaurantReservation.Db.Entities;
-using RestaurantReservation.Db.Entities.RestaurantReservation.Db.Entities;
+using RestaurantReservation.Domain.DTOs;
+using RestaurantReservation.Domain.DTOs.RestaurantReservation.Db.Entities;
+using RestaurantReservation.Domain.Entities;
 
-namespace RestaurantReservation.Db.Mapper
+namespace RestaurantReservation.Domain.Mapper
 {
     public class MappingProfile : Profile
     {
@@ -28,10 +27,10 @@ namespace RestaurantReservation.Db.Mapper
             CreateMap<TableDTO, Table>();
             CreateMap<OrderWithMenuItemDTO, Order>();
             CreateMap<Order, OrderWithMenuItemDTO>();
-            CreateMap<ReservationsDetailsView, ReservationsDetailsViewDTO>();
-            CreateMap<ReservationsDetailsViewDTO, ReservationsDetailsView>();
-            CreateMap<EmployeesWithRestaurantDetailsView, EmployeesWithRestaurantDetailsViewDTO>();
-            CreateMap<EmployeesWithRestaurantDetailsViewDTO, EmployeesWithRestaurantDetailsView>();
+            CreateMap<ReservationsDetails, ReservationsDetailsViewDTO>();
+            CreateMap<ReservationsDetailsViewDTO, ReservationsDetails>();
+            CreateMap<EmployeesWithRestaurantDetails, EmployeesWithRestaurantDetailsDTO>();
+            CreateMap<EmployeesWithRestaurantDetailsDTO, EmployeesWithRestaurantDetails>();
         }
     }
 }

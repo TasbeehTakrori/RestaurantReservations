@@ -1,6 +1,6 @@
 ﻿using FluentResults;
 
-namespace RestaurantReservation.Db.Services.IServices
+namespace RestaurantReservation.Domain.Services.IServices
 {
     public interface IEntityService<TDto> where TDto : class
     {

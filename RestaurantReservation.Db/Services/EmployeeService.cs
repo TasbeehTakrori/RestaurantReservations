@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using FluentResults;
-using RestaurantReservation.Db.DTOs;
-using RestaurantReservation.Db.DTOs.RestaurantReservation.Db.Entities;
-using RestaurantReservation.Db.Entities;
-using RestaurantReservation.Db.Entities.RestaurantReservation.Db.Entities;
-using RestaurantReservation.Db.Repositories.IRepositories;
-using RestaurantReservation.Db.Services.IServices;
+using RestaurantReservation.Domain.DTOs;
+using RestaurantReservation.Domain.DTOs.RestaurantReservation.Db.Entities;
+using RestaurantReservation.Domain.Entities;
+using RestaurantReservation.Domain.Repositories.IRepositories;
+using RestaurantReservation.Domain.Services.IServices;
 
-namespace RestaurantReservation.Db.Services
+namespace RestaurantReservation.Domain.Services
 {
     public class EmployeeService : EntityService<Employee, EmployeeDTO, IEmployeeRepository>, IEmployeeService
     {
@@ -29,12 +28,12 @@ namespace RestaurantReservation.Db.Services
             }
         }
 
-        public async Task<(IEnumerable<EmployeesWithRestaurantDetailsViewDTO>?, Result)> ListEmployeesWithRestaurantDetailsViewAsync()
+        public async Task<(IEnumerable<EmployeesWithRestaurantDetailsDTO>?, Result)> ListEmployeesWithRestaurantDetailsAsync()
         {
             try
             {
                 var employees = await _entityRepository.ListEmployeesWithRestaurantDetailsViewAsync();
-                var dtos = MapEntityToDto<EmployeesWithRestaurantDetailsView, EmployeesWithRestaurantDetailsViewDTO>(employees);
+                var dtos = MapEntityToDto<EmployeesWithRestaurantDetails, EmployeesWithRestaurantDetailsDTO>(employees);
                 return (dtos, Result.Ok());
             }
             catch (Exception ex)

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using FluentResults;
-using RestaurantReservation.Db.Repositories.IRepositories;
-using RestaurantReservation.Db.Services.IServices;
+using RestaurantReservation.Domain.Repositories.IRepositories;
+using RestaurantReservation.Domain.Services.IServices;
 
-namespace RestaurantReservation.Db.Services
+namespace RestaurantReservation.Domain.Services
 {
     public class EntityService<TEntity, TDto, TIEntityRepository> : IEntityService<TDto> where TEntity : class where TDto : class where TIEntityRepository : IEntityRepository<TEntity>
     {

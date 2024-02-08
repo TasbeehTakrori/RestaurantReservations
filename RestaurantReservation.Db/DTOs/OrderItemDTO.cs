@@ -1,6 +1,6 @@
-﻿using RestaurantReservation.Db.Entities;
+﻿using RestaurantReservation.Domain.Entities;
 
-namespace RestaurantReservation.Db.DTOs
+namespace RestaurantReservation.Domain.DTOs
 {
     public class OrderItemDTO
     {

@@ -1,8 +1,8 @@
 ﻿using FluentResults;
-using RestaurantReservation.Db.DTOs;
-using RestaurantReservation.Db.Enums;
+using RestaurantReservation.Domain.DTOs;
+using RestaurantReservation.Domain.Enums;
 
-namespace RestaurantReservation.Db.Services.IServices
+namespace RestaurantReservation.Domain.Services.IServices
 {
     public interface ICustomerService
     {
