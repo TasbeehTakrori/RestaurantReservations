@@ -1,23 +1,28 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using RestaurantReservation.Domain.Entities;
+using RestaurantReservation.Domain.Models;
 using RestaurantReservation.Domain.Repositories.IRepositories;
 
 namespace RestaurantReservation.Domain.Repositories
 {
-    public class EmployeeRepository : EntityRepository<Employee>, IEmployeeRepository
+    public class EmployeeRepository : EntityRepository<Employee, EmployeeDTO>, IEmployeeRepository
     {
-        public EmployeeRepository(RestaurantReservationDbContext dbContext) : base(dbContext)
+        public EmployeeRepository(RestaurantReservationDbContext dbContext, IMapper mapper)
+            : base(dbContext, mapper)
         {
         }
 
-        public async Task<IEnumerable<EmployeesWithRestaurantDetails>> ListEmployeesWithRestaurantDetailsAsync()
+        public async Task<IEnumerable<EmployeesWithRestaurantDetailsDTO>> ListEmployeesWithRestaurantDetailsAsync()
         {
-            return await _dbContext.EmployeesWithRestaurantDetails.ToListAsync();
+            var employeesWithRestaurantDetails = await _dbContext.EmployeesWithRestaurantDetails.ToListAsync();
+            return _mapper.Map<IEnumerable<EmployeesWithRestaurantDetailsDTO>>(employeesWithRestaurantDetails);
         }
 
-        public async Task<IEnumerable<Employee>> ListManagersAsync()
+        public async Task<IEnumerable<EmployeeDTO>> ListManagersAsync()
         {
-            return await _dbContext.Employees.Where(e => e.Position == "Manager").ToListAsync();
+            var employee = await _dbContext.Employees.Where(e => e.Position == "Manager").ToListAsync();
+            return _mapper.Map<IEnumerable<EmployeeDTO>>(employee);
         }
     }
 }

@@ -1,12 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using RestaurantReservation.Domain.Entities;
+using RestaurantReservation.Domain.Models;
 using RestaurantReservation.Domain.Repositories.IRepositories;
 
 namespace RestaurantReservation.Domain.Repositories
 {
-    public class RestaurantRepository : EntityRepository<Restaurant>, IRestaurantRepository
+    public class RestaurantRepository : EntityRepository<Restaurant, RestaurantDTO>, IRestaurantRepository
     {
-        public RestaurantRepository(RestaurantReservationDbContext dbContext) : base(dbContext)
+        public RestaurantRepository(RestaurantReservationDbContext dbContext, IMapper mapper) 
+            : base(dbContext, mapper)
         {
         }
 

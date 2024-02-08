@@ -1,20 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using RestaurantReservation.Domain.Entities;
+using RestaurantReservation.Domain.Models;
 using RestaurantReservation.Domain.Repositories.IRepositories;
 
 namespace RestaurantReservation.Domain.Repositories
 {
-    public class OrderRepository : EntityRepository<Order>, IOrderRepository
+    public class OrderRepository : EntityRepository<Order, OrderDTO>, IOrderRepository
     {
 
-        public OrderRepository(RestaurantReservationDbContext dbContext) : base(dbContext)
+        public OrderRepository(RestaurantReservationDbContext dbContext, IMapper mapper) 
+            : base(dbContext, mapper)
         {
         }
 
-        public async Task<decimal> CalculateAverageOrderAmountAsync(int employeeId)
+        public async Task<decimal> CalculateAverageOrderAmountAsync(int id)
         {
             var OrderAmountList = await _dbContext.Orders.AsNoTracking()
-                       .Where(o => o.EmployeeId == employeeId)
+                       .Where(o => o.EmployeeId == id)
                        .Include(o => o.OrderItems)
                        .ThenInclude(oi=> oi.MenuItem)
                        .AsSplitQuery()
@@ -24,24 +27,28 @@ namespace RestaurantReservation.Domain.Repositories
                  OrderAmountList.Select(o => o.TotalAmount).Average() : 0;
         }
 
-        public async Task<IEnumerable<MenuItem>?> ListOrderedMenuItemsAsync(int reservationId)
+        public async Task<IEnumerable<MenuItemDTO>?> ListOrderedMenuItemsAsync(int reservationId)
         {
-            return await _dbContext.Orders.AsNoTracking()
+            var menuItems = await _dbContext.Orders.AsNoTracking()
                  .Where(o => o.ReservationId == reservationId)
                  .SelectMany(o => o.OrderItems.Select(oi => oi.MenuItem))
                  .AsSplitQuery()
                  .Distinct()
                  .ToListAsync();
+
+            return _mapper.Map<IEnumerable<MenuItemDTO>>(menuItems);
         }
 
-        public async Task<IEnumerable<Order>?> ListOrdersAndMenuItemsAsync(int reservationId)
+        public async Task<IEnumerable<OrderDTO>?> ListOrdersAndMenuItemsAsync(int reservationId)
         {
-            return await _dbContext.Orders.AsNoTracking()
+            var ordersAndMenuItems = await _dbContext.Orders.AsNoTracking()
                 .Where(o => o.ReservationId == reservationId)
                 .Include(o => o.OrderItems)
                 .ThenInclude(oi => oi.MenuItem)
                 .AsSplitQuery()
                 .ToListAsync();
+
+            return _mapper.Map<IEnumerable<OrderDTO>>(ordersAndMenuItems);
         }
     }
 }

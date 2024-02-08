@@ -13,17 +13,17 @@ namespace RestaurantReservation.Domain.Services
         {
         }
 
-        public async Task<(IEnumerable<CustomerDTO>?, Result)> FindCustomersByPartySizeAsync(int partySize)
+        public async Task<Result<IEnumerable<CustomerDTO>>> FindCustomersByPartySizeAsync(int partySize)
         {
             try
             {
                 var customers = await _entityRepository.FindCustomersByPartySizeAsync(partySize);
                 var dtos = MapEntityToDto(customers);
-                return (dtos, Result.Ok());
+                return Result.Ok(dtos);
             }
             catch (Exception ex)
             {
-                return (null, Result.Fail(ex.Message));
+                return Result.Fail(ex.Message);
             }
         }
     }

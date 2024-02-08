@@ -12,7 +12,7 @@ namespace RestaurantReservation.Domain.Repositories
 
         public async Task<List<Customer>> FindCustomersByPartySizeAsync(int partySize)
         {
-            var partySizeInt = (int)partySize;
+            var partySizeInt = partySize;
 
             return await _dbContext.Customers
                 .FromSqlInterpolated($"sp_FindCustomersByPartySize {partySizeInt}")
