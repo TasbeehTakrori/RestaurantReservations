@@ -18,7 +18,7 @@ namespace RestaurantReservation.Domain.Repositories
 
         public async Task<IEnumerable<ReservationsDetails>> RetrieveReservationsDetailsViewAsync()
         {
-            return await _dbContext.ReservationsDetailsView.ToListAsync();
+            return await _dbContext.ReservationsDetails.ToListAsync();
         }
     }
 }

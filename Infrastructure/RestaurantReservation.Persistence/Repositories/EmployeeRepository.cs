@@ -10,9 +10,9 @@ namespace RestaurantReservation.Domain.Repositories
         {
         }
 
-        public async Task<IEnumerable<EmployeesWithRestaurantDetails>> ListEmployeesWithRestaurantDetailsViewAsync()
+        public async Task<IEnumerable<EmployeesWithRestaurantDetails>> ListEmployeesWithRestaurantDetailsAsync()
         {
-            return await _dbContext.EmployeesWithRestaurantDetailsView.ToListAsync();
+            return await _dbContext.EmployeesWithRestaurantDetails.ToListAsync();
         }
 
         public async Task<IEnumerable<Employee>> ListManagersAsync()

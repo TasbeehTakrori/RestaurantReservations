@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RestaurantReservation.Domain.Entities;
-using RestaurantReservation.Domain.Enums;
 using RestaurantReservation.Domain.Repositories.IRepositories;
 
 namespace RestaurantReservation.Domain.Repositories
@@ -11,7 +10,7 @@ namespace RestaurantReservation.Domain.Repositories
         {
         }
 
-        public async Task<List<Customer>> FindCustomersByPartySizeAsync(PartySize partySize)
+        public async Task<List<Customer>> FindCustomersByPartySizeAsync(int partySize)
         {
             var partySizeInt = (int)partySize;
 

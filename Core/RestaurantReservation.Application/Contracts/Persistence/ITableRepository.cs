@@ -1,6 +1,8 @@
-﻿namespace RestaurantReservation.Domain.Repositories.IRepositories
+﻿using RestaurantReservation.Domain.Entities;
+
+namespace RestaurantReservation.Domain.Repositories.IRepositories
 {
-    internal interface ITableRepository : IEntityRepository<Table>
+    public interface ITableRepository : IEntityRepository<Table>
     {
     }
 }

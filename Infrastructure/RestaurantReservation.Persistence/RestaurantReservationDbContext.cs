@@ -22,8 +22,8 @@ namespace RestaurantReservation.Domain
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Table> Tables { get; set; }
-        public DbSet<ReservationsDetails> ReservationsDetailsView { get; set; }
-        public DbSet<EmployeesWithRestaurantDetails> EmployeesWithRestaurantDetailsView { get; set; }
+        public DbSet<ReservationsDetails> ReservationsDetails { get; set; }
+        public DbSet<EmployeesWithRestaurantDetails> EmployeesWithRestaurantDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -43,11 +43,11 @@ namespace RestaurantReservation.Domain
 
             modelBuilder.Entity<ReservationsDetails>()
                 .HasNoKey()
-                .ToView(nameof(ReservationsDetailsView));
+                .ToView(nameof(ReservationsDetails));
 
             modelBuilder.Entity<EmployeesWithRestaurantDetails>()
                .HasNoKey()
-               .ToView(nameof(EmployeesWithRestaurantDetailsView));
+               .ToView(nameof(EmployeesWithRestaurantDetails));
 
             modelBuilder.Entity<Reservation>()
                 .HasOne(r => r.Table)

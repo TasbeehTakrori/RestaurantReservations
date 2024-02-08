@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
-using FluentResults;
-using RestaurantReservation.Domain.Models;
 using RestaurantReservation.Domain.Entities;
-using RestaurantReservation.Domain.Enums;
+using RestaurantReservation.Domain.Models;
 using RestaurantReservation.Domain.Repositories.IRepositories;
 using RestaurantReservation.Domain.Services.IServices;
+using FluentResults;
 
 namespace RestaurantReservation.Domain.Services
 {
@@ -14,7 +13,7 @@ namespace RestaurantReservation.Domain.Services
         {
         }
 
-        public async Task<(IEnumerable<CustomerDTO>?, Result)> FindCustomersByPartySizeAsync(PartySize partySize)
+        public async Task<(IEnumerable<CustomerDTO>?, Result)> FindCustomersByPartySizeAsync(int partySize)
         {
             try
             {

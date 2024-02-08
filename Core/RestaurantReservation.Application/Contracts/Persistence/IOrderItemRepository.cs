@@ -2,7 +2,7 @@
 
 namespace RestaurantReservation.Domain.Repositories.IRepositories
 {
-    internal interface IOrderItemRepository : IEntityRepository<OrderItem>
+    public interface IOrderItemRepository : IEntityRepository<OrderItem>
     {
     }
 }

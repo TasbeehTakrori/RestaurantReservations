@@ -7,11 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C84909C8-3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantReservation.Domain", "Core\RestaurantReservation.Domain\RestaurantReservation.Domain.csproj", "{DB8936D3-C569-4759-BC7B-503C152273DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantReservation.Application", "Core\RestaurantReservation.Application\RestaurantReservation.Application.csproj", "{7327CAF2-53DD-47C9-8FC2-FADCFFD96EEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantReservation.Application", "Core\RestaurantReservation.Application\RestaurantReservation.Application.csproj", "{7327CAF2-53DD-47C9-8FC2-FADCFFD96EEB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{5B9786B4-E4E5-4606-B8C5-4B8F6C3DE2E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantReservation.Persistence", "Infrastructure\RestaurantReservation.Persistence\RestaurantReservation.Persistence.csproj", "{42638424-404A-4AEC-B034-2DAC8FB4469D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantReservation.Persistence", "Infrastructure\RestaurantReservation.Persistence\RestaurantReservation.Persistence.csproj", "{42638424-404A-4AEC-B034-2DAC8FB4469D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

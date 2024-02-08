@@ -1,6 +1,5 @@
-﻿using FluentResults;
-using RestaurantReservation.Domain.Models;
-using RestaurantReservation.Domain.Models.RestaurantReservation.Db.Entities;
+﻿using RestaurantReservation.Domain.Models;
+using FluentResults;
 
 namespace RestaurantReservation.Domain.Services.IServices
 {

@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using RestaurantReservation.Domain.Models;
-using RestaurantReservation.Domain.Models.RestaurantReservation.Db.Entities;
 using RestaurantReservation.Domain.Entities;
+using RestaurantReservation.Domain.Models;
 
 namespace RestaurantReservation.Domain.Mapper
 {
     public class MappingProfile : Profile
     {
+        //TODO => Split to many profiles and use ReverseMap()
         public MappingProfile()
         {
             CreateMap<Customer, CustomerDTO>();
