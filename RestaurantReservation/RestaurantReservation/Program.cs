@@ -20,7 +20,6 @@ var serviceProvider = new ServiceCollection()
 
 var _dbContext = serviceProvider.GetRequiredService<RestaurantReservationDbContext>();
 
-
 var config = new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfile()));
 IMapper mapper = new Mapper(config);
 
@@ -44,11 +43,11 @@ var restaurantService = new RestaurantService(restaurantRepository, mapper);
 //await GetReservationsByCustomerAsync(reservationService, 4);
 //await ListOrdersAndMenuItemsAsync(orderService, 9);
 //await ListOrderedMenuItemsAsync(orderService, 9);
-//await CalculateAverageOrderAmountAsync(orderService, 4);
+await CalculateAverageOrderAmount(orderService, 4);
 //await FindCustomersByPartySizeAsync(customerService, PartySize.mediam);
 //await ListReservationsDetailsViewAsync(reservationService);
 //await ListEmployeesWithRestaurantDetailsViewAsync(employeeService);
-await CalculateTotalRevenueAsync(restaurantService, 5);
+//await CalculateTotalRevenueAsync(restaurantService, 5);
 
 async Task CalculateAverageOrderAmount(OrderService orderService, int employeeId)
 {
@@ -100,7 +99,7 @@ async Task ListReservationsDetailsViewAsync(ReservationService service)
 
 async Task ListEmployeesWithRestaurantDetailsViewAsync(EmployeeService service)
 {
-    (var EmployeesWithRestaurantDetails, var result) = await service.ListEmployeesWithRestaurantDetailsViewAsync();
+    (var EmployeesWithRestaurantDetails, var result) = await service.ListEmployeesWithRestaurantDetailsAsync();
     if (result.IsSuccess)
     {
         Console.WriteLine("------------------------------");
