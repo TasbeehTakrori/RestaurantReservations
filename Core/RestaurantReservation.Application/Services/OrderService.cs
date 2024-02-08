@@ -60,8 +60,8 @@ namespace RestaurantReservation.Domain.Services
             foreach (var order in orderWithOrderItems)
             {
                 var orderItems = order.OrderItems;
-                var menuItems = new List<MenuItem>();
-                orderItems.ForEach(item => menuItems.Add(item.MenuItem));
+                var menuItemsDTO = new List<MenuItemDTO>();
+                orderItems.ForEach(item => menuItemsDTO.Add(_mapper.Map<MenuItemDTO>(item.MenuItem)));
 
                 orderWithMenuItemDTO.Add(
                     new OrderWithMenuItemDTO()
@@ -69,7 +69,7 @@ namespace RestaurantReservation.Domain.Services
                         OrderId = order.OrderId,
                         TotalAmount = order.TotalAmount,
                         OrderDate = order.OrderDate,
-                        MenuItems = menuItems,
+                        MenuItems = menuItemsDTO,
                     }
                     );
             }
