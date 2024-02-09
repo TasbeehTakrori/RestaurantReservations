@@ -3,7 +3,7 @@ using RestaurantReservation.Application.Entities;
 using RestaurantReservation.Application.Models;
 using RestaurantReservation.Application.Contracts.Persistence;
 
-namespace RestaurantReservation.Application.Contracts
+namespace RestaurantReservation.Persistence.Repositories
 {
     public class TableRepository : EntityRepository<Table, TableDTO>, ITableRepository
     {

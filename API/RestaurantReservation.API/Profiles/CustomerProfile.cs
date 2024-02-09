@@ -8,7 +8,7 @@ namespace RestaurantReservation.API.Profiles
     {
         public CustomerProfile()
         {
-            CreateMap<CustomerVm, CustomerDTO>()
+            CreateMap<CustomerVM, CustomerDTO>()
                 .ReverseMap();
         }
     }

@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using RestaurantReservation.API.ViewModels;
 using RestaurantReservation.Application.Services.IServices;
+using RestaurantReservation.Domain.Constants;
+using System.Text.Json;
 
 namespace RestaurantReservation.API.Controllers
 {
@@ -16,11 +19,29 @@ namespace RestaurantReservation.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<CustomerVm>> GetCustomers(int pageNumber = 1, int pageSize = 5)
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<CustomerVM>> GetCustomer(int id)
         {
-            var customers = _customerService.RetrieveCustomersAsync(pageNumber, pageSize);
-            return _mapper.Map<IEnumerable<CustomerVm>>(customers);
+            var customer = await _customerService.RetrieveCustomerByIdAsync(id);
+            return Ok(_mapper.Map<CustomerVM>(customer));
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<CollectionVM<CustomerVM>>> GetCustomers(
+             int pageNumber = PaginationConstants.DefaultPageNumber, int pageSize = PaginationConstants.DefaultPageSize)
+        {
+            (var customers, var paginationMetadata) = await _customerService.RetrieveCustomersAsync(pageNumber, pageSize);
+            var customerVMs = _mapper.Map<List<CustomerVM>>(customers);
+
+            var collectionVM = new CollectionVM<CustomerVM>()
+            {
+                Count = customerVMs.Count,
+                Items = customerVMs
+            };
+
+            Response.Headers.Add("X-Pagination",
+              JsonSerializer.Serialize(paginationMetadata));
+            return Ok(collectionVM);
         }
     }
 }

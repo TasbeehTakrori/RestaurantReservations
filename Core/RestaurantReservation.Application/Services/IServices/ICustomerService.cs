@@ -1,4 +1,5 @@
 ﻿using RestaurantReservation.Application.Models;
+using RestaurantReservation.Domain.Common;
 
 namespace RestaurantReservation.Application.Services.IServices
 {
@@ -6,7 +7,7 @@ namespace RestaurantReservation.Application.Services.IServices
     {
         Task<CustomerDTO?> CreateCustomerAsync(CustomerDTO dto);
         Task DeleteCustomerAsync(int entityId);
-        Task<IEnumerable<CustomerDTO>> RetrieveCustomersAsync(int pageNumber, int pageSize);
+        Task<(IEnumerable<CustomerDTO>, PaginationMetadata)> RetrieveCustomersAsync(int pageNumber, int pageSize);
         Task<CustomerDTO?> RetrieveCustomerByIdAsync(int id);
         Task<CustomerDTO?> UpdateCustomerAsync(CustomerDTO dto);
         Task<IEnumerable<CustomerDTO>> FindCustomersByPartySizeAsync(int partySize, int pageNumber, int pageSize);

@@ -9,8 +9,9 @@ namespace RestaurantReservation.Persistence.Profiles
         //TODO => Split to many profiles and use ReverseMap()
         public MappingProfile()
         {
-            CreateMap<Customer, CustomerDTO>();
-            CreateMap<CustomerDTO, Customer>();
+            CreateMap<Customer, CustomerDTO>()
+                .ReverseMap();
+
             CreateMap<Employee, EmployeeDTO>();
             CreateMap<EmployeeDTO, Employee>();
             CreateMap<MenuItemDTO, MenuItem>();

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using RestaurantReservation.Application.Entities;
 
-namespace RestaurantReservation.Application
+namespace RestaurantReservation.Persistence
 {
     internal static class DbSeeder
     {

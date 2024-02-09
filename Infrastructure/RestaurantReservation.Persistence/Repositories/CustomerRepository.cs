@@ -4,7 +4,7 @@ using RestaurantReservation.Application.Models;
 using RestaurantReservation.Application.Contracts.Persistence;
 using AutoMapper;
 
-namespace RestaurantReservation.Application.Contracts
+namespace RestaurantReservation.Persistence.Repositories
 {
     public class CustomerRepository : EntityRepository<Customer, CustomerDTO>, ICustomerRepository
     {
@@ -23,6 +23,7 @@ namespace RestaurantReservation.Application.Contracts
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
+
             return _mapper.Map<IEnumerable<CustomerDTO>>(customers);
         }
     }

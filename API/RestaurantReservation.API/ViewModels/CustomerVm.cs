@@ -1,6 +1,6 @@
 ﻿namespace RestaurantReservation.API.Controllers
 {
-    public class CustomerVm
+    public class CustomerVM
     {
         public int CustomerId { get; init; }
         public string FullName { get; set; }

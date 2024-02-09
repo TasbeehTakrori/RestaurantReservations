@@ -1,19 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using RestaurantReservation.Application.Entities;
 
-namespace RestaurantReservation.Application
+namespace RestaurantReservation.Persistence
 {
     public class RestaurantReservationDbContext : DbContext
     {
-        private readonly DbContextOptions _dbContextOptions;
-
-        public RestaurantReservationDbContext(IOptions<DbContextOptions> dbContextOptions)
+        public RestaurantReservationDbContext(DbContextOptions<RestaurantReservationDbContext> options)
+            : base(options)
         {
-            _dbContextOptions = dbContextOptions.Value;
         }
-
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<MenuItem> MenuItems { get; set; }
@@ -24,16 +19,6 @@ namespace RestaurantReservation.Application
         public DbSet<Table> Tables { get; set; }
         public DbSet<ReservationsDetails> ReservationsDetails { get; set; }
         public DbSet<EmployeesWithRestaurantDetails> EmployeesWithRestaurantDetails { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var connectionString = _dbContextOptions.ConnectionString;
-            optionsBuilder.UseSqlServer(connectionString,
-                x => x.UseDateOnlyTimeOnly()).LogTo(Console.WriteLine,
-                    new[] { DbLoggerCategory.Database.Command.Name },
-                    LogLevel.Information);
-            optionsBuilder.EnableSensitiveDataLogging();
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -68,14 +53,14 @@ namespace RestaurantReservation.Application
                 .HasIndex(c => c.Email)
                 .IsUnique();
 
-            DbSeeder.SeedCustomersTable(modelBuilder);
-            DbSeeder.SeedEmployeeTable(modelBuilder);
-            DbSeeder.SeedMenuItemsTable(modelBuilder);
-            DbSeeder.SeedOrdersTable(modelBuilder);
-            DbSeeder.SeedOrderItemsTable(modelBuilder);
-            DbSeeder.SeedReservationsTable(modelBuilder);
-            DbSeeder.SeedRestaurantsTable(modelBuilder);
-            DbSeeder.SeedTablesTable(modelBuilder);
+            /*  DbSeeder.SeedCustomersTable(modelBuilder);
+              DbSeeder.SeedEmployeeTable(modelBuilder);
+              DbSeeder.SeedMenuItemsTable(modelBuilder);
+              DbSeeder.SeedOrdersTable(modelBuilder);
+              DbSeeder.SeedOrderItemsTable(modelBuilder);
+              DbSeeder.SeedReservationsTable(modelBuilder);
+              DbSeeder.SeedRestaurantsTable(modelBuilder);
+              DbSeeder.SeedTablesTable(modelBuilder);*/
         }
         public decimal CalculateTotalRevenue(int restaurantId)
             => throw new NotSupportedException();

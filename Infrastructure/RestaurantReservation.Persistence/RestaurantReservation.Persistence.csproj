@@ -20,10 +20,4 @@
     <ProjectReference Include="..\..\Core\RestaurantReservation.Domain\RestaurantReservation.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="appsettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
