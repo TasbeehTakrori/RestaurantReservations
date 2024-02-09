@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using RestaurantReservation.API.Controllers;
+using RestaurantReservation.API.DTOs;
 using RestaurantReservation.Application.Models;
 
 namespace RestaurantReservation.API.Profiles
@@ -9,6 +10,8 @@ namespace RestaurantReservation.API.Profiles
         public CustomerProfile()
         {
             CreateMap<CustomerVM, CustomerDTO>()
+                .ReverseMap();
+            CreateMap<CreateCustomerDTO, CustomerDTO>()
                 .ReverseMap();
         }
     }

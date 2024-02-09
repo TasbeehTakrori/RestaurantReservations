@@ -20,9 +20,11 @@ namespace RestaurantReservation.Persistence.Repositories
 
         public async Task<TDTO> CreateAsync(TDTO dto)
         {
-            await _dbContext.Set<TEntity>().AddAsync(_mapper.Map<TEntity>(dto));
+            var entityEntry = await _dbContext.Set<TEntity>().AddAsync(_mapper.Map<TEntity>(dto));
             await _dbContext.SaveChangesAsync();
-            return dto;
+
+            var addedEntity = entityEntry.Entity;
+            return _mapper.Map<TDTO>(addedEntity);
         }
 
         public async Task<TDTO> UpdateAsync(TDTO dto)

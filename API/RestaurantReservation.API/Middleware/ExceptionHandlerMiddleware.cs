@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RestaurantReservation.API.Exceptions;
 using RestaurantReservation.Application.Exceptions;
 using System.Text.Json;
 
@@ -7,10 +8,17 @@ namespace RestaurantReservation.API.Middleware
     public class ExceptionHandlerMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly Dictionary<Type, IExceptionHandler> _exceptionHandlers;
 
         public ExceptionHandlerMiddleware(RequestDelegate next)
         {
             _next = next;
+            _exceptionHandlers = new Dictionary<Type, IExceptionHandler>
+        {
+            { typeof(NotFoundException), new NotFoundExceptionHandler() },
+            { typeof(InternalServerException), new InternalServerErrorExceptionHandler() },
+            { typeof(FluentValidation.ValidationException), new ValidationExceptionHandler() }
+        };
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -19,33 +27,14 @@ namespace RestaurantReservation.API.Middleware
             {
                 await _next(context);
             }
-            catch (NotFoundException ex)
+            catch (Exception ex)
             {
-                await HandleExceptionAsync(context, ex, StatusCodes.Status404NotFound, "Resource not found");
+                var exceptionType = ex.GetType();
+                if (_exceptionHandlers.TryGetValue(exceptionType, out var handler))
+                {
+                    await handler.HandleAsync(context, ex);
+                }
             }
-            catch (InternalServerException ex)
-            {
-                await HandleExceptionAsync(context, ex, StatusCodes.Status500InternalServerError, "Internal server error");
-            }
-            catch (FluentValidation.ValidationException ex)
-            {
-                await HandleExceptionAsync(context, ex, StatusCodes.Status400BadRequest, "Validation error");
-            }
-        }
-
-        private async Task HandleExceptionAsync(HttpContext context, Exception ex, int statusCode, string title)
-        {
-            var problemDetails = new ProblemDetails
-            {
-                Status = statusCode,
-                Title = title,
-                Detail = ex.Message
-            };
-
-            context.Response.StatusCode = statusCode;
-            context.Response.ContentType = "application/json";
-
-            await context.Response.WriteAsync(JsonSerializer.Serialize(problemDetails));
         }
     }
 }
