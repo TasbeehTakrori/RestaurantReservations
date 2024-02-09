@@ -1,7 +1,7 @@
 ﻿using EntityFrameworkCore.Projectables;
 using System.ComponentModel.DataAnnotations;
 
-namespace RestaurantReservation.Domain.Entities
+namespace RestaurantReservation.Application.Entities
 {
     public class Restaurant
     {

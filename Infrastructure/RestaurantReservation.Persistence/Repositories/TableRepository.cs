@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using RestaurantReservation.Domain.Entities;
-using RestaurantReservation.Domain.Models;
-using RestaurantReservation.Domain.Repositories.IRepositories;
+using RestaurantReservation.Application.Entities;
+using RestaurantReservation.Application.Models;
+using RestaurantReservation.Application.Contracts.Persistence;
 
-namespace RestaurantReservation.Domain.Repositories
+namespace RestaurantReservation.Application.Contracts
 {
     public class TableRepository : EntityRepository<Table, TableDTO>, ITableRepository
     {

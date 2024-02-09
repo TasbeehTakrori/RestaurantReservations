@@ -1,22 +1,29 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RestaurantReservation.Domain.Entities;
-using RestaurantReservation.Domain.Repositories.IRepositories;
+using RestaurantReservation.Application.Entities;
+using RestaurantReservation.Application.Models;
+using RestaurantReservation.Application.Contracts.Persistence;
+using AutoMapper;
 
-namespace RestaurantReservation.Domain.Repositories
+namespace RestaurantReservation.Application.Contracts
 {
-    public class CustomerRepository : EntityRepository<Customer>, ICustomerRepository
+    public class CustomerRepository : EntityRepository<Customer, CustomerDTO>, ICustomerRepository
     {
-        public CustomerRepository(RestaurantReservationDbContext dbContext) : base(dbContext)
+        public CustomerRepository(RestaurantReservationDbContext dbContext, IMapper mapper)
+            : base(dbContext, mapper)
         {
         }
 
-        public async Task<List<Customer>> FindCustomersByPartySizeAsync(int partySize)
+        public async Task<IEnumerable<CustomerDTO>> FindCustomersByPartySizeAsync(
+            int partySize, int pageNumber, int pageSize)
         {
             var partySizeInt = partySize;
 
-            return await _dbContext.Customers
+            var customers = await _dbContext.Customers
                 .FromSqlInterpolated($"sp_FindCustomersByPartySize {partySizeInt}")
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
+            return _mapper.Map<IEnumerable<CustomerDTO>>(customers);
         }
     }
 }

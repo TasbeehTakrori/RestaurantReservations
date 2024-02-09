@@ -1,11 +1,14 @@
-﻿using RestaurantReservation.Domain.Entities;
-using RestaurantReservation.Domain.Repositories.IRepositories;
+﻿using AutoMapper;
+using RestaurantReservation.Application.Entities;
+using RestaurantReservation.Application.Models;
+using RestaurantReservation.Application.Contracts.Persistence;
 
-namespace RestaurantReservation.Domain.Repositories
+namespace RestaurantReservation.Application.Contracts
 {
-    internal class MenuItemRepository : EntityRepository<MenuItem>, IMenuItemRepository
+    internal class MenuItemRepository : EntityRepository<MenuItem, MenuItemDTO>, IMenuItemRepository
     {
-        public MenuItemRepository(RestaurantReservationDbContext dbContext) : base(dbContext)
+        public MenuItemRepository(RestaurantReservationDbContext dbContext, IMapper mapper)
+            : base(dbContext, mapper)
         {
         }
     }

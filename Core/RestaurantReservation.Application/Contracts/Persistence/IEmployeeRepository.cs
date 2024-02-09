@@ -1,10 +1,10 @@
-﻿using RestaurantReservation.Domain.Entities;
+﻿using RestaurantReservation.Application.Models;
 
-namespace RestaurantReservation.Domain.Repositories.IRepositories
+namespace RestaurantReservation.Application.Contracts.Persistence
 {
-    public interface IEmployeeRepository : IEntityRepository<Employee>
+    public interface IEmployeeRepository : IEntityRepository<EmployeeDTO>
     {
-        Task<IEnumerable<Employee>> ListManagersAsync();
-        Task<IEnumerable<EmployeesWithRestaurantDetails>> ListEmployeesWithRestaurantDetailsAsync();
+        Task<IEnumerable<EmployeeDTO>> ListManagersAsync();
+        Task<IEnumerable<EmployeesWithRestaurantDetailsDTO>> ListEmployeesWithRestaurantDetailsAsync();
     }
 }

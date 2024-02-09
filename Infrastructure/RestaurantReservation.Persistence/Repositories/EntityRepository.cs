@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using RestaurantReservation.Domain.Repositories.IRepositories;
+using RestaurantReservation.Application.Contracts.Persistence;
 
-namespace RestaurantReservation.Domain.Repositories
+namespace RestaurantReservation.Application.Contracts
 {
     public class EntityRepository<TEntity, TDTO> : IEntityRepository<TDTO> where TEntity : class where TDTO : class
     {
@@ -24,10 +24,11 @@ namespace RestaurantReservation.Domain.Repositories
             return dto;
         }
 
-        public async Task UpdateAsync(TDTO dto)
+        public async Task<TDTO> UpdateAsync(TDTO dto)
         {
             _dbContext.Entry(_mapper.Map<TEntity>(dto)).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
+            return dto;
         }
 
         public async Task DeleteAsync(int id)
@@ -41,9 +42,12 @@ namespace RestaurantReservation.Domain.Repositories
             }
         }
 
-        public async Task<IEnumerable<TDTO>> RetrieveAllAsync()
+        public async Task<IEnumerable<TDTO>> RetrieveAllAsync(int pageNumber, int pageSize)
         {
-            var entities = await _dbContext.Set<TEntity>().ToListAsync();
+            var entities = await _dbContext.Set<TEntity>()
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
             return _mapper.Map<IEnumerable<TDTO>>(entities);
         }
 

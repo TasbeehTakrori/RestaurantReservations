@@ -1,8 +1,8 @@
-﻿using RestaurantReservation.Domain.Entities;
+﻿using RestaurantReservation.Application.Models;
 
-namespace RestaurantReservation.Domain.Repositories.IRepositories
+namespace RestaurantReservation.Application.Contracts.Persistence
 {
-    public interface ITableRepository : IEntityRepository<Table>
+    public interface ITableRepository : IEntityRepository<TableDTO>
     {
     }
 }

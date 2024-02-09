@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace RestaurantReservation.Domain.Migrations
+namespace RestaurantReservation.Application.Migrations
 {
     public partial class initial : Migration
     {

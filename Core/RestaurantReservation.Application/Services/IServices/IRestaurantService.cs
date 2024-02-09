@@ -1,9 +1,9 @@
-﻿using FluentResults;
+﻿using RestaurantReservation.Application.Models;
 
-namespace RestaurantReservation.Domain.Services.IServices
+namespace RestaurantReservation.Application.Services.IServices
 {
     public interface IRestaurantService
     {
-        Task<(decimal?, Result)> CalculateTotalRevenueAsync(int restaurantId);
+        Task<decimal?> CalculateTotalRevenueAsync(int restaurantId);
     }
 }

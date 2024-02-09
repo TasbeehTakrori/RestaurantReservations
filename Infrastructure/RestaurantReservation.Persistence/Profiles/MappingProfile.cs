@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using RestaurantReservation.Domain.Entities;
-using RestaurantReservation.Domain.Models;
+using RestaurantReservation.Application.Entities;
+using RestaurantReservation.Application.Models;
 
-namespace RestaurantReservation.Domain.Mapper
+namespace RestaurantReservation.Persistence.Profiles
 {
     public class MappingProfile : Profile
     {

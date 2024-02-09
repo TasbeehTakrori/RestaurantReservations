@@ -1,8 +1,8 @@
 ﻿using Bogus;
 using Microsoft.EntityFrameworkCore;
-using RestaurantReservation.Domain.Entities;
+using RestaurantReservation.Application.Entities;
 
-namespace RestaurantReservation.Domain
+namespace RestaurantReservation.Application
 {
     internal static class DbSeeder
     {

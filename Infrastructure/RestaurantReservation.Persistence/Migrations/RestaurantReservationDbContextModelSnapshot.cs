@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RestaurantReservation.Domain;
+using RestaurantReservation.Application;
 
 #nullable disable
 
-namespace RestaurantReservation.Domain.Migrations
+namespace RestaurantReservation.Application.Migrations
 {
     [DbContext(typeof(RestaurantReservationDbContext))]
     partial class RestaurantReservationDbContextModelSnapshot : ModelSnapshot

@@ -1,9 +1,9 @@
-﻿using AutoMapper;
-using RestaurantReservation.Domain.Models;
-using RestaurantReservation.Domain.Entities;
-using RestaurantReservation.Domain.Repositories.IRepositories;
+﻿/*using AutoMapper;
+using RestaurantReservation.Application.Models;
+using RestaurantReservation.Application.Entities;
+using RestaurantReservation.Application.Contracts.Persistence;
 
-namespace RestaurantReservation.Domain.Services
+namespace RestaurantReservation.Application.Services
 {
     internal class OrderItemService : EntityService<OrderItem, OrderItemDTO, IOrderItemRepository>
     {
@@ -12,3 +12,4 @@ namespace RestaurantReservation.Domain.Services
         }
     }
 }
+*/

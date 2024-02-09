@@ -1,10 +1,14 @@
-﻿using FluentResults;
-using RestaurantReservation.Domain.Models;
+﻿using RestaurantReservation.Application.Models;
 
-namespace RestaurantReservation.Domain.Services.IServices
+namespace RestaurantReservation.Application.Services.IServices
 {
     public interface ICustomerService
     {
-        Task<Result<IEnumerable<CustomerDTO>>> FindCustomersByPartySizeAsync(int partySize);
+        Task<CustomerDTO?> CreateCustomerAsync(CustomerDTO dto);
+        Task DeleteCustomerAsync(int entityId);
+        Task<IEnumerable<CustomerDTO>> RetrieveCustomersAsync(int pageNumber, int pageSize);
+        Task<CustomerDTO?> RetrieveCustomerByIdAsync(int id);
+        Task<CustomerDTO?> UpdateCustomerAsync(CustomerDTO dto);
+        Task<IEnumerable<CustomerDTO>> FindCustomersByPartySizeAsync(int partySize, int pageNumber, int pageSize);
     }
 }

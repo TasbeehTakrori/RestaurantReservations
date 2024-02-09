@@ -1,11 +1,10 @@
-﻿using RestaurantReservation.Domain.Models;
-using FluentResults;
+﻿using RestaurantReservation.Application.Models;
 
-namespace RestaurantReservation.Domain.Services.IServices
+namespace RestaurantReservation.Application.Services.IServices
 {
-    public interface IEmployeeService
+    public interface IEmployeeService 
     {
-        Task<(IEnumerable<EmployeesWithRestaurantDetailsDTO>?, Result)> ListEmployeesWithRestaurantDetailsAsync();
-        Task<(IEnumerable<EmployeeDTO>?, Result)> ListManagersAsync();
+        Task<IEnumerable<EmployeesWithRestaurantDetailsDTO>?> ListEmployeesWithRestaurantDetailsAsync();
+        Task<IEnumerable<EmployeeDTO>> ListManagersAsync();
     }
 }

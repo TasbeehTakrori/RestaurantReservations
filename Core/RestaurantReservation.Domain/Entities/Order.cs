@@ -1,6 +1,6 @@
 ﻿using EntityFrameworkCore.Projectables;
 
-namespace RestaurantReservation.Domain.Entities
+namespace RestaurantReservation.Application.Entities
 {
     public class Order
     {

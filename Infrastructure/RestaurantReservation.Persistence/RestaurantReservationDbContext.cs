@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using RestaurantReservation.Domain.Entities;
+using RestaurantReservation.Application.Entities;
 
-namespace RestaurantReservation.Domain
+namespace RestaurantReservation.Application
 {
     public class RestaurantReservationDbContext : DbContext
     {

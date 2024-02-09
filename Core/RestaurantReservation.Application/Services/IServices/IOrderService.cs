@@ -1,12 +1,11 @@
-﻿using FluentResults;
-using RestaurantReservation.Domain.Models;
+﻿using RestaurantReservation.Application.Models;
 
-namespace RestaurantReservation.Domain.Services.IServices
+namespace RestaurantReservation.Application.Services.IServices
 {
     public interface IOrderService
     {
-        Task<(decimal, Result)> CalculateAverageOrderAmountAsync(int employeeId);
-        Task<(IEnumerable<MenuItemDTO>?, Result)> ListOrderedMenuItemsAsync(int reservationId);
-        Task<(IEnumerable<OrderWithMenuItemDTO>?, Result)> ListOrdersAndMenuItemsAsync(int reservationId);
+        Task<decimal> CalculateAverageOrderAmountAsync(int employeeId);
+        Task<IEnumerable<MenuItemDTO>> ListOrderedMenuItemsAsync(int reservationId);
+        Task<IEnumerable<OrderWithMenuItemDTO>?> ListOrdersAndMenuItemsAsync(int reservationId);
     }
 }

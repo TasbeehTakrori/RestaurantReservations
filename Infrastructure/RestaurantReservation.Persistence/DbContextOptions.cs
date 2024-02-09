@@ -1,4 +1,4 @@
-﻿namespace RestaurantReservation.Domain
+﻿namespace RestaurantReservation.Application
 {
     public class DbContextOptions
     {

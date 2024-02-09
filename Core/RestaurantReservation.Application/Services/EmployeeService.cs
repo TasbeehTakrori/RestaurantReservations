@@ -1,11 +1,11 @@
-﻿using AutoMapper;
-using RestaurantReservation.Domain.Entities;
-using RestaurantReservation.Domain.Models;
-using RestaurantReservation.Domain.Repositories.IRepositories;
-using RestaurantReservation.Domain.Services.IServices;
+﻿/*using AutoMapper;
+using RestaurantReservation.Application.Entities;
+using RestaurantReservation.Application.Models;
+using RestaurantReservation.Application.Contracts.Persistence;
+using RestaurantReservation.Application.Services.IServices;
 using FluentResults;
 
-namespace RestaurantReservation.Domain.Services
+namespace RestaurantReservation.Application.Services
 {
     public class EmployeeService : EntityService<Employee, EmployeeDTO, IEmployeeRepository>, IEmployeeService
     {
@@ -42,3 +42,4 @@ namespace RestaurantReservation.Domain.Services
         }
     }
 }
+*/

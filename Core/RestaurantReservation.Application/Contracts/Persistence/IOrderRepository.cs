@@ -1,11 +1,11 @@
-﻿using RestaurantReservation.Domain.Entities;
+﻿using RestaurantReservation.Application.Models;
 
-namespace RestaurantReservation.Domain.Repositories.IRepositories
+namespace RestaurantReservation.Application.Contracts.Persistence
 {
-    public interface IOrderRepository : IEntityRepository<Order>
+    public interface IOrderRepository : IEntityRepository<OrderDTO>
     {
-        Task<IEnumerable<Order>?> ListOrdersAndMenuItemsAsync(int reservationId);
-        Task<IEnumerable<MenuItem>?> ListOrderedMenuItemsAsync(int reservationId);
+        Task<IEnumerable<OrderDTO>?> ListOrdersAndMenuItemsAsync(int reservationId);
+        Task<IEnumerable<MenuItemDTO>?> ListOrderedMenuItemsAsync(int reservationId);
         Task<decimal> CalculateAverageOrderAmountAsync(int employeeId);
     }
 }
