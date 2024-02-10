@@ -2,7 +2,10 @@
 
 namespace RestaurantReservation.API.ViewModels
 {
-    public class OrderWithMenuItemsVM : OrderWithMenuItemsDTO
+    public class OrderWithMenuItemsVM
     {
+        public int OrderId { get; set; }
+        public DateTime OrderDate { get; set; }
+        public List<MenuItemDTO> MenuItems { get; set; }
     }
 }

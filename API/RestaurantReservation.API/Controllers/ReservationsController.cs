@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using RestaurantReservation.API.DTOs;
 using RestaurantReservation.API.ViewModels;
 using RestaurantReservation.Application.DTOs;
-using RestaurantReservation.Application.Services;
 using RestaurantReservation.Application.Services.IServices;
 using System.Text.Json;
 
@@ -117,6 +116,20 @@ namespace RestaurantReservation.API.Controllers
             {
                 Count = ordersWithMenuItemsVm.Count,
                 Items = ordersWithMenuItemsVm
+            };
+            return Ok(collectionVM);
+        }
+
+        [HttpGet("{id:int}/menuItems")]
+        public async Task<ActionResult<CollectionVM<MenuItemMV>>> GetOrderedMenuItemsAsync(int id)
+        {
+            var orderedMenuItems = await _orderService.GetOrderedMenuItemsAsync(id);
+            var orderedMenuItemsVm = _mapper.Map<List<MenuItemMV>>(orderedMenuItems);
+
+            var collectionVM = new CollectionVM<MenuItemMV>()
+            {
+                Count = orderedMenuItemsVm.Count,
+                Items = orderedMenuItemsVm
             };
             return Ok(collectionVM);
         }
