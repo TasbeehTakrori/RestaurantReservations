@@ -1,4 +1,5 @@
 ﻿using EntityFrameworkCore.Projectables;
+using RestaurantReservation.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantReservation.Application.Entities
@@ -13,7 +14,7 @@ namespace RestaurantReservation.Application.Entities
         [MaxLength(255)]
         public string LastName { get; set; }
 
-        public string Position { get; set; }
+        public EmployeePosition Position { get; set; }
 
         public int RestaurantId { get; set; }
 

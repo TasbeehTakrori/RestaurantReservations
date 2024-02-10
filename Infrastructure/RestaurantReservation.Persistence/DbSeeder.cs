@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using Microsoft.EntityFrameworkCore;
 using RestaurantReservation.Application.Entities;
+using RestaurantReservation.Domain.Enums;
 
 namespace RestaurantReservation.Persistence
 {
@@ -61,7 +62,7 @@ namespace RestaurantReservation.Persistence
                 .RuleFor(e => e.EmployeeId, f => EmployeeIdSequence++)
                 .RuleFor(e => e.FirstName, f => f.Person.FirstName)
                 .RuleFor(e => e.LastName, f => f.Person.LastName)
-                .RuleFor(e => e.Position, f => f.Name.JobTitle())
+                .RuleFor(e => e.Position, f => (EmployeePosition)f.Random.Number(0, 4))
                 .RuleFor(e => e.RestaurantId, f => f.Random.Number(1, 5));
 
             var employees = faker.Generate(7);

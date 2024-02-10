@@ -53,14 +53,14 @@ namespace RestaurantReservation.Persistence
                 .HasIndex(c => c.Email)
                 .IsUnique();
 
-            /*  DbSeeder.SeedCustomersTable(modelBuilder);
-              DbSeeder.SeedEmployeeTable(modelBuilder);
-              DbSeeder.SeedMenuItemsTable(modelBuilder);
-              DbSeeder.SeedOrdersTable(modelBuilder);
-              DbSeeder.SeedOrderItemsTable(modelBuilder);
-              DbSeeder.SeedReservationsTable(modelBuilder);
-              DbSeeder.SeedRestaurantsTable(modelBuilder);
-              DbSeeder.SeedTablesTable(modelBuilder);*/
+            DbSeeder.SeedCustomersTable(modelBuilder);
+            DbSeeder.SeedEmployeeTable(modelBuilder);
+            DbSeeder.SeedMenuItemsTable(modelBuilder);
+            DbSeeder.SeedOrdersTable(modelBuilder);
+            DbSeeder.SeedOrderItemsTable(modelBuilder);
+            DbSeeder.SeedReservationsTable(modelBuilder);
+            DbSeeder.SeedRestaurantsTable(modelBuilder);
+            DbSeeder.SeedTablesTable(modelBuilder);
         }
         public decimal CalculateTotalRevenue(int restaurantId)
             => throw new NotSupportedException();

@@ -15,6 +15,7 @@ namespace RestaurantReservation.Persistence.Extensions
                 options.UseSqlServer(configuration.GetConnectionString("RestaurantReservationsConnectionString"),
                 x => x.UseDateOnlyTimeOnly()));
 
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();

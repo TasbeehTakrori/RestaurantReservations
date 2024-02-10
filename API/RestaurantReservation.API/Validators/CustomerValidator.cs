@@ -4,9 +4,9 @@ using RestaurantReservation.Domain.Constants;
 
 namespace RestaurantReservation.API.Validators
 {
-    public class CreateCustomerValidator : AbstractValidator<CustomerRequestDTO>
+    public class CustomerValidator : AbstractValidator<CustomerRequestDTO>
     {
-        public CreateCustomerValidator()
+        public CustomerValidator()
         {
             RuleFor(customer => customer.FirstName).NotEmpty()
                 .WithMessage("First name is required.");

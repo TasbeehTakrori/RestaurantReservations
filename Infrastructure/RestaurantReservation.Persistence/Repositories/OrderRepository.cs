@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using RestaurantReservation.Application.Entities;
-using RestaurantReservation.Application.Models;
+using RestaurantReservation.Application.DTOs;
 using RestaurantReservation.Application.Contracts.Persistence;
 
 namespace RestaurantReservation.Persistence.Repositories

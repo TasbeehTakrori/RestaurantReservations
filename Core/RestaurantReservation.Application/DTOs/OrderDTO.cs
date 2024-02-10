@@ -1,5 +1,5 @@
 ﻿
-namespace RestaurantReservation.Application.Models
+namespace RestaurantReservation.Application.DTOs
 {
     public class OrderDTO
     {

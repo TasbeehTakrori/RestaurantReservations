@@ -1,4 +1,4 @@
-﻿using RestaurantReservation.Application.Models;
+﻿using RestaurantReservation.Application.DTOs;
 
 namespace RestaurantReservation.Application.Contracts.Persistence
 {

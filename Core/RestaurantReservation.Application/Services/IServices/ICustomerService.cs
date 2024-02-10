@@ -1,4 +1,4 @@
-﻿using RestaurantReservation.Application.Models;
+﻿using RestaurantReservation.Application.DTOs;
 using RestaurantReservation.Domain.Common;
 
 namespace RestaurantReservation.Application.Services.IServices
@@ -9,7 +9,7 @@ namespace RestaurantReservation.Application.Services.IServices
         Task DeleteCustomerAsync(int entityId);
         Task<(IEnumerable<CustomerDTO>, PaginationMetadata)> RetrieveCustomersAsync(int pageNumber, int pageSize);
         Task<CustomerDTO?> RetrieveCustomerByIdAsync(int id);
-        Task<CustomerDTO?> UpdateCustomerAsync(int id, CustomerDTO dto);
+        Task UpdateCustomerAsync(int id, CustomerDTO dto);
         Task<IEnumerable<CustomerDTO>> FindCustomersByPartySizeAsync(int partySize, int pageNumber, int pageSize);
     }
 }

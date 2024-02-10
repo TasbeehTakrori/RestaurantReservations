@@ -1,10 +1,8 @@
 ﻿using RestaurantReservation.Application.Contracts.Persistence;
 using RestaurantReservation.Application.Exceptions;
-using RestaurantReservation.Application.Models;
+using RestaurantReservation.Application.DTOs;
 using RestaurantReservation.Application.Services.IServices;
 using RestaurantReservation.Domain.Common;
-using RestaurantReservation.Domain.Constants;
-using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantReservation.Application.Services
 {
@@ -90,17 +88,16 @@ namespace RestaurantReservation.Application.Services
             }
         }
 
-        public async Task<CustomerDTO?> UpdateCustomerAsync(int id, CustomerDTO dto)
+        public async Task UpdateCustomerAsync(int id, CustomerDTO dto)
         {
             try
             {
-                var existingCustomer = await _customerRepository.RetrieveByIdAsync(id);
-                if (existingCustomer == null)
+                var customer = await _customerRepository.RetrieveByIdAsync(id);
+                if (customer == null)
                     throw new NotFoundException("Customer not found");
 
                 dto.CustomerId = id;
-                var updatedCustomer = await _customerRepository.UpdateAsync(dto);
-                return updatedCustomer;
+                await _customerRepository.UpdateAsync(dto);
             }
             catch (NotFoundException)
             {

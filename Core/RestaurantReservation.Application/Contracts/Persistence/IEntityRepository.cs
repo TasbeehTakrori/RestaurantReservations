@@ -8,6 +8,6 @@ namespace RestaurantReservation.Application.Contracts.Persistence
         Task DeleteAsync(int id);
         Task<(IEnumerable<TDTO>, PaginationMetadata)> RetrieveAllAsync(int pageNumber, int pageSize);
         Task<TDTO?> RetrieveByIdAsync(int id);
-        Task<TDTO> UpdateAsync(TDTO dto);
+        Task UpdateAsync(TDTO dto);
     }
 }

@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RestaurantReservation.Application;
 using RestaurantReservation.Persistence;
 
 #nullable disable
@@ -23,7 +22,7 @@ namespace RestaurantReservation.Application.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.Customer", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.Customer", b =>
                 {
                     b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd()
@@ -60,86 +59,86 @@ namespace RestaurantReservation.Application.Migrations
                         new
                         {
                             CustomerId = 1,
-                            Email = "Madilyn_Howe@gmail.com",
-                            FirstName = "Noel",
-                            LastName = "O'Kon",
-                            PhoneNumber = "277-628-9598 x943"
+                            Email = "Myrna_Hansen@hotmail.com",
+                            FirstName = "Al",
+                            LastName = "Carter",
+                            PhoneNumber = "(297) 403-8048"
                         },
                         new
                         {
                             CustomerId = 2,
-                            Email = "Merl89@gmail.com",
-                            FirstName = "Zelma",
-                            LastName = "Koss",
-                            PhoneNumber = "342-491-5927 x42627"
+                            Email = "Russel44@yahoo.com",
+                            FirstName = "Santina",
+                            LastName = "Deckow",
+                            PhoneNumber = "(595) 314-3206"
                         },
                         new
                         {
                             CustomerId = 3,
-                            Email = "Deontae83@gmail.com",
-                            FirstName = "Charlene",
-                            LastName = "Parker",
-                            PhoneNumber = "625.248.0512 x1382"
+                            Email = "Ida_Ledner6@hotmail.com",
+                            FirstName = "Marlee",
+                            LastName = "Wiegand",
+                            PhoneNumber = "208-991-8033 x697"
                         },
                         new
                         {
                             CustomerId = 4,
-                            Email = "Jamey.Windler@hotmail.com",
-                            FirstName = "Russell",
-                            LastName = "Blick",
-                            PhoneNumber = "(901) 405-3625 x62300"
+                            Email = "Rahsaan_Marks@gmail.com",
+                            FirstName = "Jean",
+                            LastName = "Altenwerth",
+                            PhoneNumber = "1-848-883-9492 x9300"
                         },
                         new
                         {
                             CustomerId = 5,
-                            Email = "Hellen41@yahoo.com",
-                            FirstName = "Wallace",
-                            LastName = "Brakus",
-                            PhoneNumber = "1-583-453-0987"
+                            Email = "Camryn_Jenkins75@gmail.com",
+                            FirstName = "Georgette",
+                            LastName = "Dach",
+                            PhoneNumber = "482-367-7930 x6290"
                         },
                         new
                         {
                             CustomerId = 6,
-                            Email = "Hildegard.Schneider@gmail.com",
-                            FirstName = "Edison",
-                            LastName = "Cruickshank",
-                            PhoneNumber = "(540) 356-7963 x215"
+                            Email = "Mathew.Schmitt80@gmail.com",
+                            FirstName = "Eryn",
+                            LastName = "Haley",
+                            PhoneNumber = "(611) 215-1265"
                         },
                         new
                         {
                             CustomerId = 7,
-                            Email = "Joshua47@yahoo.com",
-                            FirstName = "Camylle",
-                            LastName = "Nader",
-                            PhoneNumber = "(883) 309-3715 x47699"
+                            Email = "Anissa_Bode@gmail.com",
+                            FirstName = "Florida",
+                            LastName = "Kessler",
+                            PhoneNumber = "463.522.0185 x023"
                         },
                         new
                         {
                             CustomerId = 8,
-                            Email = "Jeromy_Sauer10@yahoo.com",
-                            FirstName = "Bernardo",
-                            LastName = "Veum",
-                            PhoneNumber = "(382) 219-4086"
+                            Email = "Lexi43@yahoo.com",
+                            FirstName = "Mervin",
+                            LastName = "Mayer",
+                            PhoneNumber = "1-449-257-1523 x428"
                         },
                         new
                         {
                             CustomerId = 9,
-                            Email = "Marcelino_Rippin@gmail.com",
-                            FirstName = "Euna",
-                            LastName = "Ebert",
-                            PhoneNumber = "846-243-4823"
+                            Email = "Janie_Batz@hotmail.com",
+                            FirstName = "Bernardo",
+                            LastName = "Murray",
+                            PhoneNumber = "915-847-1249 x474"
                         },
                         new
                         {
                             CustomerId = 10,
-                            Email = "Maud_Prohaska5@gmail.com",
-                            FirstName = "Whitney",
-                            LastName = "Flatley",
-                            PhoneNumber = "840.617.7224 x95109"
+                            Email = "Karen76@yahoo.com",
+                            FirstName = "Twila",
+                            LastName = "Cummerata",
+                            PhoneNumber = "726-372-2289 x791"
                         });
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.Employee", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.Employee", b =>
                 {
                     b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd()
@@ -157,9 +156,8 @@ namespace RestaurantReservation.Application.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
 
                     b.Property<int>("RestaurantId")
                         .HasColumnType("int");
@@ -174,62 +172,93 @@ namespace RestaurantReservation.Application.Migrations
                         new
                         {
                             EmployeeId = 1,
-                            FirstName = "Suzanne",
-                            LastName = "Deckow",
-                            Position = "Human Web Designer",
-                            RestaurantId = 3
-                        },
-                        new
-                        {
-                            EmployeeId = 2,
-                            FirstName = "Sylvia",
-                            LastName = "Rice",
-                            Position = "Senior Data Officer",
+                            FirstName = "Darrel",
+                            LastName = "McCullough",
+                            Position = 0,
                             RestaurantId = 4
                         },
                         new
                         {
+                            EmployeeId = 2,
+                            FirstName = "Angelo",
+                            LastName = "Klein",
+                            Position = 0,
+                            RestaurantId = 1
+                        },
+                        new
+                        {
                             EmployeeId = 3,
-                            FirstName = "Kristen",
-                            LastName = "Hessel",
-                            Position = "Principal Quality Executive",
+                            FirstName = "Jeannie",
+                            LastName = "Mills",
+                            Position = 1,
                             RestaurantId = 5
                         },
                         new
                         {
                             EmployeeId = 4,
-                            FirstName = "Joanna",
-                            LastName = "Feeney",
-                            Position = "Dynamic Optimization Supervisor",
-                            RestaurantId = 1
-                        },
-                        new
-                        {
-                            EmployeeId = 5,
-                            FirstName = "Robyn",
-                            LastName = "Beer",
-                            Position = "Corporate Marketing Planner",
-                            RestaurantId = 4
-                        },
-                        new
-                        {
-                            EmployeeId = 6,
-                            FirstName = "Bert",
-                            LastName = "Balistreri",
-                            Position = "Future Accounts Agent",
+                            FirstName = "Rafael",
+                            LastName = "Hamill",
+                            Position = 3,
                             RestaurantId = 2
                         },
                         new
                         {
-                            EmployeeId = 7,
-                            FirstName = "Gladys",
-                            LastName = "Watsica",
-                            Position = "Dynamic Marketing Engineer",
+                            EmployeeId = 5,
+                            FirstName = "Steven",
+                            LastName = "Johnson",
+                            Position = 4,
+                            RestaurantId = 5
+                        },
+                        new
+                        {
+                            EmployeeId = 6,
+                            FirstName = "Marion",
+                            LastName = "Swift",
+                            Position = 1,
                             RestaurantId = 4
+                        },
+                        new
+                        {
+                            EmployeeId = 7,
+                            FirstName = "Kristy",
+                            LastName = "Blanda",
+                            Position = 1,
+                            RestaurantId = 3
                         });
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.MenuItem", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.EmployeesWithRestaurantDetails", b =>
+                {
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RestaurantAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RestaurantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RestaurantName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RestaurantPhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToView("EmployeesWithRestaurantDetails");
+                });
+
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.MenuItem", b =>
                 {
                     b.Property<int>("MenuItemId")
                         .ValueGeneratedOnAdd()
@@ -261,86 +290,86 @@ namespace RestaurantReservation.Application.Migrations
                         new
                         {
                             MenuItemId = 1,
-                            Description = "Consectetur quis perferendis distinctio voluptatibus modi tempora eum laborum.",
-                            Name = "Practical Frozen Mouse",
-                            Price = 95.43m,
-                            RestaurantId = 4
+                            Description = "Ut id in et aut quo eos.",
+                            Name = "Practical Granite Chair",
+                            Price = 84.90m,
+                            RestaurantId = 1
                         },
                         new
                         {
                             MenuItemId = 2,
-                            Description = "Facere nulla ut est ipsum vel praesentium hic voluptatibus maiores.",
-                            Name = "Tasty Plastic Chicken",
-                            Price = 30.69m,
-                            RestaurantId = 4
-                        },
-                        new
-                        {
-                            MenuItemId = 3,
-                            Description = "Blanditiis rerum qui autem et necessitatibus quis.",
-                            Name = "Ergonomic Frozen Keyboard",
-                            Price = 63.66m,
-                            RestaurantId = 3
-                        },
-                        new
-                        {
-                            MenuItemId = 4,
-                            Description = "Eaque nam est sint.",
-                            Name = "Ergonomic Rubber Car",
-                            Price = 96.13m,
-                            RestaurantId = 2
-                        },
-                        new
-                        {
-                            MenuItemId = 5,
-                            Description = "Ipsum quas voluptas temporibus ab sint.",
-                            Name = "Rustic Steel Ball",
-                            Price = 80.43m,
+                            Description = "Quis illo et inventore nemo officia et aut recusandae.",
+                            Name = "Unbranded Granite Soap",
+                            Price = 90.16m,
                             RestaurantId = 5
                         },
                         new
                         {
+                            MenuItemId = 3,
+                            Description = "Porro officia aut consequuntur placeat quod temporibus voluptatem culpa fugiat.",
+                            Name = "Unbranded Plastic Pants",
+                            Price = 62.00m,
+                            RestaurantId = 5
+                        },
+                        new
+                        {
+                            MenuItemId = 4,
+                            Description = "Et provident sunt pariatur nihil.",
+                            Name = "Practical Steel Shirt",
+                            Price = 57.48m,
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            MenuItemId = 5,
+                            Description = "Perspiciatis excepturi architecto vel eaque est.",
+                            Name = "Intelligent Soft Hat",
+                            Price = 87.91m,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
                             MenuItemId = 6,
-                            Description = "Non dolorem sed.",
-                            Name = "Fantastic Granite Table",
-                            Price = 57.82m,
+                            Description = "Vitae error illo ut et.",
+                            Name = "Tasty Concrete Shoes",
+                            Price = 60.55m,
                             RestaurantId = 5
                         },
                         new
                         {
                             MenuItemId = 7,
-                            Description = "Est accusamus vel ipsum autem excepturi aut laudantium molestiae repellat.",
-                            Name = "Refined Granite Gloves",
-                            Price = 18.12m,
+                            Description = "Eaque commodi quia.",
+                            Name = "Awesome Plastic Cheese",
+                            Price = 41.41m,
                             RestaurantId = 4
                         },
                         new
                         {
                             MenuItemId = 8,
-                            Description = "Laudantium fuga ipsam magnam aut.",
-                            Name = "Refined Fresh Chicken",
-                            Price = 32.60m,
-                            RestaurantId = 5
+                            Description = "Odio rerum qui et sit.",
+                            Name = "Licensed Rubber Ball",
+                            Price = 33.14m,
+                            RestaurantId = 4
                         },
                         new
                         {
                             MenuItemId = 9,
-                            Description = "Et sint modi sit.",
-                            Name = "Small Soft Ball",
-                            Price = 45.92m,
+                            Description = "Non minus quam aspernatur iste reprehenderit voluptatem culpa.",
+                            Name = "Tasty Soft Tuna",
+                            Price = 74.44m,
                             RestaurantId = 3
                         },
                         new
                         {
                             MenuItemId = 10,
-                            Description = "Amet non qui voluptate incidunt.",
-                            Name = "Unbranded Frozen Chair",
-                            Price = 63.62m,
-                            RestaurantId = 4
+                            Description = "Aut consequuntur nihil in animi quia.",
+                            Name = "Refined Frozen Keyboard",
+                            Price = 31.47m,
+                            RestaurantId = 1
                         });
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.Order", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.Order", b =>
                 {
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
@@ -364,76 +393,76 @@ namespace RestaurantReservation.Application.Migrations
                         new
                         {
                             OrderId = 1,
-                            EmployeeId = 1,
-                            OrderDate = new DateTime(2023, 12, 31, 8, 8, 6, 466, DateTimeKind.Local).AddTicks(1562),
-                            ReservationId = 5
-                        },
-                        new
-                        {
-                            OrderId = 2,
-                            EmployeeId = 5,
-                            OrderDate = new DateTime(2023, 12, 31, 3, 26, 37, 444, DateTimeKind.Local).AddTicks(8643),
-                            ReservationId = 8
-                        },
-                        new
-                        {
-                            OrderId = 3,
-                            EmployeeId = 2,
-                            OrderDate = new DateTime(2023, 12, 30, 15, 12, 47, 631, DateTimeKind.Local).AddTicks(3940),
+                            EmployeeId = 4,
+                            OrderDate = new DateTime(2024, 2, 10, 4, 30, 36, 942, DateTimeKind.Local).AddTicks(4652),
                             ReservationId = 6
                         },
                         new
                         {
-                            OrderId = 4,
-                            EmployeeId = 3,
-                            OrderDate = new DateTime(2023, 12, 30, 13, 10, 16, 118, DateTimeKind.Local).AddTicks(2406),
-                            ReservationId = 2
-                        },
-                        new
-                        {
-                            OrderId = 5,
-                            EmployeeId = 5,
-                            OrderDate = new DateTime(2023, 12, 30, 17, 54, 50, 538, DateTimeKind.Local).AddTicks(6985),
+                            OrderId = 2,
+                            EmployeeId = 6,
+                            OrderDate = new DateTime(2024, 2, 10, 0, 59, 31, 477, DateTimeKind.Local).AddTicks(4214),
                             ReservationId = 1
                         },
                         new
                         {
-                            OrderId = 6,
+                            OrderId = 3,
                             EmployeeId = 3,
-                            OrderDate = new DateTime(2023, 12, 31, 4, 9, 4, 588, DateTimeKind.Local).AddTicks(4142),
+                            OrderDate = new DateTime(2024, 2, 10, 8, 36, 38, 836, DateTimeKind.Local).AddTicks(7392),
                             ReservationId = 7
                         },
                         new
                         {
+                            OrderId = 4,
+                            EmployeeId = 2,
+                            OrderDate = new DateTime(2024, 2, 10, 4, 49, 21, 95, DateTimeKind.Local).AddTicks(5736),
+                            ReservationId = 1
+                        },
+                        new
+                        {
+                            OrderId = 5,
+                            EmployeeId = 2,
+                            OrderDate = new DateTime(2024, 2, 9, 23, 28, 35, 327, DateTimeKind.Local).AddTicks(4572),
+                            ReservationId = 10
+                        },
+                        new
+                        {
+                            OrderId = 6,
+                            EmployeeId = 1,
+                            OrderDate = new DateTime(2024, 2, 10, 10, 3, 29, 241, DateTimeKind.Local).AddTicks(406),
+                            ReservationId = 4
+                        },
+                        new
+                        {
                             OrderId = 7,
-                            EmployeeId = 5,
-                            OrderDate = new DateTime(2023, 12, 30, 16, 42, 39, 479, DateTimeKind.Local).AddTicks(4436),
-                            ReservationId = 9
+                            EmployeeId = 3,
+                            OrderDate = new DateTime(2024, 2, 9, 19, 47, 20, 614, DateTimeKind.Local).AddTicks(2893),
+                            ReservationId = 2
                         },
                         new
                         {
                             OrderId = 8,
                             EmployeeId = 6,
-                            OrderDate = new DateTime(2023, 12, 30, 14, 56, 38, 726, DateTimeKind.Local).AddTicks(5772),
+                            OrderDate = new DateTime(2024, 2, 9, 21, 46, 53, 73, DateTimeKind.Local).AddTicks(3591),
                             ReservationId = 9
                         },
                         new
                         {
                             OrderId = 9,
-                            EmployeeId = 4,
-                            OrderDate = new DateTime(2023, 12, 30, 19, 15, 50, 139, DateTimeKind.Local).AddTicks(1746),
-                            ReservationId = 7
+                            EmployeeId = 7,
+                            OrderDate = new DateTime(2024, 2, 9, 15, 43, 1, 2, DateTimeKind.Local).AddTicks(468),
+                            ReservationId = 4
                         },
                         new
                         {
                             OrderId = 10,
-                            EmployeeId = 5,
-                            OrderDate = new DateTime(2023, 12, 31, 10, 34, 46, 223, DateTimeKind.Local).AddTicks(6785),
-                            ReservationId = 9
+                            EmployeeId = 1,
+                            OrderDate = new DateTime(2024, 2, 10, 14, 43, 13, 513, DateTimeKind.Local).AddTicks(1183),
+                            ReservationId = 1
                         });
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.OrderItem", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.OrderItem", b =>
                 {
                     b.Property<int>("OrderItemId")
                         .ValueGeneratedOnAdd()
@@ -462,146 +491,146 @@ namespace RestaurantReservation.Application.Migrations
                         new
                         {
                             OrderItemId = 1,
-                            MenuItemId = 8,
-                            OrderId = 5,
-                            Quantity = 4
-                        },
-                        new
-                        {
-                            OrderItemId = 2,
-                            MenuItemId = 6,
-                            OrderId = 10,
-                            Quantity = 2
-                        },
-                        new
-                        {
-                            OrderItemId = 3,
-                            MenuItemId = 7,
-                            OrderId = 2,
-                            Quantity = 5
-                        },
-                        new
-                        {
-                            OrderItemId = 4,
-                            MenuItemId = 6,
+                            MenuItemId = 9,
                             OrderId = 8,
                             Quantity = 1
                         },
                         new
                         {
-                            OrderItemId = 5,
-                            MenuItemId = 1,
-                            OrderId = 5,
+                            OrderItemId = 2,
+                            MenuItemId = 8,
+                            OrderId = 10,
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            OrderItemId = 3,
+                            MenuItemId = 9,
+                            OrderId = 2,
                             Quantity = 1
                         },
                         new
                         {
-                            OrderItemId = 6,
+                            OrderItemId = 4,
                             MenuItemId = 9,
-                            OrderId = 5,
+                            OrderId = 10,
                             Quantity = 3
                         },
                         new
                         {
-                            OrderItemId = 7,
-                            MenuItemId = 10,
+                            OrderItemId = 5,
+                            MenuItemId = 8,
+                            OrderId = 9,
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            OrderItemId = 6,
+                            MenuItemId = 7,
                             OrderId = 6,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            OrderItemId = 7,
+                            MenuItemId = 8,
+                            OrderId = 9,
                             Quantity = 1
                         },
                         new
                         {
                             OrderItemId = 8,
                             MenuItemId = 7,
-                            OrderId = 8,
-                            Quantity = 3
+                            OrderId = 5,
+                            Quantity = 1
                         },
                         new
                         {
                             OrderItemId = 9,
-                            MenuItemId = 1,
-                            OrderId = 3,
-                            Quantity = 2
+                            MenuItemId = 4,
+                            OrderId = 4,
+                            Quantity = 3
                         },
                         new
                         {
                             OrderItemId = 10,
-                            MenuItemId = 5,
+                            MenuItemId = 2,
+                            OrderId = 4,
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            OrderItemId = 11,
+                            MenuItemId = 2,
                             OrderId = 5,
                             Quantity = 5
                         },
                         new
                         {
-                            OrderItemId = 11,
-                            MenuItemId = 9,
-                            OrderId = 8,
-                            Quantity = 4
-                        },
-                        new
-                        {
                             OrderItemId = 12,
-                            MenuItemId = 4,
-                            OrderId = 10,
-                            Quantity = 3
+                            MenuItemId = 7,
+                            OrderId = 1,
+                            Quantity = 2
                         },
                         new
                         {
                             OrderItemId = 13,
-                            MenuItemId = 1,
-                            OrderId = 9,
-                            Quantity = 4
+                            MenuItemId = 3,
+                            OrderId = 6,
+                            Quantity = 1
                         },
                         new
                         {
                             OrderItemId = 14,
-                            MenuItemId = 2,
-                            OrderId = 6,
-                            Quantity = 3
+                            MenuItemId = 9,
+                            OrderId = 10,
+                            Quantity = 1
                         },
                         new
                         {
                             OrderItemId = 15,
-                            MenuItemId = 5,
-                            OrderId = 7,
-                            Quantity = 1
+                            MenuItemId = 4,
+                            OrderId = 2,
+                            Quantity = 4
                         },
                         new
                         {
                             OrderItemId = 16,
-                            MenuItemId = 1,
-                            OrderId = 6,
-                            Quantity = 1
+                            MenuItemId = 3,
+                            OrderId = 3,
+                            Quantity = 5
                         },
                         new
                         {
                             OrderItemId = 17,
-                            MenuItemId = 8,
+                            MenuItemId = 2,
+                            OrderId = 10,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            OrderItemId = 18,
+                            MenuItemId = 3,
                             OrderId = 4,
                             Quantity = 4
                         },
                         new
                         {
-                            OrderItemId = 18,
-                            MenuItemId = 1,
-                            OrderId = 2,
-                            Quantity = 2
-                        },
-                        new
-                        {
                             OrderItemId = 19,
-                            MenuItemId = 1,
+                            MenuItemId = 8,
                             OrderId = 1,
-                            Quantity = 3
+                            Quantity = 2
                         },
                         new
                         {
                             OrderItemId = 20,
-                            MenuItemId = 3,
-                            OrderId = 10,
-                            Quantity = 2
+                            MenuItemId = 7,
+                            OrderId = 4,
+                            Quantity = 3
                         });
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.Reservation", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.Reservation", b =>
                 {
                     b.Property<int>("ReservationId")
                         .ValueGeneratedOnAdd()
@@ -638,96 +667,96 @@ namespace RestaurantReservation.Application.Migrations
                         new
                         {
                             ReservationId = 1,
-                            CustomerId = 8,
-                            PartySize = 1,
-                            ReservationDate = new DateTime(2024, 6, 23, 7, 5, 3, 241, DateTimeKind.Local).AddTicks(4571),
+                            CustomerId = 3,
+                            PartySize = 15,
+                            ReservationDate = new DateTime(2024, 4, 26, 15, 7, 2, 900, DateTimeKind.Local).AddTicks(9828),
                             RestaurantId = 4,
-                            TableId = 6
+                            TableId = 2
                         },
                         new
                         {
                             ReservationId = 2,
-                            CustomerId = 6,
-                            PartySize = 3,
-                            ReservationDate = new DateTime(2024, 7, 20, 2, 19, 13, 274, DateTimeKind.Local).AddTicks(4292),
+                            CustomerId = 7,
+                            PartySize = 17,
+                            ReservationDate = new DateTime(2024, 2, 23, 23, 33, 8, 576, DateTimeKind.Local).AddTicks(251),
                             RestaurantId = 1,
-                            TableId = 10
+                            TableId = 7
                         },
                         new
                         {
                             ReservationId = 3,
-                            CustomerId = 1,
-                            PartySize = 3,
-                            ReservationDate = new DateTime(2024, 5, 15, 14, 47, 2, 859, DateTimeKind.Local).AddTicks(6590),
+                            CustomerId = 4,
+                            PartySize = 16,
+                            ReservationDate = new DateTime(2024, 6, 8, 13, 14, 26, 164, DateTimeKind.Local).AddTicks(5590),
                             RestaurantId = 4,
-                            TableId = 8
+                            TableId = 4
                         },
                         new
                         {
                             ReservationId = 4,
-                            CustomerId = 2,
-                            PartySize = 3,
-                            ReservationDate = new DateTime(2024, 6, 30, 13, 44, 11, 983, DateTimeKind.Local).AddTicks(4366),
-                            RestaurantId = 2,
+                            CustomerId = 7,
+                            PartySize = 2,
+                            ReservationDate = new DateTime(2024, 6, 20, 16, 36, 3, 33, DateTimeKind.Local).AddTicks(1110),
+                            RestaurantId = 1,
                             TableId = 1
                         },
                         new
                         {
                             ReservationId = 5,
-                            CustomerId = 4,
-                            PartySize = 2,
-                            ReservationDate = new DateTime(2024, 4, 24, 1, 54, 26, 951, DateTimeKind.Local).AddTicks(3680),
-                            RestaurantId = 3,
-                            TableId = 6
+                            CustomerId = 9,
+                            PartySize = 9,
+                            ReservationDate = new DateTime(2024, 6, 10, 22, 27, 14, 513, DateTimeKind.Local).AddTicks(5974),
+                            RestaurantId = 5,
+                            TableId = 3
                         },
                         new
                         {
                             ReservationId = 6,
-                            CustomerId = 8,
-                            PartySize = 2,
-                            ReservationDate = new DateTime(2024, 11, 7, 8, 35, 59, 707, DateTimeKind.Local).AddTicks(5875),
+                            CustomerId = 4,
+                            PartySize = 15,
+                            ReservationDate = new DateTime(2024, 6, 25, 16, 45, 59, 823, DateTimeKind.Local).AddTicks(207),
                             RestaurantId = 3,
-                            TableId = 4
+                            TableId = 10
                         },
                         new
                         {
                             ReservationId = 7,
-                            CustomerId = 2,
-                            PartySize = 1,
-                            ReservationDate = new DateTime(2024, 1, 25, 10, 55, 31, 390, DateTimeKind.Local).AddTicks(7451),
-                            RestaurantId = 3,
-                            TableId = 2
+                            CustomerId = 1,
+                            PartySize = 11,
+                            ReservationDate = new DateTime(2024, 8, 20, 14, 20, 2, 374, DateTimeKind.Local).AddTicks(6884),
+                            RestaurantId = 1,
+                            TableId = 5
                         },
                         new
                         {
                             ReservationId = 8,
-                            CustomerId = 1,
-                            PartySize = 1,
-                            ReservationDate = new DateTime(2024, 8, 23, 17, 1, 58, 665, DateTimeKind.Local).AddTicks(3939),
-                            RestaurantId = 5,
-                            TableId = 2
+                            CustomerId = 2,
+                            PartySize = 18,
+                            ReservationDate = new DateTime(2025, 1, 24, 3, 3, 55, 572, DateTimeKind.Local).AddTicks(3648),
+                            RestaurantId = 2,
+                            TableId = 5
                         },
                         new
                         {
                             ReservationId = 9,
-                            CustomerId = 8,
-                            PartySize = 2,
-                            ReservationDate = new DateTime(2024, 11, 30, 21, 47, 43, 25, DateTimeKind.Local).AddTicks(7024),
+                            CustomerId = 9,
+                            PartySize = 17,
+                            ReservationDate = new DateTime(2024, 2, 11, 11, 56, 21, 11, DateTimeKind.Local).AddTicks(6593),
                             RestaurantId = 3,
-                            TableId = 1
+                            TableId = 7
                         },
                         new
                         {
                             ReservationId = 10,
-                            CustomerId = 2,
-                            PartySize = 3,
-                            ReservationDate = new DateTime(2024, 5, 17, 0, 35, 4, 528, DateTimeKind.Local).AddTicks(5136),
-                            RestaurantId = 4,
-                            TableId = 9
+                            CustomerId = 1,
+                            PartySize = 11,
+                            ReservationDate = new DateTime(2025, 1, 16, 2, 26, 46, 496, DateTimeKind.Local).AddTicks(4348),
+                            RestaurantId = 2,
+                            TableId = 8
                         });
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.ReservationsDetailsView", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.ReservationsDetails", b =>
                 {
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
@@ -764,10 +793,10 @@ namespace RestaurantReservation.Application.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToView("ReservationsDetailsView");
+                    b.ToView("ReservationsDetails");
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.Restaurant", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.Restaurant", b =>
                 {
                     b.Property<int>("RestaurantId")
                         .ValueGeneratedOnAdd()
@@ -802,82 +831,51 @@ namespace RestaurantReservation.Application.Migrations
                         new
                         {
                             RestaurantId = 1,
-                            Address = "45937 Rath Lights, North Pink, Falkland Islands (Malvinas)",
-                            EndTime = new TimeOnly(20, 0, 0),
-                            Name = "Larson - Fadel",
-                            PhoneNumber = "1-871-906-6169 x054",
+                            Address = "8221 Jakob Forks, East Arvelside, China",
+                            EndTime = new TimeOnly(21, 0, 0),
+                            Name = "Waters, Kuhn and Langworth",
+                            PhoneNumber = "849.543.8814",
                             StartTime = new TimeOnly(7, 0, 0)
                         },
                         new
                         {
                             RestaurantId = 2,
-                            Address = "656 Schneider Park, West Afton, Denmark",
-                            EndTime = new TimeOnly(19, 0, 0),
-                            Name = "Stoltenberg - Gorczany",
-                            PhoneNumber = "882.245.3043",
-                            StartTime = new TimeOnly(6, 0, 0)
-                        },
-                        new
-                        {
-                            RestaurantId = 3,
-                            Address = "24862 Herzog Mills, Shemarmouth, Russian Federation",
-                            EndTime = new TimeOnly(20, 0, 0),
-                            Name = "Strosin Group",
-                            PhoneNumber = "233-917-9228 x642",
+                            Address = "007 Witting Forges, Lake Jovaniville, Bhutan",
+                            EndTime = new TimeOnly(22, 0, 0),
+                            Name = "Zieme - Hammes",
+                            PhoneNumber = "(272) 876-9546 x275",
                             StartTime = new TimeOnly(7, 0, 0)
                         },
                         new
                         {
-                            RestaurantId = 4,
-                            Address = "20391 Antone Flats, Lake Armani, Nepal",
-                            EndTime = new TimeOnly(18, 0, 0),
-                            Name = "Harris - Abshire",
-                            PhoneNumber = "(567) 248-4320",
+                            RestaurantId = 3,
+                            Address = "911 Freddie Overpass, Goldnertown, Denmark",
+                            EndTime = new TimeOnly(21, 0, 0),
+                            Name = "Stroman, McDermott and Heaney",
+                            PhoneNumber = "457-441-4234",
                             StartTime = new TimeOnly(6, 0, 0)
                         },
                         new
                         {
+                            RestaurantId = 4,
+                            Address = "5890 Melvin Court, Wilbertport, Libyan Arab Jamahiriya",
+                            EndTime = new TimeOnly(22, 0, 0),
+                            Name = "Kessler, Greenholt and Schultz",
+                            PhoneNumber = "378-874-6693",
+                            StartTime = new TimeOnly(8, 0, 0)
+                        },
+                        new
+                        {
                             RestaurantId = 5,
-                            Address = "660 Bednar Port, East Anibalside, Myanmar",
-                            EndTime = new TimeOnly(20, 0, 0),
-                            Name = "Mueller, Reichel and Walker",
-                            PhoneNumber = "931-700-2601",
-                            StartTime = new TimeOnly(6, 0, 0)
+                            Address = "3083 Clement Spurs, Kailynmouth, Martinique",
+                            EndTime = new TimeOnly(22, 0, 0),
+                            Name = "O'Connell - Goodwin",
+                            PhoneNumber = "517-794-8743",
+                            StartTime = new TimeOnly(8, 0, 0)
                         });
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.RestaurantReservation.Db.Entities.EmployeesWithRestaurantDetailsView", b =>
-                {
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RestaurantAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RestaurantId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RestaurantName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RestaurantPhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToView("EmployeesWithRestaurantDetailsView");
-                });
-
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.Table", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.Table", b =>
                 {
                     b.Property<int>("TableId")
                         .ValueGeneratedOnAdd()
@@ -902,127 +900,127 @@ namespace RestaurantReservation.Application.Migrations
                         {
                             TableId = 1,
                             Capacity = 8,
-                            RestaurantId = 1
+                            RestaurantId = 4
                         },
                         new
                         {
                             TableId = 2,
-                            Capacity = 6,
-                            RestaurantId = 2
+                            Capacity = 8,
+                            RestaurantId = 5
                         },
                         new
                         {
                             TableId = 3,
-                            Capacity = 5,
-                            RestaurantId = 4
+                            Capacity = 6,
+                            RestaurantId = 3
                         },
                         new
                         {
                             TableId = 4,
-                            Capacity = 5,
-                            RestaurantId = 1
-                        },
-                        new
-                        {
-                            TableId = 5,
-                            Capacity = 4,
+                            Capacity = 8,
                             RestaurantId = 2
                         },
                         new
                         {
-                            TableId = 6,
-                            Capacity = 5,
+                            TableId = 5,
+                            Capacity = 8,
                             RestaurantId = 4
                         },
                         new
                         {
-                            TableId = 7,
+                            TableId = 6,
                             Capacity = 8,
-                            RestaurantId = 1
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            TableId = 7,
+                            Capacity = 2,
+                            RestaurantId = 5
                         },
                         new
                         {
                             TableId = 8,
                             Capacity = 6,
-                            RestaurantId = 3
+                            RestaurantId = 4
                         },
                         new
                         {
                             TableId = 9,
-                            Capacity = 4,
+                            Capacity = 7,
                             RestaurantId = 2
                         },
                         new
                         {
                             TableId = 10,
-                            Capacity = 8,
-                            RestaurantId = 3
+                            Capacity = 7,
+                            RestaurantId = 2
                         },
                         new
                         {
                             TableId = 11,
                             Capacity = 3,
-                            RestaurantId = 1
+                            RestaurantId = 3
                         },
                         new
                         {
                             TableId = 12,
-                            Capacity = 2,
-                            RestaurantId = 2
+                            Capacity = 8,
+                            RestaurantId = 5
                         },
                         new
                         {
                             TableId = 13,
-                            Capacity = 3,
-                            RestaurantId = 2
+                            Capacity = 2,
+                            RestaurantId = 4
                         },
                         new
                         {
                             TableId = 14,
-                            Capacity = 7,
+                            Capacity = 5,
                             RestaurantId = 4
                         },
                         new
                         {
                             TableId = 15,
-                            Capacity = 3,
-                            RestaurantId = 1
+                            Capacity = 6,
+                            RestaurantId = 4
                         },
                         new
                         {
                             TableId = 16,
-                            Capacity = 5,
-                            RestaurantId = 5
+                            Capacity = 8,
+                            RestaurantId = 3
                         },
                         new
                         {
                             TableId = 17,
-                            Capacity = 5,
+                            Capacity = 7,
                             RestaurantId = 5
                         },
                         new
                         {
                             TableId = 18,
-                            Capacity = 4,
-                            RestaurantId = 5
+                            Capacity = 2,
+                            RestaurantId = 4
                         },
                         new
                         {
                             TableId = 19,
-                            Capacity = 3,
+                            Capacity = 8,
                             RestaurantId = 4
                         },
                         new
                         {
                             TableId = 20,
-                            Capacity = 2,
-                            RestaurantId = 5
+                            Capacity = 3,
+                            RestaurantId = 2
                         });
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.Employee", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.Employee", b =>
                 {
-                    b.HasOne("RestaurantReservation.Db.Entities.Restaurant", "Restaurant")
+                    b.HasOne("RestaurantReservation.Application.Entities.Restaurant", "Restaurant")
                         .WithMany("Employees")
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1031,9 +1029,9 @@ namespace RestaurantReservation.Application.Migrations
                     b.Navigation("Restaurant");
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.MenuItem", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.MenuItem", b =>
                 {
-                    b.HasOne("RestaurantReservation.Db.Entities.Restaurant", "Restaurant")
+                    b.HasOne("RestaurantReservation.Application.Entities.Restaurant", "Restaurant")
                         .WithMany("MenuItems")
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1042,15 +1040,15 @@ namespace RestaurantReservation.Application.Migrations
                     b.Navigation("Restaurant");
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.Order", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.Order", b =>
                 {
-                    b.HasOne("RestaurantReservation.Db.Entities.Employee", "Employee")
+                    b.HasOne("RestaurantReservation.Application.Entities.Employee", "Employee")
                         .WithMany("Orders")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RestaurantReservation.Db.Entities.Reservation", "Reservation")
+                    b.HasOne("RestaurantReservation.Application.Entities.Reservation", "Reservation")
                         .WithMany("Orders")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1061,15 +1059,15 @@ namespace RestaurantReservation.Application.Migrations
                     b.Navigation("Reservation");
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.OrderItem", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.OrderItem", b =>
                 {
-                    b.HasOne("RestaurantReservation.Db.Entities.MenuItem", "MenuItem")
+                    b.HasOne("RestaurantReservation.Application.Entities.MenuItem", "MenuItem")
                         .WithMany("OrderItems")
                         .HasForeignKey("MenuItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RestaurantReservation.Db.Entities.Order", "Order")
+                    b.HasOne("RestaurantReservation.Application.Entities.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1080,21 +1078,21 @@ namespace RestaurantReservation.Application.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.Reservation", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.Reservation", b =>
                 {
-                    b.HasOne("RestaurantReservation.Db.Entities.Customer", "Customer")
+                    b.HasOne("RestaurantReservation.Application.Entities.Customer", "Customer")
                         .WithMany("Reservations")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RestaurantReservation.Db.Entities.Restaurant", "Restaurant")
+                    b.HasOne("RestaurantReservation.Application.Entities.Restaurant", "Restaurant")
                         .WithMany("Reservations")
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RestaurantReservation.Db.Entities.Table", "Table")
+                    b.HasOne("RestaurantReservation.Application.Entities.Table", "Table")
                         .WithMany("Reservations")
                         .HasForeignKey("TableId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1107,9 +1105,9 @@ namespace RestaurantReservation.Application.Migrations
                     b.Navigation("Table");
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.Table", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.Table", b =>
                 {
-                    b.HasOne("RestaurantReservation.Db.Entities.Restaurant", "Restaurant")
+                    b.HasOne("RestaurantReservation.Application.Entities.Restaurant", "Restaurant")
                         .WithMany("Tables")
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1118,32 +1116,32 @@ namespace RestaurantReservation.Application.Migrations
                     b.Navigation("Restaurant");
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.Customer", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.Customer", b =>
                 {
                     b.Navigation("Reservations");
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.Employee", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.Employee", b =>
                 {
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.MenuItem", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.MenuItem", b =>
                 {
                     b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.Order", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.Order", b =>
                 {
                     b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.Reservation", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.Reservation", b =>
                 {
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.Restaurant", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.Restaurant", b =>
                 {
                     b.Navigation("Employees");
 
@@ -1154,7 +1152,7 @@ namespace RestaurantReservation.Application.Migrations
                     b.Navigation("Tables");
                 });
 
-            modelBuilder.Entity("RestaurantReservation.Db.Entities.Table", b =>
+            modelBuilder.Entity("RestaurantReservation.Application.Entities.Table", b =>
                 {
                     b.Navigation("Reservations");
                 });
