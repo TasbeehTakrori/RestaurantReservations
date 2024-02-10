@@ -3,8 +3,11 @@ using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantReservation.API.DTOs;
 using RestaurantReservation.API.ViewModels;
+using RestaurantReservation.Application.DTOs;
 using RestaurantReservation.Application.Services.IServices;
+using System.Collections.Generic;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace RestaurantReservation.API.Controllers
 {
@@ -17,7 +20,8 @@ namespace RestaurantReservation.API.Controllers
         private readonly IMapper _mapper;
 
         public EmployeesController(
-            IEmployeeService employeeService, IMapper mapper,
+            IEmployeeService employeeService,
+            IMapper mapper,
             IValidator<PaginationInfo> paginationInfoValidator)
         {
             _employeeService = employeeService;
@@ -26,31 +30,75 @@ namespace RestaurantReservation.API.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<EmployeeVM>> GetEmployees(int id)
+        public async Task<ActionResult<EmployeeVM>> GetEmployee(int id)
         {
             var employee = await _employeeService.RetrieveEmployeeByIdAsync(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
             return Ok(_mapper.Map<EmployeeVM>(employee));
         }
 
         [HttpGet]
         public async Task<ActionResult<CollectionVM<EmployeeVM>>> GetEmployees(
-          [FromQuery] PaginationInfo paginationInfo)
+            [FromQuery] PaginationInfo paginationInfo)
         {
             await _paginationInfoValidator.ValidateAndThrowAsync(paginationInfo);
 
             (var employees, var paginationMetadata) = await _employeeService.RetrieveEmployeesAsync(
                 paginationInfo.PageNumber, paginationInfo.PageSize);
-            var employeeVM = _mapper.Map<List<EmployeeVM>>(employees);
+            var employeeVMs = _mapper.Map<List<EmployeeVM>>(employees);
 
             var collectionVM = new CollectionVM<EmployeeVM>()
             {
-                Count = employeeVM.Count,
-                Items = employeeVM
+                Count = employeeVMs.Count,
+                Items = employeeVMs
             };
 
             Response.Headers.Add("X-Pagination",
               JsonSerializer.Serialize(paginationMetadata));
             return Ok(collectionVM);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<EmployeeVM>> CreateEmployee(EmployeeRequestDTO employeeRequestDTO)
+        {
+            await _employeeRequestValidator.ValidateAndThrowAsync(employeeRequestDTO);
+
+            var employee = await _employeeService.CreateEmployeeAsync(_mapper.Map<EmployeeDTO>(employeeRequestDTO));
+            return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, _mapper.Map<EmployeeVM>(employee));
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> UpdateEmployee(
+            int id, EmployeeRequestDTO employeeRequestDTO)
+        {
+            await _employeeRequestValidator.ValidateAndThrowAsync(employeeRequestDTO);
+
+            var existingEmployee = await _employeeService.RetrieveEmployeeByIdAsync(id);
+            if (existingEmployee == null)
+            {
+                return NotFound();
+            }
+
+            await _employeeService.UpdateEmployeeAsync(id, _mapper.Map<EmployeeDTO>(employeeRequestDTO));
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> DeleteEmployee(int id)
+        {
+            var existingEmployee = await _employeeService.RetrieveEmployeeByIdAsync(id);
+            if (existingEmployee == null)
+            {
+                return NotFound();
+            }
+
+            await _employeeService.DeleteEmployeeAsync(id);
+
+            return NoContent();
         }
     }
 }

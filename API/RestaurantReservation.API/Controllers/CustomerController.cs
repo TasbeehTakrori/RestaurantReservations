@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using RestaurantReservation.API.DTOs;
 using RestaurantReservation.API.ViewModels;
 using RestaurantReservation.Application.DTOs;
+using RestaurantReservation.Application.Entities;
 using RestaurantReservation.Application.Services.IServices;
 using System.Text.Json;
 
@@ -62,7 +63,10 @@ namespace RestaurantReservation.API.Controllers
             await _createCustomerValidator.ValidateAndThrowAsync(customerRequestDTO);
 
             var customer = await _customerService.CreateCustomerAsync(_mapper.Map<CustomerDTO>(customerRequestDTO));
-            return Ok(_mapper.Map<CustomerVM>(customer));
+            return CreatedAtAction(
+            nameof(GetCustomer),
+            new { id = customer!.CustomerId },
+                _mapper.Map<CustomerVM>(customer));
         }
 
         [HttpPut("{id:int}")]
