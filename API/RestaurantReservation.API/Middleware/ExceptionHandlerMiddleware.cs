@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using RestaurantReservation.API.Exceptions;
 using RestaurantReservation.Application.Exceptions;
 using System.Text.Json;
@@ -18,6 +20,7 @@ namespace RestaurantReservation.API.Middleware
             { typeof(NotFoundException), new NotFoundExceptionHandler() },
             { typeof(InternalServerException), new InternalServerErrorExceptionHandler() },
             { typeof(FluentValidation.ValidationException), new ValidationExceptionHandler() }
+
         };
         }
 
@@ -34,7 +37,25 @@ namespace RestaurantReservation.API.Middleware
                 {
                     await handler.HandleAsync(context, ex);
                 }
+                else
+                {
+                    await HandleUnknownExceptionAsync(context, ex);
+                }
             }
+        }
+        private async Task HandleUnknownExceptionAsync(HttpContext context, Exception ex)
+        {
+            var problemDetails = new ProblemDetails
+            {
+                Status = StatusCodes.Status500InternalServerError,
+                Title = "An error occurred",
+                Detail = ex.Message
+            };
+
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            context.Response.ContentType = "application/json";
+
+            await context.Response.WriteAsync(JsonSerializer.Serialize(problemDetails));
         }
     }
 }

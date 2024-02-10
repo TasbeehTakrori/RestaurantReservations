@@ -2,11 +2,9 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantReservation.API.DTOs;
-using RestaurantReservation.API.Validators;
 using RestaurantReservation.API.ViewModels;
 using RestaurantReservation.Application.Models;
 using RestaurantReservation.Application.Services.IServices;
-using RestaurantReservation.Domain.Constants;
 using System.Text.Json;
 
 namespace RestaurantReservation.API.Controllers
@@ -17,12 +15,18 @@ namespace RestaurantReservation.API.Controllers
     {
         private readonly ICustomerService _customerService;
         private readonly IValidator<CreateCustomerDTO> _createCustomerValidator;
+        private readonly IValidator<PaginationInfo> _paginationInfoValidator;
         private readonly IMapper _mapper;
-        public CustomersController(ICustomerService customerService, IMapper mapper, IValidator<CreateCustomerDTO> createCustomerValidator)
+        public CustomersController(
+            ICustomerService customerService,
+            IMapper mapper,
+            IValidator<CreateCustomerDTO> createCustomerValidator,
+            IValidator<PaginationInfo> paginationInfoValidator)
         {
             _customerService = customerService;
             _mapper = mapper;
             _createCustomerValidator = createCustomerValidator;
+            _paginationInfoValidator = paginationInfoValidator;
         }
 
         [HttpGet("{id:int}")]
@@ -34,9 +38,11 @@ namespace RestaurantReservation.API.Controllers
 
         [HttpGet]
         public async Task<ActionResult<CollectionVM<CustomerVM>>> GetCustomers(
-             int pageNumber = PaginationConstants.DefaultPageNumber, int pageSize = PaginationConstants.DefaultPageSize)
+            [FromQuery] PaginationInfo paginationInfo)
         {
-            (var customers, var paginationMetadata) = await _customerService.RetrieveCustomersAsync(pageNumber, pageSize);
+            await _paginationInfoValidator.ValidateAndThrowAsync(paginationInfo);
+
+            (var customers, var paginationMetadata) = await _customerService.RetrieveCustomersAsync(paginationInfo.PageNumber, paginationInfo.PageSize);
             var customerVMs = _mapper.Map<List<CustomerVM>>(customers);
 
             var collectionVM = new CollectionVM<CustomerVM>()

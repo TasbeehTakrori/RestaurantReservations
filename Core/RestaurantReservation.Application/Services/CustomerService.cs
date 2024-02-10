@@ -1,9 +1,10 @@
-﻿using RestaurantReservation.Application.Models;
-using RestaurantReservation.Application.Contracts.Persistence;
-using RestaurantReservation.Application.Services.IServices;
+﻿using RestaurantReservation.Application.Contracts.Persistence;
 using RestaurantReservation.Application.Exceptions;
+using RestaurantReservation.Application.Models;
+using RestaurantReservation.Application.Services.IServices;
 using RestaurantReservation.Domain.Common;
 using RestaurantReservation.Domain.Constants;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantReservation.Application.Services
 {
@@ -25,7 +26,7 @@ namespace RestaurantReservation.Application.Services
             }
             catch (Exception ex)
             {
-                throw new InternalServerException ("Error creating customer", ex);
+                throw new InternalServerException("Error creating customer", ex);
             }
         }
 
@@ -52,7 +53,7 @@ namespace RestaurantReservation.Application.Services
             }
             catch (Exception ex)
             {
-                throw new InternalServerException ("Error finding customers by party size", ex);
+                throw new InternalServerException("Error finding customers by party size", ex);
             }
         }
 
@@ -72,7 +73,7 @@ namespace RestaurantReservation.Application.Services
             }
             catch (Exception ex)
             {
-                throw new InternalServerException ("Error retrieving customer", ex);
+                throw new InternalServerException("Error retrieving customer", ex);
             }
         }
 
@@ -80,18 +81,12 @@ namespace RestaurantReservation.Application.Services
         {
             try
             {
-                if (pageSize < PaginationConstants.MinPageSize || pageSize > PaginationConstants.MaxPageSize)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(pageSize),
-                        $"Page size should be between {PaginationConstants.MinPageSize} and {PaginationConstants.MaxPageSize}.");
-                }                
-
                 (var customers, var paginationMetadata) = await _customerRepository.RetrieveAllAsync(pageNumber, pageSize);
                 return (customers, paginationMetadata);
             }
             catch (Exception ex)
             {
-                throw new InternalServerException ("Error retrieving customers", ex);
+                throw new InternalServerException("Error retrieving customers", ex);
             }
         }
 
@@ -112,7 +107,7 @@ namespace RestaurantReservation.Application.Services
             }
             catch (Exception ex)
             {
-                throw new InternalServerException ("Error updating customer", ex);
+                throw new InternalServerException("Error updating customer", ex);
             }
         }
     }
