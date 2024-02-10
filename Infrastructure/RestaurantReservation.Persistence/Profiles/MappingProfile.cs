@@ -26,10 +26,21 @@ namespace RestaurantReservation.Persistence.Profiles
             CreateMap<RestaurantDTO, Restaurant>();
             CreateMap<Table, TableDTO>();
             CreateMap<TableDTO, Table>();
-            CreateMap<OrderWithMenuItemDTO, Order>();
-            CreateMap<Order, OrderWithMenuItemDTO>();
-            CreateMap<ReservationsDetails, ReservationsDetailsViewDTO>();
-            CreateMap<ReservationsDetailsViewDTO, ReservationsDetails>();
+
+            CreateMap<OrderWithMenuItemsDTO, Order>();
+
+            CreateMap<Order, OrderWithMenuItemsDTO>()
+          .ForMember(dest => dest.MenuItems,
+          opt => opt.MapFrom(src => src.OrderItems
+                                         .Select(orderItem => orderItem.MenuItem)
+                                         .GroupBy(menuItem => menuItem.MenuItemId)
+                                         .Select(group => group.First())
+                                         .ToList()));
+
+
+
+            CreateMap<ReservationsDetails, ReservationsDetailsDTO>();
+            CreateMap<ReservationsDetailsDTO, ReservationsDetails>();
             CreateMap<EmployeesWithRestaurantDetails, EmployeesWithRestaurantDetailsDTO>();
             CreateMap<EmployeesWithRestaurantDetailsDTO, EmployeesWithRestaurantDetails>();
         }

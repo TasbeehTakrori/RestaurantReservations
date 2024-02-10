@@ -1,80 +1,164 @@
-﻿/*using AutoMapper;
-using FluentResults;
-using RestaurantReservation.Application.Models;
-using RestaurantReservation.Application.Entities;
-using RestaurantReservation.Application.Contracts.Persistence;
+﻿using RestaurantReservation.Application.Contracts.Persistence;
+using RestaurantReservation.Application.DTOs;
+using RestaurantReservation.Application.Exceptions;
 using RestaurantReservation.Application.Services.IServices;
+using RestaurantReservation.Domain.Common;
 
 namespace RestaurantReservation.Application.Services
 {
-    public class OrderService : EntityService<Order, OrderDTO, IOrderRepository>, IOrderService
+    public class OrderService : IOrderService
     {
-        public OrderService(IOrderRepository entityRepository, IMapper mapper) : base(entityRepository, mapper)
+        private readonly IOrderRepository _orderRepository;
+        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IReservationRepository _reservationRepository;
+        public OrderService(
+            IOrderRepository orderRepository,
+            IReservationRepository reservationRepository,
+            IEmployeeRepository employeeRepository)
         {
+            _orderRepository = orderRepository;
+            _reservationRepository = reservationRepository;
+            _employeeRepository = employeeRepository;
         }
-
-        public async Task<(decimal, Result)> CalculateAverageOrderAmountAsync(int employeeId)
+        public async Task<OrderDTO?> CreateOrderAsync(OrderDTO dto)
         {
             try
             {
-                var avgOrderAmount = await _entityRepository.CalculateAverageOrderAmountAsync(employeeId);
-                return (avgOrderAmount, Result.Ok());
+                var order = await _orderRepository.CreateAsync(dto);
+                return order;
             }
             catch (Exception ex)
             {
-                return (0, Result.Fail(ex.Message));
+                throw new InternalServerException("Error creating order", ex);
             }
         }
 
-        public async Task<(IEnumerable<OrderWithMenuItemDTO>?, Result)> ListOrdersAndMenuItemsAsync(int reservationId)
+        public async Task DeleteOrderAsync(int id)
+        {
+            var order = await _orderRepository.RetrieveByIdAsync(id);
+            if (order == null)
+            {
+                throw new NotFoundException("Order not found");
+            }
+
+            await _orderRepository.DeleteAsync(id);
+        }
+
+        public async Task<(IEnumerable<OrderDTO>, PaginationMetadata)> RetrieveOrdersAsync(int pageNumber, int pageSize)
         {
             try
             {
-                var ordersWithOrderItems = await _entityRepository.ListOrdersAndMenuItemsAsync(reservationId);
-                var dtos = MapOrderToOrderWithMenuEntityDto(ordersWithOrderItems);
-                return (dtos, Result.Ok());
+                var orders = await _orderRepository.RetrieveAllAsync(pageNumber, pageSize);
+                return orders;
             }
             catch (Exception ex)
             {
-                return (null, Result.Fail(ex.Message));
+                throw new InternalServerException("Error retrieving orders", ex);
             }
         }
 
-        public async Task<(IEnumerable<MenuItemDTO>?, Result)> ListOrderedMenuItemsAsync(int reservationId)
+        public async Task<OrderDTO?> RetrieveOrderByIdAsync(int id)
         {
             try
             {
-                var orderedMenuItems = await _entityRepository.ListOrderedMenuItemsAsync(reservationId);
-                var dtos = MapEntityToDto<MenuItem, MenuItemDTO>(orderedMenuItems);
-                return (dtos, Result.Ok());
+                var order = await _orderRepository.RetrieveByIdAsync(id);
+                if (order == null)
+                    throw new NotFoundException("Order not found");
+
+                return order;
+            }
+            catch (NotFoundException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
-                return (null, Result.Fail(ex.Message));
+                throw new InternalServerException("Error retrieving order", ex);
             }
         }
 
-        private IEnumerable<OrderWithMenuItemDTO> MapOrderToOrderWithMenuEntityDto(IEnumerable<Order> orderWithOrderItems)
+        public async Task UpdateOrderAsync(int id, OrderDTO dto)
         {
-            var orderWithMenuItemDTO = new List<OrderWithMenuItemDTO>();
-            foreach (var order in orderWithOrderItems)
+            try
             {
-                var orderItems = order.OrderItems;
-                var menuItemsDTO = new List<MenuItemDTO>();
-                orderItems.ForEach(item => menuItemsDTO.Add(_mapper.Map<MenuItemDTO>(item.MenuItem)));
+                var order = await _orderRepository.RetrieveByIdAsync(id);
+                if (order == null)
+                    throw new NotFoundException("Order not found");
 
-                orderWithMenuItemDTO.Add(
-                    new OrderWithMenuItemDTO()
-                    {
-                        OrderId = order.OrderId,
-                        TotalAmount = order.TotalAmount,
-                        OrderDate = order.OrderDate,
-                        MenuItems = menuItemsDTO,
-                    }
-                    );
+                dto.OrderId = id;
+                await _orderRepository.UpdateAsync(dto);
             }
-            return orderWithMenuItemDTO;
+            catch (NotFoundException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new InternalServerException("Error updating order", ex);
+            }
+        }
+        public async Task<decimal> CalculateAverageOrderAmountAsync(int employeeId)
+        {
+            try
+            {
+                var employee = await _employeeRepository.RetrieveByIdAsync(employeeId);
+                if (employee == null)
+                    throw new NotFoundException("Employee not found");
+
+                var avgOrderAmount = await _orderRepository.CalculateAverageOrderAmountAsync(employeeId);
+                return avgOrderAmount;
+            }
+            catch (NotFoundException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new InternalServerException("Error Calculating AverageOrderAmount", ex);
+            }
+        }
+
+        public async Task<IEnumerable<OrderWithMenuItemsDTO>> GetOrdersAndMenuItemsAsync(int reservationId)
+        {
+            try
+            {
+                var reservation = await _reservationRepository.RetrieveByIdAsync(reservationId);
+                if (reservation == null)
+                    throw new NotFoundException("Reservation not found");
+
+                var ordersWithOrderItems = await _orderRepository.ListOrdersWithMenuItemsAsync(reservationId);
+
+                return ordersWithOrderItems;
+            }
+            catch (NotFoundException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new InternalServerException("Error retrieving OrdersAndMenuItems", ex);
+            }
+        }
+
+        public async Task<IEnumerable<MenuItemDTO>> GetOrderedMenuItemsAsync(int reservationId)
+        {
+            try
+            {
+                var reservation = await _reservationRepository.RetrieveByIdAsync(reservationId);
+                if (reservation == null)
+                    throw new NotFoundException("Reservation not found");
+
+                var orderedMenuItems = await _orderRepository.ListOrderedMenuItemsAsync(reservationId);
+                return orderedMenuItems;
+            }
+            catch (NotFoundException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new InternalServerException("Error retrieving OrdersAndMenuItems", ex);
+            }
         }
     }
 }
-*/

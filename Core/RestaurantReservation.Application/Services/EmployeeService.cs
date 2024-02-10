@@ -8,7 +8,7 @@ namespace RestaurantReservation.Application.Services
 {
     public class EmployeeService : IEmployeeService
     {
-        protected readonly IEmployeeRepository _employeeRepository;
+        private readonly IEmployeeRepository _employeeRepository;
 
         public EmployeeService(IEmployeeRepository employeeRepository)
         {
@@ -54,15 +54,15 @@ namespace RestaurantReservation.Application.Services
             }
         }
 
-        public async Task DeleteEmployeeAsync(int entityId)
+        public async Task DeleteEmployeeAsync(int id)
         {
-            var employee = await _employeeRepository.RetrieveByIdAsync(entityId);
+            var employee = await _employeeRepository.RetrieveByIdAsync(id);
             if (employee == null)
             {
                 throw new NotFoundException("Employee not found");
             }
 
-            await _employeeRepository.DeleteAsync(entityId);
+            await _employeeRepository.DeleteAsync(id);
         }
 
         public async Task<(IEnumerable<EmployeeDTO>, PaginationMetadata)> RetrieveEmployeesAsync(int pageNumber, int pageSize)

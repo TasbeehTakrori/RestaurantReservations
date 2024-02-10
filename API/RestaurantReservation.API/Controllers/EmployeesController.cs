@@ -34,10 +34,6 @@ namespace RestaurantReservation.API.Controllers
         public async Task<ActionResult<EmployeeVM>> GetEmployee(int id)
         {
             var employee = await _employeeService.RetrieveEmployeeByIdAsync(id);
-            if (employee == null)
-            {
-                return NotFound();
-            }
             return Ok(_mapper.Map<EmployeeVM>(employee));
         }
 
@@ -79,13 +75,6 @@ namespace RestaurantReservation.API.Controllers
             int id, EmployeeRequestDTO employeeRequestDTO)
         {
             await _employeeRequestValidator.ValidateAndThrowAsync(employeeRequestDTO);
-
-            var existingEmployee = await _employeeService.RetrieveEmployeeByIdAsync(id);
-            if (existingEmployee == null)
-            {
-                return NotFound();
-            }
-
             await _employeeService.UpdateEmployeeAsync(id, _mapper.Map<EmployeeDTO>(employeeRequestDTO));
 
             return NoContent();
@@ -94,12 +83,6 @@ namespace RestaurantReservation.API.Controllers
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> DeleteEmployee(int id)
         {
-            var existingEmployee = await _employeeService.RetrieveEmployeeByIdAsync(id);
-            if (existingEmployee == null)
-            {
-                return NotFound();
-            }
-
             await _employeeService.DeleteEmployeeAsync(id);
 
             return NoContent();

@@ -1,6 +1,6 @@
 ﻿namespace RestaurantReservation.Application.DTOs
 {
-    public class ReservationsDetailsViewDTO
+    public class ReservationsDetailsDTO
     {
         public int ReservationId { get; set; }
         public DateTime ReservationDate { get; set; }

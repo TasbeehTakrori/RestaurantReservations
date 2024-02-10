@@ -5,7 +5,7 @@ namespace RestaurantReservation.Application.Contracts.Persistence
 {
     public interface IReservationRepository : IEntityRepository<ReservationDTO>
     {
-        Task<IEnumerable<ReservationDTO>?> GetReservationsByCustomerAsync(int customerId);
-        Task<IEnumerable<ReservationsDetails>> RetrieveReservationsDetailsViewAsync();
+        Task<IEnumerable<ReservationDTO>> GetReservationsByCustomerAsync(int customerId);
+        Task<IEnumerable<ReservationsDetailsDTO>> RetrieveReservationsDetailsAsync();
     }
 }

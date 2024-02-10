@@ -11,6 +11,8 @@ namespace RestaurantReservation.Application.Extensions
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IReservationService, ReservationService>();
+            services.AddScoped<IOrderService, OrderService>();
 
             return services;
         }

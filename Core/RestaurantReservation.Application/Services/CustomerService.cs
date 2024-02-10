@@ -8,7 +8,7 @@ namespace RestaurantReservation.Application.Services
 {
     public class CustomerService : ICustomerService
     {
-        protected readonly ICustomerRepository _customerRepository;
+        private readonly ICustomerRepository _customerRepository;
 
         public CustomerService(ICustomerRepository customerRepository)
         {
@@ -28,15 +28,15 @@ namespace RestaurantReservation.Application.Services
             }
         }
 
-        public async Task DeleteCustomerAsync(int entityId)
+        public async Task DeleteCustomerAsync(int id)
         {
-            var customer = await _customerRepository.RetrieveByIdAsync(entityId);
+            var customer = await _customerRepository.RetrieveByIdAsync(id);
             if (customer == null)
             {
                 throw new NotFoundException("Customer not found");
             }
 
-            await _customerRepository.DeleteAsync(entityId);
+            await _customerRepository.DeleteAsync(id);
         }
 
 

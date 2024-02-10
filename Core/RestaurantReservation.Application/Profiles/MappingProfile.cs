@@ -25,10 +25,10 @@ namespace RestaurantReservation.Application.Mapper
             CreateMap<RestaurantDTO, Restaurant>();
             CreateMap<Table, TableDTO>();
             CreateMap<TableDTO, Table>();
-            CreateMap<OrderWithMenuItemDTO, Order>();
-            CreateMap<Order, OrderWithMenuItemDTO>();
-            CreateMap<ReservationsDetails, ReservationsDetailsViewDTO>();
-            CreateMap<ReservationsDetailsViewDTO, ReservationsDetails>();
+            CreateMap<OrderWithMenuItemsDTO, Order>();
+            CreateMap<Order, OrderWithMenuItemsDTO>();
+            CreateMap<ReservationsDetails, ReservationsDetailsDTO>();
+            CreateMap<ReservationsDetailsDTO, ReservationsDetails>();
             CreateMap<EmployeesWithRestaurantDetails, EmployeesWithRestaurantDetailsDTO>();
             CreateMap<EmployeesWithRestaurantDetailsDTO, EmployeesWithRestaurantDetails>();
         }

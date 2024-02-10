@@ -13,17 +13,17 @@ namespace RestaurantReservation.Persistence.Repositories
         {
         }
 
-        public async Task<IEnumerable<ReservationDTO>?> GetReservationsByCustomerAsync(int CustomerId)
+        public async Task<IEnumerable<ReservationDTO>> GetReservationsByCustomerAsync(int CustomerId)
         {
             var reservations = await _dbContext.Reservations
                 .Where(c => c.CustomerId == CustomerId).ToListAsync();
             return _mapper.Map<IEnumerable<ReservationDTO>>(reservations);
         }
 
-        public async Task<IEnumerable<ReservationsDetails>> RetrieveReservationsDetailsViewAsync()
+        public async Task<IEnumerable<ReservationsDetailsDTO>> RetrieveReservationsDetailsAsync()
         {
             var reservations = await _dbContext.ReservationsDetails.ToListAsync();
-            return _mapper.Map<IEnumerable<ReservationsDetails>>(reservations);
+            return _mapper.Map<IEnumerable<ReservationsDetailsDTO>>(reservations);
         }
     }
 }
