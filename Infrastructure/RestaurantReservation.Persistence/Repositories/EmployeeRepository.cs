@@ -4,6 +4,7 @@ using RestaurantReservation.Application.Entities;
 using RestaurantReservation.Application.DTOs;
 using RestaurantReservation.Application.Contracts.Persistence;
 using RestaurantReservation.Domain.Enums;
+using RestaurantReservation.Domain.Common;
 
 namespace RestaurantReservation.Persistence.Repositories
 {
@@ -20,11 +21,20 @@ namespace RestaurantReservation.Persistence.Repositories
             return _mapper.Map<IEnumerable<EmployeesWithRestaurantDetailsDTO>>(employeesWithRestaurantDetails);
         }
 
-        public async Task<IEnumerable<EmployeeDTO>> ListManagersAsync()
+        public async Task<(IEnumerable<EmployeeDTO>, PaginationMetadata)> RetrieveAllAsync(
+            int pageNumber, int pageSize, EmployeePosition position)
         {
-            var employee = await _dbContext.Employees.Where(
-                e => e.Position == EmployeePosition.Manager).ToListAsync();
-            return _mapper.Map<IEnumerable<EmployeeDTO>>(employee);
+            var entities = await _dbContext.Employees.Where(e => e.Position == position)
+                     .Skip((pageNumber - 1) * pageSize)
+                     .Take(pageSize)
+                     .ToListAsync();
+
+            var totalItemCount = await _dbContext.Employees.CountAsync();
+
+            var paginationMetadata = new PaginationMetadata(
+                totalItemCount, pageSize, pageNumber);
+
+            return (_mapper.Map<IEnumerable<EmployeeDTO>>(entities), paginationMetadata);
         }
     }
 }

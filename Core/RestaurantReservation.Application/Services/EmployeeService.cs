@@ -3,6 +3,7 @@ using RestaurantReservation.Application.Exceptions;
 using RestaurantReservation.Application.DTOs;
 using RestaurantReservation.Application.Services.IServices;
 using RestaurantReservation.Domain.Common;
+using RestaurantReservation.Domain.Enums;
 
 namespace RestaurantReservation.Application.Services
 {
@@ -15,20 +16,7 @@ namespace RestaurantReservation.Application.Services
             _employeeRepository = employeeRepository;
         }
 
-        public async Task<IEnumerable<EmployeeDTO>> ListManagersAsync()
-        {
-            try
-            {
-                var employees = await _employeeRepository.ListManagersAsync();
-                return employees;
-            }
-            catch (Exception ex)
-            {
-                throw new InternalServerException("Error creating employee", ex);
-            }
-        }
-
-        public async Task<IEnumerable<EmployeesWithRestaurantDetailsDTO>> ListEmployeesWithRestaurantDetailsAsync()
+        public async Task<IEnumerable<EmployeesWithRestaurantDetailsDTO>> GetEmployeesWithRestaurantDetailsAsync()
         {
             try
             {
@@ -65,12 +53,22 @@ namespace RestaurantReservation.Application.Services
             await _employeeRepository.DeleteAsync(id);
         }
 
-        public async Task<(IEnumerable<EmployeeDTO>, PaginationMetadata)> RetrieveEmployeesAsync(int pageNumber, int pageSize)
+        public async Task<(IEnumerable<EmployeeDTO>, PaginationMetadata)> RetrieveEmployeesAsync(
+            int pageNumber, int pageSize, string? position)
         {
+            IEnumerable<EmployeeDTO> employees;
+            PaginationMetadata paginationMetadata;
             try
             {
-                (var employees, var paginationMetadata) = await _employeeRepository.RetrieveAllAsync(
-                    pageNumber, pageSize);
+                if (position == null)
+                    (employees, paginationMetadata) = await _employeeRepository.RetrieveAllAsync(
+                        pageNumber, pageSize);
+                else
+                {
+                    Enum.TryParse<EmployeePosition>(position, out var employeePosition);
+                    (employees, paginationMetadata) = await _employeeRepository.RetrieveAllAsync(
+                   pageNumber, pageSize, employeePosition);
+                }
                 return (employees, paginationMetadata);
             }
             catch (Exception ex)

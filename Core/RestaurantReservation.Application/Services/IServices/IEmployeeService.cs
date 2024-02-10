@@ -7,10 +7,9 @@ namespace RestaurantReservation.Application.Services.IServices
     {
         Task<EmployeeDTO?> CreateEmployeeAsync(EmployeeDTO dto);
         Task DeleteEmployeeAsync(int id);
-        Task<(IEnumerable<EmployeeDTO>, PaginationMetadata)> RetrieveEmployeesAsync(int pageNumber, int pageSize);
+        Task<(IEnumerable<EmployeeDTO>, PaginationMetadata)> RetrieveEmployeesAsync(int pageNumber, int pageSize, string? position);
         Task<EmployeeDTO?> RetrieveEmployeeByIdAsync(int id);
         Task UpdateEmployeeAsync(int id, EmployeeDTO dto);
-        Task<IEnumerable<EmployeesWithRestaurantDetailsDTO>> ListEmployeesWithRestaurantDetailsAsync();
-        Task<IEnumerable<EmployeeDTO>> ListManagersAsync();
+        Task<IEnumerable<EmployeesWithRestaurantDetailsDTO>> GetEmployeesWithRestaurantDetailsAsync();
     }
 }

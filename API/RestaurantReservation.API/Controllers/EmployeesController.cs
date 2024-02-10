@@ -42,12 +42,12 @@ namespace RestaurantReservation.API.Controllers
 
         [HttpGet]
         public async Task<ActionResult<CollectionVM<EmployeeVM>>> GetEmployees(
-            [FromQuery] PaginationInfo paginationInfo)
+            [FromQuery] PaginationInfo paginationInfo, string? position)
         {
             await _paginationInfoValidator.ValidateAndThrowAsync(paginationInfo);
 
             (var employees, var paginationMetadata) = await _employeeService.RetrieveEmployeesAsync(
-                paginationInfo.PageNumber, paginationInfo.PageSize);
+                paginationInfo.PageNumber, paginationInfo.PageSize, position);
             var employeeVMs = _mapper.Map<List<EmployeeVM>>(employees);
 
             var collectionVM = new CollectionVM<EmployeeVM>()
