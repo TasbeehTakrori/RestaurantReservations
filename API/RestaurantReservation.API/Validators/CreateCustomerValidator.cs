@@ -4,7 +4,7 @@ using RestaurantReservation.Domain.Constants;
 
 namespace RestaurantReservation.API.Validators
 {
-    public class CreateCustomerValidator : AbstractValidator<CreateCustomerDTO>
+    public class CreateCustomerValidator : AbstractValidator<CustomerRequestDTO>
     {
         public CreateCustomerValidator()
         {

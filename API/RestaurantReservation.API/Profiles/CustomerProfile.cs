@@ -11,7 +11,7 @@ namespace RestaurantReservation.API.Profiles
         {
             CreateMap<CustomerVM, CustomerDTO>()
                 .ReverseMap();
-            CreateMap<CreateCustomerDTO, CustomerDTO>()
+            CreateMap<CustomerRequestDTO, CustomerDTO>()
                 .ReverseMap();
         }
     }

@@ -14,13 +14,13 @@ namespace RestaurantReservation.API.Controllers
     public class CustomersController : ControllerBase
     {
         private readonly ICustomerService _customerService;
-        private readonly IValidator<CreateCustomerDTO> _createCustomerValidator;
+        private readonly IValidator<CustomerRequestDTO> _createCustomerValidator;
         private readonly IValidator<PaginationInfo> _paginationInfoValidator;
         private readonly IMapper _mapper;
         public CustomersController(
             ICustomerService customerService,
             IMapper mapper,
-            IValidator<CreateCustomerDTO> createCustomerValidator,
+            IValidator<CustomerRequestDTO> createCustomerValidator,
             IValidator<PaginationInfo> paginationInfoValidator)
         {
             _customerService = customerService;
@@ -57,12 +57,31 @@ namespace RestaurantReservation.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CustomerVM>> CreateCustomer(CreateCustomerDTO createCustomer)
+        public async Task<ActionResult<CustomerVM>> CreateCustomer(CustomerRequestDTO customerRequestDTO)
         {
-            await _createCustomerValidator.ValidateAndThrowAsync(createCustomer);
+            await _createCustomerValidator.ValidateAndThrowAsync(customerRequestDTO);
 
-            var customer = await _customerService.CreateCustomerAsync(_mapper.Map<CustomerDTO>(createCustomer));
+            var customer = await _customerService.CreateCustomerAsync(_mapper.Map<CustomerDTO>(customerRequestDTO));
             return Ok(_mapper.Map<CustomerVM>(customer));
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> UpdateCustomer(
+            int id, CustomerRequestDTO customerRequestDTO)
+        {
+            await _createCustomerValidator.ValidateAndThrowAsync(customerRequestDTO);
+            await _customerService.UpdateCustomerAsync(id, _mapper.Map<CustomerDTO>(customerRequestDTO));
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> DeleteCustomer(
+         int id)
+        {
+            await _customerService.DeleteCustomerAsync(id);
+
+            return NoContent();
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using Microsoft.AspNetCore.Mvc;
 using RestaurantReservation.API.Exceptions;
 using RestaurantReservation.Application.Exceptions;
 using System.Text.Json;
@@ -43,6 +41,7 @@ namespace RestaurantReservation.API.Middleware
                 }
             }
         }
+
         private async Task HandleUnknownExceptionAsync(HttpContext context, Exception ex)
         {
             var problemDetails = new ProblemDetails

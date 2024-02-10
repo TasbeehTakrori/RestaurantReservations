@@ -90,14 +90,15 @@ namespace RestaurantReservation.Application.Services
             }
         }
 
-        public async Task<CustomerDTO?> UpdateCustomerAsync(CustomerDTO dto)
+        public async Task<CustomerDTO?> UpdateCustomerAsync(int id, CustomerDTO dto)
         {
             try
             {
-                var existingCustomer = await _customerRepository.RetrieveByIdAsync(dto.CustomerId);
+                var existingCustomer = await _customerRepository.RetrieveByIdAsync(id);
                 if (existingCustomer == null)
                     throw new NotFoundException("Customer not found");
 
+                dto.CustomerId = id;
                 var updatedCustomer = await _customerRepository.UpdateAsync(dto);
                 return updatedCustomer;
             }

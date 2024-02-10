@@ -12,7 +12,7 @@ builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddApplicationServices();
 
 builder.Services.AddControllers();
-builder.Services.AddScoped<IValidator<CreateCustomerDTO>, CreateCustomerValidator>();
+builder.Services.AddScoped<IValidator<CustomerRequestDTO>, CreateCustomerValidator>();
 builder.Services.AddScoped<IValidator<PaginationInfo>, PaginationInfoValidator>();
 //builder.Services.AddValidatorsFromAssembly(Assembly.GetAssembly(typeof(CreateCustomerValidator)));
 

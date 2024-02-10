@@ -63,6 +63,11 @@ namespace RestaurantReservation.Persistence.Repositories
         public async Task<TDTO?> RetrieveByIdAsync(int id)
         {
             var entity = await _dbContext.Set<TEntity>().FindAsync(id);
+            if (entity != null)
+            {
+                _dbContext.Entry(entity).State = EntityState.Detached;
+            }
+
             return _mapper.Map<TDTO>(entity);
         }
     }
