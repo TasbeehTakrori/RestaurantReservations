@@ -14,17 +14,23 @@ namespace RestaurantReservation.Persistence.Repositories
         {
         }
 
-        public async Task<decimal> CalculateAverageOrderAmountAsync(int id)
+        public async Task<decimal> CalculateAverageOrderAmountAsync(int employeeId)
         {
-            var OrderAmountList = await _dbContext.Orders.AsNoTracking()
-                       .Where(o => o.EmployeeId == id)
-                       .Include(o => o.OrderItems)
-                       .ThenInclude(oi => oi.MenuItem)
-                       .AsSplitQuery()
-                       .ToListAsync();
+            var orderCount = await _dbContext.Orders
+                .Where(order => order.EmployeeId == employeeId)
+                .CountAsync();
 
-            return OrderAmountList.Count() > 0 ?
-                 OrderAmountList.Select(o => o.TotalAmount).Average() : 0;
+            if (orderCount == 0)
+                return 0;
+
+            var totalAmount = await _dbContext.Orders
+                .Where(order => order.EmployeeId == employeeId)
+                .SelectMany(order => order.OrderItems)
+                .SumAsync(orderItem => orderItem.MenuItem.Price * orderItem.Quantity);
+
+            var averageAmount = totalAmount / orderCount;
+
+            return averageAmount;
         }
 
         public async Task<IEnumerable<MenuItemDTO>> ListOrderedMenuItemsAsync(int reservationId)

@@ -16,18 +16,21 @@ namespace RestaurantReservation.API.Controllers
         private readonly IEmployeeService _employeeService;
         private readonly IValidator<PaginationInfo> _paginationInfoValidator;
         private readonly IValidator<EmployeeRequestDTO> _employeeRequestValidator;
+        private readonly IOrderService _orderService;
         private readonly IMapper _mapper;
 
         public EmployeesController(
             IEmployeeService employeeService,
             IMapper mapper,
             IValidator<PaginationInfo> paginationInfoValidator,
-            IValidator<EmployeeRequestDTO> employeeRequestValidator)
+            IValidator<EmployeeRequestDTO> employeeRequestValidator,
+            IOrderService orderService)
         {
             _employeeService = employeeService;
             _mapper = mapper;
             _paginationInfoValidator = paginationInfoValidator;
             _employeeRequestValidator = employeeRequestValidator;
+            _orderService = orderService;
         }
 
         [HttpGet("{id:int}")]
@@ -86,6 +89,13 @@ namespace RestaurantReservation.API.Controllers
             await _employeeService.DeleteEmployeeAsync(id);
 
             return NoContent();
+        }
+
+        [HttpGet("{id:int}/averageOrderAmount")]
+        public async Task<ActionResult<decimal>> GetEmployeeAverageOrderAmountAsync(int id)
+        {
+            var averageOrderAmount = await _orderService.CalculateAverageOrderAmountAsync(id);
+            return Ok(new { AverageOrderAmount = averageOrderAmount });
         }
     }
 }
