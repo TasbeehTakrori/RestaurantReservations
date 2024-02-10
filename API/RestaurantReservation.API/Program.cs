@@ -4,6 +4,7 @@ using RestaurantReservation.API.Middleware;
 using RestaurantReservation.API.Validators;
 using RestaurantReservation.Application.Extensions;
 using RestaurantReservation.Persistence.Extensions;
+using RestaurantReservation.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,12 +13,8 @@ builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddApplicationServices();
 
 builder.Services.AddControllers();
-builder.Services.AddScoped<IValidator<CustomerRequestDTO>, CustomerValidator>();
-builder.Services.AddScoped<IValidator<PaginationInfo>, PaginationInfoValidator>();
-//builder.Services.AddValidatorsFromAssembly(Assembly.GetAssembly(typeof(CreateCustomerValidator)));
+builder.Services.AddValidators();
 
-
-//builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

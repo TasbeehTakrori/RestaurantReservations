@@ -5,9 +5,7 @@ using RestaurantReservation.API.DTOs;
 using RestaurantReservation.API.ViewModels;
 using RestaurantReservation.Application.DTOs;
 using RestaurantReservation.Application.Services.IServices;
-using System.Collections.Generic;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace RestaurantReservation.API.Controllers
 {
@@ -17,16 +15,19 @@ namespace RestaurantReservation.API.Controllers
     {
         private readonly IEmployeeService _employeeService;
         private readonly IValidator<PaginationInfo> _paginationInfoValidator;
+        private readonly IValidator<EmployeeRequestDTO> _employeeRequestValidator;
         private readonly IMapper _mapper;
 
         public EmployeesController(
             IEmployeeService employeeService,
             IMapper mapper,
-            IValidator<PaginationInfo> paginationInfoValidator)
+            IValidator<PaginationInfo> paginationInfoValidator,
+            IValidator<EmployeeRequestDTO> employeeRequestValidator)
         {
             _employeeService = employeeService;
             _mapper = mapper;
             _paginationInfoValidator = paginationInfoValidator;
+            _employeeRequestValidator = employeeRequestValidator;
         }
 
         [HttpGet("{id:int}")]
@@ -67,7 +68,10 @@ namespace RestaurantReservation.API.Controllers
             await _employeeRequestValidator.ValidateAndThrowAsync(employeeRequestDTO);
 
             var employee = await _employeeService.CreateEmployeeAsync(_mapper.Map<EmployeeDTO>(employeeRequestDTO));
-            return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, _mapper.Map<EmployeeVM>(employee));
+            return CreatedAtAction(
+                nameof(GetEmployee),
+                new { id = employee!.EmployeeId },
+                _mapper.Map<EmployeeVM>(employee));
         }
 
         [HttpPut("{id:int}")]
