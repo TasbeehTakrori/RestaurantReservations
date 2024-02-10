@@ -11,8 +11,8 @@ namespace RestaurantReservation.API.Validators
                 .WithMessage("First name is required.");
             RuleFor(employee => employee.LastName).NotEmpty()
                 .WithMessage("Last name is required.");
-            RuleFor(employee => employee.Position).IsInEnum()
-                .WithMessage("Invalid employee position.");
+            RuleFor(employee => employee.Position).NotEmpty()
+                .WithMessage("Employee position is required.");
             RuleFor(employee => employee.RestaurantId).GreaterThanOrEqualTo(-1)
                 .WithMessage("Restaurant ID must be greater than or equal 0.");
         }

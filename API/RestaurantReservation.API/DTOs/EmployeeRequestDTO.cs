@@ -8,7 +8,7 @@ namespace RestaurantReservation.API.DTOs
 
         public string LastName { get; set; }
 
-        public EmployeePosition Position { get; set; }
+        public string Position { get; set; }
 
         public int RestaurantId { get; set; }
     }

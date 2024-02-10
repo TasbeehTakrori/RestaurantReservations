@@ -6,14 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Extensions\ValidatorExtensions.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Extensions\ValidatorExtensions.cs" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />

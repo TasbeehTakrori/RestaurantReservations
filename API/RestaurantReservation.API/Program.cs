@@ -1,10 +1,7 @@
-using FluentValidation;
-using RestaurantReservation.API.DTOs;
+using RestaurantReservation.API.Extensions;
 using RestaurantReservation.API.Middleware;
-using RestaurantReservation.API.Validators;
 using RestaurantReservation.Application.Extensions;
 using RestaurantReservation.Persistence.Extensions;
-using RestaurantReservation.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -63,7 +63,7 @@ namespace RestaurantReservation.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<EmployeeVM>> CreateEmployee(EmployeeRequestDTO employeeRequestDTO)
+        public async Task<ActionResult<EmployeeVM>> CreateEmployee([FromBody] EmployeeRequestDTO employeeRequestDTO)
         {
             await _employeeRequestValidator.ValidateAndThrowAsync(employeeRequestDTO);
 
