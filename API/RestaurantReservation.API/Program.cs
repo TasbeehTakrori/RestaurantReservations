@@ -2,6 +2,7 @@ using RestaurantReservation.API.Extensions;
 using RestaurantReservation.API.Middleware;
 using RestaurantReservation.Application.Extensions;
 using RestaurantReservation.Persistence.Extensions;
+using RestaurantReservations.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,8 @@ builder.Services.AddApplicationServices();
 builder.Services.AddValidators();
 
 builder.Services.AddControllers();
-
+builder.Services.AddAPIVersioning(builder.Configuration);
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

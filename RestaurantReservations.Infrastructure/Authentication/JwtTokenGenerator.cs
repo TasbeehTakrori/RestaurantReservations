@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using RestaurantReservation.Application.Services.IServices;
 using RestaurantReservation.Domain.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
