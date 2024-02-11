@@ -1,6 +1,6 @@
 ﻿using RestaurantReservation.Application.Contracts.Persistence;
-using RestaurantReservation.Application.Exceptions;
 using RestaurantReservation.Application.DTOs;
+using RestaurantReservation.Application.Exceptions;
 using RestaurantReservation.Application.Services.IServices;
 using RestaurantReservation.Domain.Common;
 using RestaurantReservation.Domain.Enums;

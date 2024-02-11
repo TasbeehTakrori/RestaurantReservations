@@ -1,7 +1,7 @@
-﻿using RestaurantReservation.Application.Contracts.Persistence;
+﻿using RestaurantReservation.Application.Contracts.IServices;
+using RestaurantReservation.Application.Contracts.Persistence;
 using RestaurantReservation.Application.DTOs;
 using RestaurantReservation.Application.Exceptions;
-using RestaurantReservation.Application.Services.IServices;
 using RestaurantReservation.Domain.Common;
 
 namespace RestaurantReservation.Application.Services

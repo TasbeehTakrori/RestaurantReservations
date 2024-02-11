@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RestaurantReservation.Infrastructure.Security
+namespace RestaurantReservation.Infrastructure.Authentication
 {
     public class JwtSettings
     {

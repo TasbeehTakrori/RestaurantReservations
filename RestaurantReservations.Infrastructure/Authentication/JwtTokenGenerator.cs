@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using RestaurantReservation.Application.Entities;
 using RestaurantReservation.Application.Services.IServices;
+using RestaurantReservation.Domain.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace RestaurantReservation.Infrastructure.Security
+namespace RestaurantReservation.Infrastructure.Authentication
 {
     public class JwtTokenGenerator : IJwtTokenGenerator
     {

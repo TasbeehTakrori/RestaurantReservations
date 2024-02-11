@@ -1,7 +1,7 @@
 ﻿using RestaurantReservation.Application.DTOs;
 using RestaurantReservation.Domain.Common;
 
-namespace RestaurantReservation.Application.Services.IServices
+namespace RestaurantReservation.Application.Contracts.IServices
 {
     public interface IOrderService
     {

@@ -1,9 +1,10 @@
-﻿using RestaurantReservation.Application.Entities;
-using RestaurantReservation.Application.Services.IServices;
+﻿using RestaurantReservation.Application.Contracts.IServices;
+using RestaurantReservation.Domain.Entities;
+using RestaurantReservation.Infrastructure.Authentication;
 
 namespace RestaurantReservation.Application.Services
 {
-    internal class AuthenticationService
+    internal class AuthenticationService : IAuthenticationService
     {
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
         public AuthenticationService(IJwtTokenGenerator jwtTokenGenerator)

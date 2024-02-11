@@ -1,6 +1,6 @@
-﻿namespace RestaurantReservation.Domain.Entities
+﻿namespace RestaurantReservation.API.DTOs
 {
-    public class User
+    public class LoginUserDto
     {
         public string Name { get; set; }
         public string Password { get; set; }
