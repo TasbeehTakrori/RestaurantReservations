@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantReservation.API.DTOs;
+using RestaurantReservation.API.Validators;
 using RestaurantReservation.Application.Contracts.IServices;
 using RestaurantReservation.Domain.Entities;
 
@@ -11,6 +13,8 @@ namespace RestaurantReservation.API.Controllers
     public class LoginController : ControllerBase
     {
         private readonly IAuthenticationService _authenticationService;
+        private readonly IValidator<LoginUserDTO> _loginUserValidator;
+
         private readonly List<User> _userRepository = new List<User>()
         {
             new User {Name = "Tasbeeh", Password = "654321"},
@@ -27,8 +31,10 @@ namespace RestaurantReservation.API.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Login([FromBody] LoginUserDto loginUser)
+        public async Task<IActionResult> Login([FromBody] LoginUserDTO loginUser)
         {
+            await _loginUserValidator.ValidateAndThrowAsync(loginUser);
+
             var user = _userRepository.FirstOrDefault(u => u.Name == loginUser.Name && u.Password == loginUser.Password);
             if (user == null)
             {

@@ -12,6 +12,7 @@ namespace RestaurantReservation.API.Extensions
             services.AddScoped<IValidator<PaginationInfo>, PaginationInfoValidator>();
             services.AddScoped<IValidator<EmployeeRequestDTO>, EmployeeValidator>();
             services.AddScoped<IValidator<ReservationRequestDTO>, ReservationValidator>();
+            services.AddScoped<IValidator<LoginUserDTO>, LoginUserValidator>();
 
             return services;
         }
