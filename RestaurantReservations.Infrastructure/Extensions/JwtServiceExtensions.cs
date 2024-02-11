@@ -2,16 +2,18 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using RestaurantReservation.Infrastructure.Authentication;
 using System.Security.Claims;
 using System.Text;
 
-namespace RestaurantReservation.Infrastructure.Authentication
+namespace RestaurantReservations.Infrastructure.Extensions
 {
     public static class JwtServiceExtensions
     {
         public static void AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
             var jwtSettings = configuration.GetSection("Jwt").Get<JwtSettings>();
+            services.Configure<JwtSettings>(configuration.GetSection("Jwt"));
 
             services.AddAuthentication(options =>
             {

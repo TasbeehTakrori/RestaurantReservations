@@ -1,8 +1,6 @@
 ﻿using FluentValidation;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantReservation.API.DTOs;
-using RestaurantReservation.API.Validators;
 using RestaurantReservation.Application.Contracts.IServices;
 using RestaurantReservation.Domain.Entities;
 
@@ -24,21 +22,21 @@ namespace RestaurantReservation.API.Controllers
         };
 
         public LoginController(
-            IAuthenticationService authenticationService)
+            IAuthenticationService authenticationService, IValidator<LoginUserDTO> loginUserValidator)
         {
             _authenticationService = authenticationService;
+            _loginUserValidator = loginUserValidator;
         }
 
-        [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] LoginUserDTO loginUser)
+        public async Task<ActionResult> Login([FromBody] LoginUserDTO loginUser)
         {
             await _loginUserValidator.ValidateAndThrowAsync(loginUser);
 
             var user = _userRepository.FirstOrDefault(u => u.Name == loginUser.Name && u.Password == loginUser.Password);
             if (user == null)
             {
-                return Unauthorized();
+                return Unauthorized(new { message = "Username or password is incorrect!" });
             }
 
             var token = _authenticationService.GenerateJwtToken(user);

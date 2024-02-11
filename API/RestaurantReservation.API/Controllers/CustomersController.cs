@@ -1,21 +1,22 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantReservation.API.DTOs;
 using RestaurantReservation.API.ViewModels;
 using RestaurantReservation.Application.Contracts.IServices;
 using RestaurantReservation.Application.DTOs;
-using RestaurantReservation.Application.Services.IServices;
 using System.Text.Json;
 
 namespace RestaurantReservation.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomersController : ControllerBase
     {
         private readonly ICustomerService _customerService;
-        private readonly IValidator<CustomerRequestDTO> _createCustomerValidator;
+        private readonly IValidator<CustomerRequestDTO> _customerRequestValidator;
         private readonly IValidator<PaginationInfo> _paginationInfoValidator;
         private readonly IMapper _mapper;
         public CustomersController(
@@ -26,7 +27,7 @@ namespace RestaurantReservation.API.Controllers
         {
             _customerService = customerService;
             _mapper = mapper;
-            _createCustomerValidator = createCustomerValidator;
+            _customerRequestValidator = createCustomerValidator;
             _paginationInfoValidator = paginationInfoValidator;
         }
 
@@ -60,7 +61,7 @@ namespace RestaurantReservation.API.Controllers
         [HttpPost]
         public async Task<ActionResult<CustomerVM>> CreateCustomer(CustomerRequestDTO customerRequestDTO)
         {
-            await _createCustomerValidator.ValidateAndThrowAsync(customerRequestDTO);
+            await _customerRequestValidator.ValidateAndThrowAsync(customerRequestDTO);
 
             var customer = await _customerService.CreateCustomerAsync(_mapper.Map<CustomerDTO>(customerRequestDTO));
             return CreatedAtAction(
@@ -73,7 +74,7 @@ namespace RestaurantReservation.API.Controllers
         public async Task<ActionResult> UpdateCustomer(
             int id, CustomerRequestDTO customerRequestDTO)
         {
-            await _createCustomerValidator.ValidateAndThrowAsync(customerRequestDTO);
+            await _customerRequestValidator.ValidateAndThrowAsync(customerRequestDTO);
             await _customerService.UpdateCustomerAsync(id, _mapper.Map<CustomerDTO>(customerRequestDTO));
 
             return NoContent();
