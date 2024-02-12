@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using RestaurantReservation.Application.Contracts.IService;
+﻿using RestaurantReservation.Application.Contracts.IService;
 using RestaurantReservation.Application.Contracts.IServices;
 using RestaurantReservation.Application.DTOs;
 using RestaurantReservation.Domain.Entities;
@@ -15,9 +14,7 @@ namespace RestaurantReservation.Application.Services
         private readonly List<User> _userRepository = new List<User>()
         {
             new User {Name = "Tasbeeh", HashedPassword = "KQC76m3QBD2+E/SZ5tWLzxAb2eEaNUjFRmHvg9kicNo=", PasswordSalt="112255" },
-            new User {Name = "Israa", HashedPassword = "123456", PasswordSalt="" },
-            new User {Name = "Danya", HashedPassword = "123456", PasswordSalt = ""},
-            new User {Name = "Ayah", HashedPassword = "123456", PasswordSalt = ""}
+            new User {Name = "Israa", HashedPassword = "MfzC1OLrzluRiDKKKK0sAM4E5NNgTSCAbiawZT1oojE=", PasswordSalt="5555" },
         };
 
         public LoginService(IAuthenticationService authenticationService)

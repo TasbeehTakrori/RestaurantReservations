@@ -50,6 +50,7 @@ namespace RestaurantReservation.API.Controllers
         [HttpGet("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<CustomerVM>> GetCustomer(int id)
         {
             var customer = await _customerService.RetrieveCustomerByIdAsync(id);
@@ -67,6 +68,7 @@ namespace RestaurantReservation.API.Controllers
         /// <returns>A collection of customers.</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<CollectionVM<CustomerVM>>> GetCustomers(
             [FromQuery] PaginationInfo paginationInfo)
         {
@@ -94,6 +96,7 @@ namespace RestaurantReservation.API.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<CustomerVM>> CreateCustomer(CustomerRequestDTO customerRequestDTO)
         {
             await _customerRequestValidator.ValidateAndThrowAsync(customerRequestDTO);
@@ -115,6 +118,7 @@ namespace RestaurantReservation.API.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult> UpdateCustomer(
             int id, CustomerRequestDTO customerRequestDTO)
         {
@@ -136,6 +140,7 @@ namespace RestaurantReservation.API.Controllers
         [HttpDelete("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult> DeleteCustomer(int id)
         {
             var existingCustomer = await _customerService.RetrieveCustomerByIdAsync(id);

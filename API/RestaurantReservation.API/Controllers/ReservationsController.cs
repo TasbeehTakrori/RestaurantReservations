@@ -9,6 +9,9 @@ using System.Text.Json;
 
 namespace RestaurantReservation.API.Controllers
 {
+    /// <summary>
+    /// API Controller for managing reservations.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ReservationsController : ControllerBase
@@ -19,6 +22,9 @@ namespace RestaurantReservation.API.Controllers
         private readonly IValidator<PaginationInfo> _paginationInfoValidator;
         private readonly IMapper _mapper;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReservationsController"/> class.
+        /// </summary>
         public ReservationsController(
             IReservationService reservationService,
             IMapper mapper,
@@ -33,6 +39,11 @@ namespace RestaurantReservation.API.Controllers
             _orderService = orderService;
         }
 
+        /// <summary>
+        /// Retrieves a reservation by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the reservation to retrieve.</param>
+        /// <returns>The retrieved reservation.</returns>
         [HttpGet("{id:int}")]
         public async Task<ActionResult<ReservationVM>> GetReservation(int id)
         {
@@ -40,6 +51,11 @@ namespace RestaurantReservation.API.Controllers
             return Ok(_mapper.Map<ReservationVM>(reservation));
         }
 
+        /// <summary>
+        /// Retrieves a list of reservations with pagination.
+        /// </summary>
+        /// <param name="paginationInfo">Pagination information.</param>
+        /// <returns>A list of reservations with pagination metadata.</returns>
         [HttpGet]
         public async Task<ActionResult<CollectionVM<ReservationVM>>> GetReservations(
             [FromQuery] PaginationInfo paginationInfo)
@@ -61,6 +77,13 @@ namespace RestaurantReservation.API.Controllers
             return Ok(collectionVM);
         }
 
+        /// <summary>
+        /// Creates a new reservation.
+        /// </summary>
+        /// <param name="reservationRequestDTO">The reservation data to create.</param>
+        /// <returns>The created reservation.</returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
         public async Task<ActionResult<ReservationVM>> CreateReservation(ReservationRequestDTO reservationRequestDTO)
         {
@@ -68,11 +91,19 @@ namespace RestaurantReservation.API.Controllers
 
             var reservation = await _reservationService.CreateReservationAsync(_mapper.Map<ReservationDTO>(reservationRequestDTO));
             return CreatedAtAction(
-            nameof(GetReservation),
-            new { id = reservation!.ReservationId },
+                nameof(GetReservation),
+                new { id = reservation!.ReservationId },
                 _mapper.Map<ReservationVM>(reservation));
         }
 
+        /// <summary>
+        /// Updates an existing reservation.
+        /// </summary>
+        /// <param name="id">The ID of the reservation to update.</param>
+        /// <param name="reservationRequestDTO">The updated reservation data.</param>
+        /// <returns>No content if successful.</returns>
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPut("{id:int}")]
         public async Task<ActionResult> UpdateReservation(
             int id, ReservationRequestDTO reservationRequestDTO)
@@ -83,6 +114,13 @@ namespace RestaurantReservation.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Deletes a reservation by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the reservation to delete.</param>
+        /// <returns>No content if successful.</returns>
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> DeleteReservation(
          int id)
@@ -92,6 +130,11 @@ namespace RestaurantReservation.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Retrieves a list of reservations made by a specific customer.
+        /// </summary>
+        /// <param name="id">The ID of the customer.</param>
+        /// <returns>A list of reservations made by the customer.</returns>
         [HttpGet("customer/{id:int}")]
         public async Task<ActionResult<CollectionVM<ReservationVM>>> GetReservationsByCustomerAsync(int id)
         {
@@ -106,8 +149,13 @@ namespace RestaurantReservation.API.Controllers
             return Ok(collectionVM);
         }
 
+        /// <summary>
+        /// Retrieves a list of orders along with menu items for a specific reservation.
+        /// </summary>
+        /// <param name="id">The ID of the reservation.</param>
+        /// <returns>A list of orders along with menu items.</returns>
         [HttpGet("{id:int}/orders")]
-        public async Task<ActionResult<CollectionVM<ReservationVM>>> GetOrdersWithMenuItemsAsync(int id)
+        public async Task<ActionResult<CollectionVM<OrderWithMenuItemsVM>>> GetOrdersWithMenuItemsAsync(int id)
         {
             var ordersWithMenuItems = await _orderService.GetOrdersAndMenuItemsAsync(id);
             var ordersWithMenuItemsVm = _mapper.Map<List<OrderWithMenuItemsVM>>(ordersWithMenuItems);
@@ -120,6 +168,11 @@ namespace RestaurantReservation.API.Controllers
             return Ok(collectionVM);
         }
 
+        /// <summary>
+        /// Retrieves a list of menu items ordered in a specific reservation.
+        /// </summary>
+        /// <param name="id">The ID of the reservation.</param>
+        /// <returns>A list of menu items ordered in the reservation.</returns>
         [HttpGet("{id:int}/menuItems")]
         public async Task<ActionResult<CollectionVM<MenuItemMV>>> GetOrderedMenuItemsAsync(int id)
         {

@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RestaurantReservation.API</name>
+    </assembly>
+    <members>
+        <member name="T:RestaurantReservation.API.Controllers.CustomersController">
+            <summary>
+            Controller to handle operations related to customers.
+            </summary>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.CustomersController.#ctor(RestaurantReservation.Application.Contracts.IServices.ICustomerService,AutoMapper.IMapper,FluentValidation.IValidator{RestaurantReservation.API.DTOs.CustomerRequestDTO},FluentValidation.IValidator{RestaurantReservation.API.DTOs.PaginationInfo})">
+            <summary>
+            Constructor for CustomersController.
+            </summary>
+            <param name="customerService">Service for customer operations.</param>
+            <param name="mapper">AutoMapper instance for object mapping.</param>
+            <param name="createCustomerValidator">Validator for customer creation requests.</param>
+            <param name="paginationInfoValidator">Validator for pagination information.</param>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.CustomersController.GetCustomer(System.Int32)">
+            <summary>
+            Retrieve a customer by ID.
+            </summary>
+            <param name="id">ID of the customer to retrieve.</param>
+            <returns>The requested customer.</returns>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.CustomersController.GetCustomers(RestaurantReservation.API.DTOs.PaginationInfo)">
+            <summary>
+            Retrieve customers with pagination.
+            </summary>
+            <param name="paginationInfo">Pagination information.</param>
+            <returns>A collection of customers.</returns>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.CustomersController.CreateCustomer(RestaurantReservation.API.DTOs.CustomerRequestDTO)">
+            <summary>
+            Create a new customer.
+            </summary>
+            <param name="customerRequestDTO">Data for creating the customer.</param>
+            <returns>The created customer.</returns>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.CustomersController.UpdateCustomer(System.Int32,RestaurantReservation.API.DTOs.CustomerRequestDTO)">
+            <summary>
+            Update an existing customer.
+            </summary>
+            <param name="id">ID of the customer to update.</param>
+            <param name="customerRequestDTO">Data for updating the customer.</param>
+            <returns>No content if successful.</returns>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.CustomersController.DeleteCustomer(System.Int32)">
+            <summary>
+            Delete a customer by ID.
+            </summary>
+            <param name="id">ID of the customer to delete.</param>
+            <returns>No content if successful.</returns>
+        </member>
+        <member name="T:RestaurantReservation.API.Controllers.EmployeesController">
+            <summary>
+            Controller to handle operations related to employees.
+            </summary>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.EmployeesController.#ctor(RestaurantReservation.Application.Services.IServices.IEmployeeService,AutoMapper.IMapper,FluentValidation.IValidator{RestaurantReservation.API.DTOs.PaginationInfo},FluentValidation.IValidator{RestaurantReservation.API.DTOs.EmployeeRequestDTO},RestaurantReservation.Application.Contracts.IServices.IOrderService)">
+            <summary>
+            Constructor for EmployeesController.
+            </summary>
+            <param name="employeeService">Service for employee operations.</param>
+            <param name="mapper">AutoMapper instance for object mapping.</param>
+            <param name="paginationInfoValidator">Validator for pagination information.</param>
+            <param name="employeeRequestValidator">Validator for employee requests.</param>
+            <param name="orderService">Service for order operations.</param>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.EmployeesController.GetEmployee(System.Int32)">
+            <summary>
+            Retrieve an employee by ID.
+            </summary>
+            <param name="id">ID of the employee to retrieve.</param>
+            <returns>The requested employee.</returns>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.EmployeesController.GetEmployees(RestaurantReservation.API.DTOs.PaginationInfo,System.String)">
+            <summary>
+            Retrieve employees with pagination.
+            </summary>
+            <param name="paginationInfo">Pagination information.</param>
+            <param name="position">Optional filter by employee position.</param>
+            <returns>A collection of employees.</returns>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.EmployeesController.CreateEmployee(RestaurantReservation.API.DTOs.EmployeeRequestDTO)">
+            <summary>
+            Create a new employee.
+            </summary>
+            <param name="employeeRequestDTO">Data for creating the employee.</param>
+            <returns>The created employee.</returns>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.EmployeesController.UpdateEmployee(System.Int32,RestaurantReservation.API.DTOs.EmployeeRequestDTO)">
+            <summary>
+            Update an existing employee.
+            </summary>
+            <param name="id">ID of the employee to update.</param>
+            <param name="employeeRequestDTO">Data for updating the employee.</param>
+            <returns>No content if successful.</returns>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.EmployeesController.DeleteEmployee(System.Int32)">
+            <summary>
+            Delete an employee by ID.
+            </summary>
+            <param name="id">ID of the employee to delete.</param>
+            <returns>No content if successful.</returns>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.EmployeesController.GetEmployeeAverageOrderAmountAsync(System.Int32)">
+            <summary>
+            Retrieve the average order amount for an employee.
+            </summary>
+            <param name="id">ID of the employee.</param>
+            <returns>The average order amount.</returns>
+        </member>
+        <member name="T:RestaurantReservation.API.Controllers.LoginController">
+            <summary>
+            API Controller for handling user authentication.
+            </summary>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.LoginController.#ctor(FluentValidation.IValidator{RestaurantReservation.Application.DTOs.LoginUserDTO},RestaurantReservation.Application.Contracts.IService.ILoginService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestaurantReservation.API.Controllers.LoginController"/> class.
+            </summary>
+            <param name="loginUserValidator">The validator for the login user DTO.</param>
+            <param name="loginService">The login service to handle user authentication.</param>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.LoginController.Login(RestaurantReservation.Application.DTOs.LoginUserDTO)">
+            <summary>
+            Endpoint for user login.
+            </summary>
+            <param name="loginUser">The login user data.</param>
+            <returns>OK with a JWT token if login is successful, Unauthorized otherwise.</returns>
+        </member>
+        <member name="T:RestaurantReservation.API.Controllers.ReservationsController">
+            <summary>
+            API Controller for managing reservations.
+            </summary>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.#ctor(RestaurantReservation.Application.Contracts.IServices.IReservationService,AutoMapper.IMapper,FluentValidation.IValidator{RestaurantReservation.API.DTOs.ReservationRequestDTO},FluentValidation.IValidator{RestaurantReservation.API.DTOs.PaginationInfo},RestaurantReservation.Application.Contracts.IServices.IOrderService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestaurantReservation.API.Controllers.ReservationsController"/> class.
+            </summary>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.GetReservation(System.Int32)">
+            <summary>
+            Retrieves a reservation by its ID.
+            </summary>
+            <param name="id">The ID of the reservation to retrieve.</param>
+            <returns>The retrieved reservation.</returns>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.GetReservations(RestaurantReservation.API.DTOs.PaginationInfo)">
+            <summary>
+            Retrieves a list of reservations with pagination.
+            </summary>
+            <param name="paginationInfo">Pagination information.</param>
+            <returns>A list of reservations with pagination metadata.</returns>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.CreateReservation(RestaurantReservation.API.DTOs.ReservationRequestDTO)">
+            <summary>
+            Creates a new reservation.
+            </summary>
+            <param name="reservationRequestDTO">The reservation data to create.</param>
+            <returns>The created reservation.</returns>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.UpdateReservation(System.Int32,RestaurantReservation.API.DTOs.ReservationRequestDTO)">
+            <summary>
+            Updates an existing reservation.
+            </summary>
+            <param name="id">The ID of the reservation to update.</param>
+            <param name="reservationRequestDTO">The updated reservation data.</param>
+            <returns>No content if successful.</returns>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.DeleteReservation(System.Int32)">
+            <summary>
+            Deletes a reservation by its ID.
+            </summary>
+            <param name="id">The ID of the reservation to delete.</param>
+            <returns>No content if successful.</returns>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.GetReservationsByCustomerAsync(System.Int32)">
+            <summary>
+            Retrieves a list of reservations made by a specific customer.
+            </summary>
+            <param name="id">The ID of the customer.</param>
+            <returns>A list of reservations made by the customer.</returns>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.GetOrdersWithMenuItemsAsync(System.Int32)">
+            <summary>
+            Retrieves a list of orders along with menu items for a specific reservation.
+            </summary>
+            <param name="id">The ID of the reservation.</param>
+            <returns>A list of orders along with menu items.</returns>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.GetOrderedMenuItemsAsync(System.Int32)">
+            <summary>
+            Retrieves a list of menu items ordered in a specific reservation.
+            </summary>
+            <param name="id">The ID of the reservation.</param>
+            <returns>A list of menu items ordered in the reservation.</returns>
+        </member>
+    </members>
+</doc>

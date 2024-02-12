@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>RestaurantReservation.API.xml</DocumentationFile>
+    <DocumentationFile>RestaurantReservations.API.xml</DocumentationFile>
   </PropertyGroup>
 
 

@@ -1,8 +1,10 @@
+using Microsoft.OpenApi.Models;
 using RestaurantReservation.API.Extensions;
 using RestaurantReservation.API.Middleware;
 using RestaurantReservation.Application.Extensions;
 using RestaurantReservation.Persistence.Extensions;
 using RestaurantReservations.Infrastructure.Extensions;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +19,7 @@ builder.Services.AddAPIVersioning(builder.Configuration);
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGeneration();
 
 
 var app = builder.Build();
