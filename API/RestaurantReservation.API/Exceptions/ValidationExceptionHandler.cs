@@ -10,7 +10,8 @@ namespace RestaurantReservation.API.Exceptions
             var validationException = ex as FluentValidation.ValidationException;
             if (validationException != null)
             {
-                var errors = validationException.Errors.Select(error => new { Property = error.PropertyName, Message = error.ErrorMessage })
+                var errors = validationException.Errors.Select(
+                    error => new { Property = error.PropertyName, Message = error.ErrorMessage })
                     .ToDictionary(error => error.Property, error => new[] { error.Message });
                 var problemDetails = new ValidationProblemDetails(errors)
                 {

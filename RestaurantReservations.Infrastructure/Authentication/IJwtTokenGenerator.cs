@@ -4,6 +4,6 @@ namespace RestaurantReservation.Infrastructure.Authentication
 {
     public interface IJwtTokenGenerator
     {
-        string GenerateToken(User user);
+        string GenerateToken(string userName);
     }
 }

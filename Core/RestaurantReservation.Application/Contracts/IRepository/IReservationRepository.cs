@@ -1,7 +1,7 @@
 ﻿using RestaurantReservation.Application.Entities;
 using RestaurantReservation.Application.DTOs;
 
-namespace RestaurantReservation.Application.Contracts.Persistence
+namespace RestaurantReservation.Application.Contracts.IRepository
 {
     public interface IReservationRepository : IEntityRepository<ReservationDTO>
     {

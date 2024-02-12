@@ -1,4 +1,4 @@
-﻿using RestaurantReservation.Application.Contracts.Persistence;
+﻿using RestaurantReservation.Application.Contracts.IRepository;
 using RestaurantReservation.Application.Exceptions;
 using RestaurantReservation.Application.DTOs;
 using RestaurantReservation.Domain.Common;

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using RestaurantReservation.Application.Entities;
 using RestaurantReservation.Application.DTOs;
-using RestaurantReservation.Application.Contracts.Persistence;
+using RestaurantReservation.Application.Contracts.IRepository;
 using RestaurantReservation.Domain.Enums;
 using RestaurantReservation.Domain.Common;
 

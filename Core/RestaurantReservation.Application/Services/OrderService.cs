@@ -1,5 +1,5 @@
 ﻿using RestaurantReservation.Application.Contracts.IServices;
-using RestaurantReservation.Application.Contracts.Persistence;
+using RestaurantReservation.Application.Contracts.IRepository;
 using RestaurantReservation.Application.DTOs;
 using RestaurantReservation.Application.Exceptions;
 using RestaurantReservation.Domain.Common;

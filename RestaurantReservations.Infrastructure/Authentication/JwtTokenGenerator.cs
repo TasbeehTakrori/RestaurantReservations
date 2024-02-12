@@ -22,13 +22,13 @@ namespace RestaurantReservation.Infrastructure.Authentication
             _key = Encoding.ASCII.GetBytes(jwtSettings.Key);
         }
 
-        public string GenerateToken(User user)
+        public string GenerateToken(string userName)
         {
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                new Claim(JwtRegisteredClaimNames.Name, user.Name!),
+                new Claim(JwtRegisteredClaimNames.Name, userName),
             }),
                 Expires = DateTime.UtcNow.AddMinutes(_expiresMinutes),
                 Issuer = _issuer,

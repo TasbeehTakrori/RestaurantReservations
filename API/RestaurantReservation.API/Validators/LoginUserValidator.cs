@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using RestaurantReservation.API.DTOs;
+using RestaurantReservation.Application.DTOs;
 
 namespace RestaurantReservation.API.Validators
 {
@@ -11,7 +11,7 @@ namespace RestaurantReservation.API.Validators
                 .WithMessage("First name is required.");
             RuleFor(employee => employee.Password).NotEmpty()
                 .WithMessage("Password is required.");
-               
+
         }
     }
 }

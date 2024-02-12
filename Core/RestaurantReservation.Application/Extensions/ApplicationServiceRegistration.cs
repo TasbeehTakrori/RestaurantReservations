@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using RestaurantReservation.Application.Contracts.IService;
 using RestaurantReservation.Application.Contracts.IServices;
 using RestaurantReservation.Application.Services;
 using RestaurantReservation.Application.Services.IServices;
@@ -16,6 +17,7 @@ namespace RestaurantReservation.Application.Extensions
             services.AddScoped<IReservationService, ReservationService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<ILoginService, LoginService>();
 
             return services;
         }

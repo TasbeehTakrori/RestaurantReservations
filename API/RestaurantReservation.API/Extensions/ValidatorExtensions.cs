@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using RestaurantReservation.API.DTOs;
 using RestaurantReservation.API.Validators;
+using RestaurantReservation.Application.DTOs;
 
 namespace RestaurantReservation.API.Extensions
 {

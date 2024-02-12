@@ -1,4 +1,5 @@
 ﻿using RestaurantReservation.Application.Contracts.IServices;
+using RestaurantReservation.Application.DTOs;
 using RestaurantReservation.Domain.Entities;
 using RestaurantReservation.Infrastructure.Authentication;
 
@@ -12,9 +13,9 @@ namespace RestaurantReservation.Application.Services
             _jwtTokenGenerator = jwtTokenGenerator;
         }
 
-        public string GenerateJwtToken(User user)
+        public string GenerateJwtToken(LoginUserDTO user)
         {
-            return _jwtTokenGenerator.GenerateToken(user);
+            return _jwtTokenGenerator.GenerateToken(user.Name);
         }
     }
 }

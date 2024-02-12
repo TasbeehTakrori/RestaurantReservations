@@ -1,4 +1,4 @@
-﻿namespace RestaurantReservation.API.DTOs
+﻿namespace RestaurantReservation.Application.DTOs
 {
     public class LoginUserDTO
     {

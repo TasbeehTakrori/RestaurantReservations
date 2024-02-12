@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using RestaurantReservation.Application.Contracts.Persistence;
+using RestaurantReservation.Application.Contracts.IRepository;
 using RestaurantReservation.Domain.Common;
 
 namespace RestaurantReservation.Persistence.Repositories

@@ -2,7 +2,7 @@
 using RestaurantReservation.Domain.Common;
 using RestaurantReservation.Domain.Enums;
 
-namespace RestaurantReservation.Application.Contracts.Persistence
+namespace RestaurantReservation.Application.Contracts.IRepository
 {
     public interface IEmployeeRepository : IEntityRepository<EmployeeDTO>
     {

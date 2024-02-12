@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using RestaurantReservation.Application.Contracts.Persistence;
+using RestaurantReservation.Application.Contracts.IRepository;
 using RestaurantReservation.Persistence.Repositories;
 
 namespace RestaurantReservation.Persistence.Extensions

@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using RestaurantReservation.Infrastructure.Authentication;
-using System.Security.Claims;
 using System.Text;
 
 namespace RestaurantReservations.Infrastructure.Extensions
