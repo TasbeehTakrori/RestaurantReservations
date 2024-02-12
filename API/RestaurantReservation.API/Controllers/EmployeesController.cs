@@ -165,10 +165,7 @@ namespace RestaurantReservation.API.Controllers
         public async Task<ActionResult<decimal>> GetEmployeeAverageOrderAmountAsync(int id)
         {
             var averageOrderAmount = await _orderService.CalculateAverageOrderAmountAsync(id);
-            if (averageOrderAmount == null)
-            {
-                return NotFound();
-            }
+
             return Ok(new { AverageOrderAmount = averageOrderAmount });
         }
     }
