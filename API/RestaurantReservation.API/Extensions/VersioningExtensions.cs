@@ -7,13 +7,13 @@ namespace RestaurantReservation.API.Extensions
     {
         public static IServiceCollection AddAPIVersioning(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<RestaurantReservations.Infrastructure.Options.ApiVersioningOptions>(
+            services.Configure<RestaurantReservation.Infrastructure.Options.ApiVersioningOptions>(
                 configuration.GetSection("ApiVersioning"));
 
             services.AddApiVersioning(options =>
             {
                 var apiVersioningOptions = services.BuildServiceProvider()
-                .GetRequiredService<IOptions<RestaurantReservations.Infrastructure.Options.ApiVersioningOptions>>()
+                .GetRequiredService<IOptions<RestaurantReservation.Infrastructure.Options.ApiVersioningOptions>>()
                 .Value;
 
                 options.DefaultApiVersion = new ApiVersion(apiVersioningOptions.DefaultApiVersion, 0);

@@ -174,12 +174,12 @@ namespace RestaurantReservation.API.Controllers
         /// <param name="id">The ID of the reservation.</param>
         /// <returns>A list of menu items ordered in the reservation.</returns>
         [HttpGet("{id:int}/menuItems")]
-        public async Task<ActionResult<CollectionVM<MenuItemMV>>> GetOrderedMenuItemsAsync(int id)
+        public async Task<ActionResult<CollectionVM<MenuItemVM>>> GetOrderedMenuItemsAsync(int id)
         {
             var orderedMenuItems = await _orderService.GetOrderedMenuItemsAsync(id);
-            var orderedMenuItemsVm = _mapper.Map<List<MenuItemMV>>(orderedMenuItems);
+            var orderedMenuItemsVm = _mapper.Map<List<MenuItemVM>>(orderedMenuItems);
 
-            var collectionVM = new CollectionVM<MenuItemMV>()
+            var collectionVM = new CollectionVM<MenuItemVM>()
             {
                 Count = orderedMenuItemsVm.Count,
                 Items = orderedMenuItemsVm

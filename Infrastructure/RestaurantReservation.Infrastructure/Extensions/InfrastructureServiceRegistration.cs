@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using RestaurantReservation.Infrastructure.Authentication;
 
-namespace RestaurantReservations.Infrastructure.Extensions
+namespace RestaurantReservation.Infrastructure.Extensions
 {
     public static class InfrastructureServiceRegistration
     {

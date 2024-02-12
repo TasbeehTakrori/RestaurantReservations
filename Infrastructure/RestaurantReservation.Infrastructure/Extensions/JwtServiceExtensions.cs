@@ -5,7 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using RestaurantReservation.Infrastructure.Authentication;
 using System.Text;
 
-namespace RestaurantReservations.Infrastructure.Extensions
+namespace RestaurantReservation.Infrastructure.Extensions
 {
     public static class JwtServiceExtensions
     {

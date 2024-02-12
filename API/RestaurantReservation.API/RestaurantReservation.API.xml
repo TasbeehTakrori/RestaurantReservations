@@ -199,5 +199,251 @@
             <param name="id">The ID of the reservation.</param>
             <returns>A list of menu items ordered in the reservation.</returns>
         </member>
+        <member name="T:RestaurantReservation.API.Controllers.CustomerVM">
+            <summary>
+            View model for representing customer information.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.Controllers.CustomerVM.CustomerId">
+            <summary>
+            The unique identifier of the customer.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.Controllers.CustomerVM.FullName">
+            <summary>
+            The full name of the customer.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.Controllers.CustomerVM.Email">
+            <summary>
+            The email address of the customer.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.Controllers.CustomerVM.PhoneNumber">
+            <summary>
+            The phone number of the customer.
+            </summary>
+        </member>
+        <member name="T:RestaurantReservation.API.DTOs.CustomerRequestDTO">
+            <summary>
+            Data transfer object for creating or updating a customer.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.DTOs.CustomerRequestDTO.FirstName">
+            <summary>
+            First name of the customer.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.DTOs.CustomerRequestDTO.LastName">
+            <summary>
+            Last name of the customer.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.DTOs.CustomerRequestDTO.Email">
+            <summary>
+            Email address of the customer.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.DTOs.CustomerRequestDTO.PhoneNumber">
+            <summary>
+            Phone number of the customer.
+            </summary>
+        </member>
+        <member name="T:RestaurantReservation.API.DTOs.EmployeeRequestDTO">
+            <summary>
+            Data transfer object for creating or updating an employee.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.DTOs.EmployeeRequestDTO.FirstName">
+            <summary>
+            First name of the employee.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.DTOs.EmployeeRequestDTO.LastName">
+            <summary>
+            Last name of the employee.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.DTOs.EmployeeRequestDTO.Position">
+            <summary>
+            Position of the employee.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.DTOs.EmployeeRequestDTO.RestaurantId">
+            <summary>
+            ID of the restaurant to which the employee belongs.
+            </summary>
+        </member>
+        <member name="T:RestaurantReservation.API.DTOs.PaginationInfo">
+            <summary>
+            Data transfer object for pagination information.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.DTOs.PaginationInfo.PageNumber">
+            <summary>
+            The page number to retrieve.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.DTOs.PaginationInfo.PageSize">
+            <summary>
+            The size of each page.
+            </summary>
+        </member>
+        <member name="M:RestaurantReservation.API.DTOs.PaginationInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestaurantReservation.API.DTOs.PaginationInfo"/> class with default values.
+            </summary>
+        </member>
+        <member name="T:RestaurantReservation.API.DTOs.ReservationRequestDTO">
+            <summary>
+            Data transfer object for creating or updating a reservation.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.DTOs.ReservationRequestDTO.ReservationDate">
+            <summary>
+            The date and time of the reservation.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.DTOs.ReservationRequestDTO.PartySize">
+            <summary>
+            The size of the party for the reservation.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.DTOs.ReservationRequestDTO.CustomerId">
+            <summary>
+            The ID of the customer making the reservation.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.DTOs.ReservationRequestDTO.TableId">
+            <summary>
+            The ID of the table reserved for the party.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.DTOs.ReservationRequestDTO.RestaurantId">
+            <summary>
+            The ID of the restaurant where the reservation is made.
+            </summary>
+        </member>
+        <member name="T:RestaurantReservation.API.ViewModels.CollectionVM`1">
+            <summary>
+            View model for representing a collection of items.
+            </summary>
+            <typeparam name="T">The type of items in the collection.</typeparam>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.CollectionVM`1.Count">
+            <summary>
+            The total count of items in the collection.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.CollectionVM`1.Items">
+            <summary>
+            The list of items in the collection.
+            </summary>
+        </member>
+        <member name="T:RestaurantReservation.API.ViewModels.EmployeeVM">
+            <summary>
+            View model for representing employee information.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.EmployeeVM.EmployeeId">
+            <summary>
+            The unique identifier of the employee.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.EmployeeVM.FullName">
+            <summary>
+            The full name of the employee.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.EmployeeVM.Position">
+            <summary>
+            The position of the employee.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.EmployeeVM.RestaurantId">
+            <summary>
+            The ID of the restaurant where the employee works.
+            </summary>
+        </member>
+        <member name="T:RestaurantReservation.API.ViewModels.MenuItemVM">
+            <summary>
+            View model for representing a menu item.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.MenuItemVM.MenuItemId">
+            <summary>
+            The unique identifier of the menu item.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.MenuItemVM.Name">
+            <summary>
+            The name of the menu item.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.MenuItemVM.Description">
+            <summary>
+            The description of the menu item.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.MenuItemVM.Price">
+            <summary>
+            The price of the menu item.
+            </summary>
+        </member>
+        <member name="T:RestaurantReservation.API.ViewModels.OrderWithMenuItemsVM">
+            <summary>
+            View model for representing an order along with its associated menu items.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.OrderWithMenuItemsVM.OrderId">
+            <summary>
+            The unique identifier of the order.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.OrderWithMenuItemsVM.OrderDate">
+            <summary>
+            The date and time when the order was placed.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.OrderWithMenuItemsVM.MenuItems">
+            <summary>
+            The list of menu items included in the order.
+            </summary>
+        </member>
+        <member name="T:RestaurantReservation.API.ViewModels.ReservationVM">
+            <summary>
+            View model for representing a reservation.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.ReservationVM.ReservationId">
+            <summary>
+            The unique identifier of the reservation.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.ReservationVM.ReservationDate">
+            <summary>
+            The date and time of the reservation.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.ReservationVM.PartySize">
+            <summary>
+            The size of the party for the reservation.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.ReservationVM.CustomerId">
+            <summary>
+            The ID of the customer making the reservation.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.ReservationVM.TableId">
+            <summary>
+            The ID of the table reserved for the party.
+            </summary>
+        </member>
+        <member name="P:RestaurantReservation.API.ViewModels.ReservationVM.RestaurantId">
+            <summary>
+            The ID of the restaurant where the reservation is made.
+            </summary>
+        </member>
     </members>
 </doc>

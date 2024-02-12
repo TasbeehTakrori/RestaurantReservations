@@ -1,4 +1,4 @@
-﻿namespace RestaurantReservations.Infrastructure.Options
+﻿namespace RestaurantReservation.Infrastructure.Options
 {
     public class ApiVersioningOptions
     {
